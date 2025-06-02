@@ -1,0 +1,17 @@
+{
+  "name": "build_the_best_modern_creative_responsive_personal_portfolio_with_3d",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "dev": "parcel src/index.html",
+    "build": "parcel build src/index.html"
+  },
+  "devDependencies": {
+    "@parcel/transformer-sass": "^2.15.2",
+    "@types/bun": "latest",
+    "parcel": "^2.15.2"
+  },
+  "peerDependencies": {
+    "typescript": "^5"
+  }
+}
