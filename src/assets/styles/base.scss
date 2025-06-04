@@ -1,3 +1,49 @@
-body {
-	background: rgb(211, 208, 208);
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400..900&display=swap');
+
+* {
+	margin: 0;
+	box-sizing: border-box;
+	&:after,
+	&:before {
+		box-sizing: border-box;
+	}
 }
+
+html,
+body {
+	overflow-x: hidden;
+}
+
+body {
+	font-family: 'Poppins', sans-serif;
+	line-height: 1.5;
+	-webkit-font-smoothing: antialiased;
+}
+
+button,
+input,
+textarea,
+select {
+	font: inherit;
+}
+
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	overflow-wrap: break-word;
+}
+
+img,
+video,
+canvas,
+svg {
+	max-width: 100%;
+}
+
+// variables
+$green-color: #6cff8d;
+$green-color-dark: #6cff8c7a;
