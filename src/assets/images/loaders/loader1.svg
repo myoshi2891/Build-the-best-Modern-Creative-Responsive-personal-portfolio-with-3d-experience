@@ -1,0 +1,253 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   id="svg2"
+   version="1.1"
+   inkscape:version="0.48.2 r9819"
+   width="600"
+   height="600"
+   sodipodi:docname="cherry blossom-spinner.svg">
+  <metadata
+     id="metadata8">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <defs
+     id="defs6" />
+  <sodipodi:namedview
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1"
+     objecttolerance="10"
+     gridtolerance="10"
+     guidetolerance="10"
+     inkscape:pageopacity="0"
+     inkscape:pageshadow="2"
+     inkscape:window-width="1920"
+     inkscape:window-height="786"
+     id="namedview4"
+     showgrid="false"
+     borderlayer="true"
+     inkscape:showpageshadow="false"
+     inkscape:zoom="0.18220149"
+     inkscape:cx="198.6152"
+     inkscape:cy="300.51584"
+     inkscape:window-x="736"
+     inkscape:window-y="138"
+     inkscape:window-maximized="0"
+     inkscape:current-layer="svg2"
+     showguides="false">
+    <inkscape:grid
+       type="xygrid"
+       id="grid2995"
+       empspacing="10"
+       visible="true"
+       enabled="true"
+       snapvisiblegridlinesonly="false"
+       dotted="false" />
+  </sodipodi:namedview>
+  <path
+     sodipodi:nodetypes="ccccccccc"
+     inkscape:transform-center-y="-136"
+     inkscape:connector-curvature="0"
+     id="BG-01"
+     d="M 274.66564,50 C 289.88615,69.77762 309.38399,81.792546 325,50 l 1,-1 13,6 c 48.36453,33.724706 52.77561,76.21889 31,130.64384 -24.53264,30.2004 -44.28786,83.02117 -69.59197,107.45763 C 271.54704,262.93974 242.93696,221.0853 226.9726,183.69863 205.65331,130.96198 229.39438,72.452184 266,52 z"
+     style="fill:#f9ff95;fill-opacity:0.80000001">
+    <animate
+       repeatCount="indefinite"
+       xlink:href="#petal-01"
+       to="0.1"
+       from="1.0"
+       dur="1.2s"
+       begin="0s"
+       attributeType="CSS"
+       attributeName="fill-opacity"
+       id="animate3783" />
+  </path>
+  <path
+     style="fill:#f9ff95;fill-opacity:0.80000001"
+     d="m 529.79921,196.36805 c -13.40122,21.05292 -20.9851,48.62208 14.22712,52.45956 1.86766,5.03943 -1.44584,10.42971 -2.12978,15.60054 -28.31186,52.59877 -51.74859,68.6477 -107.09701,67.81835 -36.62717,-7.84364 -96.07014,-17.10417 -127.68761,-33.18115 22.41215,-36.44169 54.97312,-73.19391 80.73881,-101.9352 42.17208,-38.02627 88.82301,-35.66238 131.23572,-8.22616 z"
+     id="BG-02"
+     inkscape:connector-curvature="0"
+     inkscape:transform-center-y="-58.12154"
+     sodipodi:nodetypes="cccccccc"
+     inkscape:transform-center-x="-132.10572">
+    <animate
+       id="animate3787"
+       attributeName="fill-opacity"
+       attributeType="CSS"
+       begin="0s"
+       dur="1.2s"
+       from="1.0"
+       to="0.1"
+       xlink:href="#petal-01"
+       repeatCount="indefinite" />
+  </path>
+  <path
+     inkscape:transform-center-x="-94.869428"
+     sodipodi:nodetypes="cccccccc"
+     inkscape:transform-center-y="119.38707"
+     inkscape:connector-curvature="0"
+     id="BG-03"
+     d="m 470.469,483.95662 c -23.80405,-7.49568 -60.47805,4.80369 -55.07118,39.8093 -4.38433,3.10833 2.04088,-3.83987 -3.13078,-3.16219 -53.4982,-14.99795 -76.58434,-31.33177 -105.71566,-80.75238 -1.90344,-37.40921 -8.34342,-97.22354 -0.99745,-131.92468 41.00066,12.21668 84.92798,34.15597 119.35858,51.60493 47.6455,30.89319 57.4363,76.56633 41.91216,124.63488 z"
+     style="fill:#f9ff95;fill-opacity:0.80000001">
+    <animate
+       repeatCount="indefinite"
+       xlink:href="#petal-01"
+       to="0.1"
+       from="1.0"
+       dur="1.2s"
+       begin="0s"
+       attributeType="CSS"
+       attributeName="fill-opacity"
+       id="animate3791" />
+  </path>
+  <path
+     style="fill:#f9ff95;fill-opacity:0.80000001"
+     d="m 178.03363,517.17246 c -1.31867,-24.92146 -16.13592,-49.08502 -47.02888,-31.75724 -4.44728,-3.01754 -1.56586,-11.18843 -4.01241,-15.79493 -4.69467,-55.36206 2.59113,-61.68126 38.67411,-106.28003 34.37159,-14.88844 96.14555,-51.14654 131.22105,-56.42304 2.9214,42.68219 -11.7891,96.65436 -16.0701,135.01588 -11.2517,50.48931 -26.07328,63.96064 -79.27824,79.98088 z"
+     id="BG-04"
+     inkscape:connector-curvature="0"
+     inkscape:transform-center-y="123.26474"
+     sodipodi:nodetypes="cccccccc"
+     inkscape:transform-center-x="88.181347">
+    <animate
+       id="animate3795"
+       attributeName="fill-opacity"
+       attributeType="CSS"
+       begin="0s"
+       dur="1.2s"
+       from="1.0"
+       to="0.1"
+       xlink:href="#petal-01"
+       repeatCount="indefinite" />
+  </path>
+  <path
+     inkscape:transform-center-x="134.38472"
+     sodipodi:nodetypes="cccccccc"
+     inkscape:transform-center-y="-45.167108"
+     inkscape:connector-curvature="0"
+     id="BG-05"
+     d="m 61.435042,251.15323 c 23.216404,-9.15515 41.432578,-30.87149 15.200915,-54.67332 1.451145,-5.17474 10.114069,-5.03374 13.706724,-8.81505 51.014429,-10.41512 59.318249,-11.54004 113.058939,2.96745 25.02163,27.87454 71.65424,77.89723 87.78349,109.48804 -39.55171,16.30844 -69.68942,23.14968 -107.42801,31.25719 -41.44028,5.34341 -56.70353,-9.58275 -112.751252,-54.95923 z"
+     style="fill:#f9ff95;fill-opacity:0.80000001">
+    <animate
+       repeatCount="indefinite"
+       xlink:href="#petal-01"
+       to="0.1"
+       from="1.0"
+       dur="1.2s"
+       begin="0s"
+       attributeType="CSS"
+       attributeName="fill-opacity"
+       id="animate3799" />
+  </path>
+  <path
+     style="fill:#ff6565;fill-opacity:0.8"
+     d="M 274.66564,50 C 289.88615,69.77762 309.38399,81.792546 325,50 l 1,-1 13,6 c 48.36453,33.724706 52.77561,76.21889 31,130.64384 C 355.87885,220.9376 309,282 309,282 l 28,-92 c 22.24845,-28.36509 -24.50554,-29.30866 -7,-3 l -26,87 -1,-108 c 22.27785,-29.54017 -29.86396,-31.16412 -6,1 l -1,107 -26,-87 c 12.04112,-30.56402 -34.55388,-15.20376 -6,3 l 27,93 c 0,0 -49.26638,-62.78763 -64.0274,-99.30137 C 205.65331,130.96198 226.45569,65.105468 266,52 z"
+     id="petal-01"
+     inkscape:connector-curvature="0"
+     inkscape:transform-center-y="-136"
+     sodipodi:nodetypes="ccccsccccccccccscc">
+    <animate
+       id="animate2987"
+       attributeName="fill-opacity"
+       attributeType="CSS"
+       begin="0s"
+       dur="1.2s"
+       from="1.0"
+       to="0.1"
+       xlink:href="#petal-01"
+       repeatCount="indefinite" />
+  </path>
+  <path
+     inkscape:transform-center-y="-51.78959"
+     inkscape:connector-curvature="0"
+     id="petal-02"
+     d="m 531.4389,199.13181 c -23.63531,16.48161 -11.4692,46.97975 15.74036,47.80992 l 1.26256,0.63713 -1.63377,14.22431 C 518.61606,325.232 468.78164,338.31861 419.72433,336.27953 409.21652,335.84277 321.81138,304.2943 321.81138,304.2943 l 96.14194,-2.17417 c 27.22569,13.14561 42.97356,-19.14554 0.0467,-8.12012 l -90.15343,3.04333 102.27073,-34.72318 c 45.99798,0.97971 12.53953,-29.50573 -2.82615,-5.38636 l -101.94631,32.51077 74.50605,-51.90231 c 46.50662,-11.78484 11.29228,-38.38267 -4.72584,-4.76093 l -79.89241,54.72845 c 0,0 39.81153,-60.49128 63.8854,-87.35935 34.41933,-38.41431 109.52386,-47.06082 147.71128,-8.62421 z"
+     inkscape:transform-center-x="-131.83724"
+     sodipodi:nodetypes="ccccsccccccccccscc"
+     style="fill:#ff6565;fill-opacity:0.8">
+    <animate
+       xlink:href="#petal-02"
+       to="0.1"
+       from="1.0"
+       dur="1.2s"
+       begin="0.1333s"
+       attributeType="CSS"
+       attributeName="fill-opacity"
+       id="animate2989"
+       repeatCount="indefinite" />
+  </path>
+  <path
+     inkscape:transform-center-x="-95.359215"
+     style="fill:#ff6565;fill-opacity:0.8"
+     d="m 469.17382,490.48354 c -26.44133,-10.27642 -40.98334,-1.19071 -40.63401,29.70563 l -0.21711,1.39745 -14.03567,2.82847 c -52.34339,4.89349 -102.85809,-49.37738 -110.00965,-97.95343 -4.76606,-32.37281 0.26041,-103.00453 0.26041,-103.00453 l 31.69139,90.79458 c -7.49371,41.2303 37.63145,24.75824 7.42149,-1.70931 l -30.35513,-85.57784 64.54523,86.59627 c 10.07663,37.19535 39.35109,8.01181 4.25351,-4.34828 l -62.34049,-86.96932 72.33379,54.8892 c 18.33741,36.62946 49.2345,2.71021 3.07319,-5.96284 l -76.68206,-59.14273 c 0,0 72.82179,13.78178 102.79337,33.86034 42.9843,28.79605 79.76141,99.79536 53.71705,137.86761 z"
+     id="petal-03"
+     inkscape:connector-curvature="0"
+     inkscape:transform-center-y="116.54962"
+     sodipodi:nodetypes="ccccsccccccccccscc">
+    <animate
+       id="animate2991"
+       attributeName="fill-opacity"
+       attributeType="CSS"
+       begin="0.2666s"
+       dur="1.2s"
+       from="1.0"
+       to="0.1"
+       xlink:href="#petal-03"
+       repeatCount="indefinite" />
+  </path>
+  <path
+     inkscape:transform-center-y="117.7277"
+     inkscape:connector-curvature="0"
+     id="petal-04"
+     d="m 172.34076,520.74401 c 11.50178,-25.39972 -17.17339,-48.49326 -40.71685,-29.59198 l -1.39684,0.22102 -6.98861,-12.49638 c -20.81212,-59.12774 18.31423,-108.10725 59.58205,-134.71072 27.60709,-17.79703 98.14098,-31.27857 98.14098,-31.27857 l -76.73754,57.9599 c -41.95928,-4.93875 -15.57443,34.27863 3.89881,6.54216 l 72.18015,-55.09109 -62.68517,87.95209 C 179.63821,420.32969 218.6687,451.48708 224,413 l 62.77433,-85.99836 -32.05004,89.23373 C 221.65664,430.13836 263.64761,460.87947 261,418 l 35.11014,-95.33916 c 0,0 2.43742,84.30865 -0.7735,108.22384 -6.59723,49.13674 -52.2148,103.70895 -114.81013,93.33613 z"
+     style="fill:#ff6565;fill-opacity:0.8"
+     inkscape:transform-center-x="94.9251"
+     sodipodi:nodetypes="ccccsccccccccccscc">
+    <animate
+       xlink:href="#petal-04"
+       to="0.1"
+       from="1.0"
+       dur="1.2s"
+       begin="4s"
+       attributeType="CSS"
+       attributeName="fill-opacity"
+       id="animate2993"
+       repeatCount="indefinite" />
+  </path>
+  <path
+     inkscape:transform-center-x="131.82999"
+     style="fill:#ff6565;fill-opacity:0.8"
+     d="M 53.272763,244.80302 C 83.678465,245.64623 94.9784,213.59783 69.48776,197.15199 l -0.624546,-1.26884 c 0,0 11.499229,-7.51406 17.949431,-9.63943 44.111425,-14.5349 101.944215,-16.77218 138.228495,16.30695 29.4693,26.86615 58.92437,84.48621 58.92437,84.48621 l -78.0754,-56.14474 c -14.7724,-34.7112 -42.0625,4.06238 -5.0951,5.66043 l 73.98626,52.64064 -102.56468,-33.84506 c -17.57355,-33.44563 -48.28872,11.43603 -0.9862,6.00229 l 100.97369,35.4163 -90.73784,-3.41275 c -40.53641,-23.25285 -36.00864,27.37903 0.9072,6.64658 l 96.74011,4.39893 c 0,0 -65.8637,25.2824 -103.6039,31.29263 -48.70717,7.75675 -105.898956,-37.17902 -118.72711,-79.10238 -1.199481,-3.91999 -3.509777,-11.78673 -3.509777,-11.78673 z"
+     id="petal-05"
+     inkscape:connector-curvature="0"
+     inkscape:transform-center-y="-53.32499"
+     sodipodi:nodetypes="cccssccccccccccssc">
+    <animate
+       id="animate2995"
+       attributeName="fill-opacity"
+       attributeType="CSS"
+       begin="5.3333s"
+       dur="1.2s"
+       from="1.0"
+       to="0.1"
+       xlink:href="#petal-05"
+       repeatCount="indefinite" />
+  </path>
+</svg>
