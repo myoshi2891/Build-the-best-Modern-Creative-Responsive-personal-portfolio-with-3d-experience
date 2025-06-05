@@ -18,7 +18,6 @@ body {
 	font-family: 'Poppins', sans-serif;
 	line-height: 1.5;
 	-webkit-font-smoothing: antialiased;
-	background: red;
 }
 
 button,
@@ -43,6 +42,15 @@ video,
 canvas,
 svg {
 	max-width: 100%;
+}
+
+a {
+	text-decoration: none;
+	color: inherit;
+}
+
+ul {
+	list-style: none;
 }
 
 // variables
