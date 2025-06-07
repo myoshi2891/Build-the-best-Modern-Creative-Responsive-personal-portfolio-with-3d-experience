@@ -1,3 +1,5 @@
+@use './base';
+
 .landing {
 	position: relative;
 	width: 100%;
@@ -47,5 +49,14 @@
 				display: none;
 			}
 		}
+	}
+	.socials {
+		position: absolute;
+		left: 50%;
+		transform: translateX(-50%);
+		bottom: 10rem;
+		display: flex;
+		align-items: center;
+		gap: 1rem;
 	}
 }

@@ -1,3 +1,5 @@
+@use './base';
+
 .coolLink {
 	position: relative;
 	display: grid;
@@ -93,6 +95,32 @@
 		& {
 			transform: scale3d(0.7, 0.7, 0.7);
 			font-size: 23px;
+		}
+	}
+}
+
+.coloredIcon {
+	color: #fff;
+	font-size: 35px;
+	&:hover {
+		animation: coloredIconAnimation 0.2s infinite;
+	}
+	// text-shadow: -10px -20px red, -15px -15px blue;
+	@keyframes coloredIconAnimation {
+		0% {
+			text-shadow: 5px 4px base.$red-color, -5px -6px base.$blue-color;
+		}
+		25% {
+			text-shadow: -5px -6px base.$red-color, 5px 4px base.$blue-color;
+		}
+		50% {
+			text-shadow: 5px -4px base.$red-color, -8px 4px base.$blue-color;
+		}
+		75% {
+			text-shadow: -8px -4px base.$red-color, -5px -4px base.$blue-color;
+		}
+		100% {
+			text-shadow: -5px 0px base.$red-color, 5px -4px base.$blue-color;
 		}
 	}
 }
