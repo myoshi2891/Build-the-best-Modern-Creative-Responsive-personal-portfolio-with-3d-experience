@@ -74,5 +74,25 @@
 	}
 	& span {
 		mix-blend-mode: difference;
+		font-weight: 500;
+	}
+	&:after {
+		content: '';
+		height: 85%;
+		width: 95%;
+		top: 6px;
+		border: #fff solid 1px;
+		border-radius: 58% 42% 55% 45% / 56% 45% 55% 44%;
+		transform: rotate(-20deg);
+		transition: transform 0.5s cubic-bezier(0.585, 2.5, 0.645, 0.55);
+	}
+	&:hover:after {
+		transform: translate3d(0, -5px, 0);
+	}
+	@media (max-width: 800px) {
+		& {
+			transform: scale3d(0.7, 0.7, 0.7);
+			font-size: 23px;
+		}
 	}
 }
