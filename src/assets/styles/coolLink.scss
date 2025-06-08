@@ -5,6 +5,8 @@
 	display: grid;
 	place-items: center;
 	overflow: hidden;
+	font-size: 2rem;
+
 	&:before {
 		content: '';
 		position: absolute;
