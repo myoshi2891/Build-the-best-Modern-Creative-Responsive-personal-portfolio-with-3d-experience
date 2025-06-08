@@ -59,4 +59,80 @@
 		align-items: center;
 		gap: 1rem;
 	}
+	.scrollDown {
+		position: absolute;
+		bottom: 3px;
+		left: 50%;
+		transform: translateX(-50%);
+		&__wheel {
+			height: 42px;
+			width: 24px;
+			border-radius: 10px;
+			border: 2px solid #fff;
+			&--inner {
+				position: absolute;
+				left: 10px;
+				margin-top: 5px;
+				width: 4px;
+				height: 4px;
+				border-radius: 50%;
+				background: #fff;
+				animation: movingwheel 0.5s linear infinite;
+				@keyframes movingwheel {
+					0% {
+						top: 1px;
+					}
+					25% {
+						top: 2px;
+					}
+					50% {
+						top: 3px;
+					}
+					75% {
+						top: 2px;
+					}
+					100% {
+						top: 1px;
+					}
+				}
+			}
+		}
+		.scrollDown__arrows {
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			.scrollDown__arrow {
+				width: 15px;
+				height: 15px;
+				border-right: 2px solid #fff;
+				border-bottom: 2px solid #fff;
+				transform: rotate(45deg);
+				animation: scrollAnim 1s linear infinite;
+				animation-direction: alternate;
+				&:nth-child(1) {
+					animation-delay: 0.1s;
+				}
+				&:nth-child(2) {
+					animation-delay: 0.2s;
+				}
+				&:nth-child(2) {
+					animation-delay: 0.3s;
+				}
+				@keyframes scrollAnim {
+					0% {
+						// transform: translateY(0) rotate(45deg);
+						opacity: 0;
+					}
+					50% {
+						// transform: translateY(5px) rotate(45deg);
+						opacity: 0.5;
+					}
+					100% {
+						transform: translateY(0) rotate(45deg);
+						opacity: 1;
+					}
+				}
+			}
+		}
+	}
 }
