@@ -19,10 +19,40 @@
 		&--left {
 			left: 0;
 			top: 6rem;
+			animation: moveleft 30s linear infinite;
+			@keyframes moveleft {
+				0% {
+					transform: translate3d(0, 0, 0);
+				}
+				100% {
+					transform: translate3d(-50%, 0, 0);
+				}
+			}
 		}
 		&--right {
 			right: 0;
 			top: 11rem;
+			animation: moveright 30s linear infinite;
+			@keyframes moveright {
+				0% {
+					transform: translate3d(0, 0, 0);
+				}
+				100% {
+					transform: translate3d(50%, 0, 0);
+				}
+			}
+		}
+	}
+	@media (max-width: 700px) {
+		height: 12rem;
+		font-size: 1.8rem;
+		&__text {
+			&--left {
+				top: 6rem;
+			}
+			&--right {
+				top: 9rem;
+			}
 		}
 	}
 }
