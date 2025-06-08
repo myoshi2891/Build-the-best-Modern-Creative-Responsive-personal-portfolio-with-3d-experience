@@ -1,6 +1,12 @@
 @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400..900&display=swap');
 @import url('https://fonts.cdnfonts.com/css/noir-et-blanc');
-
+@import url('https://fonts.cdnfonts.com/css/marhey');
+// @font-face {
+// 	font-family: 'Marhey', sans-serif;
+// 	src: url('https://fonts.cdnfonts.com/css/marhey');
+// 	font-style: normal;
+// 	font-weight: 400;
+// }
 * {
 	margin: 0;
 	box-sizing: border-box;
@@ -59,3 +65,4 @@ $green-color: #6cff8d;
 $green-color-dark: #6cff8c7a;
 $red-color: #f44336;
 $blue-color: #2196f3;
+$purple-color: linear-gradient(to right, #6464e9, #800080d0, #c83c3c);
