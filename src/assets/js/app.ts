@@ -1,4 +1,5 @@
 import gsap from 'gsap';
+import Swiper, { Pagination } from 'swiper';
 
 const bar = document.querySelector<HTMLElement>('.loading__bar--inner');
 const counter_num = document.querySelector<HTMLElement>(
@@ -52,3 +53,14 @@ let barInterval = setInterval(() => {
 		});
 	}
 }, 20);
+
+// Swiper.use([Pagination]);
+
+const swiper = new Swiper('.swiper', {
+	slidesPerView: 3,
+	spaceBetween: 30,
+	pagination: {
+		el: '.swiper-pagination',
+		clickable: true,
+	},
+});

@@ -17,6 +17,8 @@
     "typescript": "^5"
   },
   "dependencies": {
-    "gsap": "^3.13.0"
+    "@types/swiper": "^6.0.0",
+    "gsap": "^3.13.0",
+    "swiper": "8"
   }
 }
