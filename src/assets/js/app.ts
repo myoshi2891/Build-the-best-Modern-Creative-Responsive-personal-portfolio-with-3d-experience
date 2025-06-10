@@ -57,7 +57,7 @@ let barInterval = setInterval(() => {
 // Swiper.use([Pagination]);
 
 const swiper = new Swiper('.swiper', {
-	slidesPerView: 3,
+	slidesPerView: 1,
 	spaceBetween: 30,
 	pagination: {
 		el: '.swiper-pagination',
