@@ -1,5 +1,5 @@
 import gsap from 'gsap';
-import Swiper, { Pagination } from 'swiper';
+import Swiper, { Pagination, Navigation } from 'swiper';
 import { reviews } from './data';
 
 console.log('reviews:', reviews);
@@ -57,14 +57,19 @@ let barInterval = setInterval(() => {
 	}
 }, 20);
 
-// Swiper.use([Pagination]);
+Swiper.use([Pagination, Navigation]);
 
 const swiper = new Swiper('.swiper', {
 	slidesPerView: 1,
 	spaceBetween: 30,
 	pagination: {
 		el: '.swiper-pagination',
+		type: 'bullets',
 		clickable: true,
+	},
+	navigation: {
+		nextEl: '.swiper-button-next',
+		prevEl: '.swiper-button-prev',
 	},
 	breakpoints: {
 		640: {
@@ -79,7 +84,7 @@ const swiper = new Swiper('.swiper', {
 			slidesPerView: 3,
 			spaceBetween: 40,
 		},
-		1280: {
+		1480: {
 			slidesPerView: 4,
 			spaceBetween: 50,
 		},
