@@ -1,24 +1,24 @@
 {
-  "name": "build_the_best_modern_creative_responsive_personal_portfolio_with_3d",
-  "type": "module",
-  "private": true,
-  "scripts": {
-    "dev": "parcel src/index.html",
-    "build": "parcel build src/index.html"
-  },
-  "devDependencies": {
-    "@parcel/packager-raw-url": "^2.15.2",
-    "@parcel/transformer-sass": "^2.15.2",
-    "@parcel/transformer-webmanifest": "^2.15.2",
-    "@types/bun": "latest",
-    "parcel": "^2.15.2"
-  },
-  "peerDependencies": {
-    "typescript": "^5"
-  },
-  "dependencies": {
-    "@types/swiper": "^6.0.0",
-    "gsap": "^3.13.0",
-    "swiper": "8"
-  }
+	"name": "build_the_best_modern_creative_responsive_personal_portfolio_with_3d",
+	"type": "module",
+	"private": true,
+	"scripts": {
+		"dev": "parcel src/index.html",
+		"build": "parcel build src/index.html && cp -r public dist"
+	},
+	"devDependencies": {
+		"@parcel/packager-raw-url": "^2.15.2",
+		"@parcel/transformer-sass": "^2.15.2",
+		"@parcel/transformer-webmanifest": "^2.15.2",
+		"@types/bun": "latest",
+		"parcel": "^2.15.2"
+	},
+	"peerDependencies": {
+		"typescript": "^5"
+	},
+	"dependencies": {
+		"@types/swiper": "^6.0.0",
+		"gsap": "^3.13.0",
+		"swiper": "8"
+	}
 }
