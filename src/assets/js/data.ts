@@ -12,7 +12,6 @@ const images = {
 	avatar11: '/public/avatars/11.png',
 };
 
-console.log('images.avatar1 =', images.avatar1);
 let reviews = [
 	{
 		name: 'John Doe',

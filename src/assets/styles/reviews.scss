@@ -31,10 +31,14 @@
 				font-family: sans-serif;
 			}
 			&__img {
-				width: 12rem;
-				height: 12rem;
+				width: 6.875rem;
+				height: 6.875rem;
 				border-radius: 50%;
 				border-right: 4px solid base.$red-color;
+				@media (min-width: 400px) {
+					width: 9.375rem;
+					height: 9.375rem;
+				}
 			}
 			&__col {
 				display: flex;
@@ -83,8 +87,11 @@
 		}
 	}
 	& svg {
-		width: 30px;
+		width: 1.875rem;
 		fill: base.$red-color;
+		@media (min-width: 500px) {
+			width: 2.5rem;
+		}
 	}
 	&__topborder {
 		width: 100%;
@@ -136,9 +143,16 @@
 	position: relative;
 	display: flex;
 	align-items: center;
+	flex-direction: column-reverse;
+	gap: 2rem;
 	justify-content: space-between;
 	margin-top: 6rem;
 	padding: 0 4rem 0 2rem;
+	@media (min-width: 1056px) {
+		& {
+			flex-direction: row;
+		}
+	}
 }
 
 .swiper__buttons {
@@ -166,6 +180,32 @@
 	}
 }
 
-.swiper__pagination {
+.swiper-pagination {
 	position: relative;
+	display: none;
+	@media (min-width: 807px) {
+		& {
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			padding-bottom: 4rem;
+		}
+	}
+	@media (min-width: 1064px) {
+		& {
+			display: flex;
+			justify-content: center;
+			padding-bottom: 7.5rem;
+		}
+	}
+}
+
+.swiper-pagination-bullets .swiper-pagination-bullet {
+	width: 35px;
+	height: 4px;
+	background: #fff;
+	border-radius: 50px;
+	&.swiper-pagination-bullet-active {
+		width: 70px;
+	}
 }

@@ -2,8 +2,6 @@ import gsap from 'gsap';
 import Swiper, { Pagination, Navigation } from 'swiper';
 import { reviews } from './data';
 
-console.log('reviews:', reviews);
-
 const bar = document.querySelector<HTMLElement>('.loading__bar--inner');
 const counter_num = document.querySelector<HTMLElement>(
 	'.loading__counter--number'
