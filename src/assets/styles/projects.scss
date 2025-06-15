@@ -51,3 +51,72 @@
 		}
 	}
 }
+
+.coolCircleEyeButton {
+	position: relative;
+	display: inline-block;
+	.textcircle {
+		display: block;
+		width: 15.625rem;
+		animation: rotate 7s linear infinite;
+		text {
+			font-size: 2rem;
+			text-transform: uppercase;
+			font: #000;
+		}
+	}
+	@keyframes rotate {
+		to {
+			transform: rotate(-360deg);
+		}
+	}
+	&:hover {
+		text {
+			font-weight: 600;
+		}
+		.eye__inner,
+		.eye__iris,
+		.eye__lashes-up {
+			animation: hide 2s step-end infinite;
+			@keyframes hide {
+				0% {
+					opacity: 0;
+				}
+				10% {
+					opacity: 1;
+				}
+			}
+		}
+		.eye__lashes-down {
+			animation: show 2s step-end infinite;
+			@keyframes show {
+				0% {
+					opacity: 1;
+				}
+				10% {
+					opacity: 0;
+				}
+			}
+		}
+	}
+}
+
+.eye {
+	position: absolute;
+	width: 3.75rem;
+	height: 3.75rem;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	&__outer,
+	&__inner,
+	&__lashes-up,
+	&__lashes-down {
+		stroke: #000;
+		fill: none;
+		stroke-width: 1.5px;
+	}
+	&__lashes-down {
+		opacity: 0;
+	}
+}
