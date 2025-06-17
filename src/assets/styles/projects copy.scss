@@ -1,6 +1,4 @@
 .projects {
-	padding: 3rem;
-
 	&__header {
 		font-size: 3.75rem;
 		font-style: italic;
@@ -14,7 +12,6 @@
 		grid-template-columns: 1fr 3fr;
 		gap: 1rem;
 		font-family: sans-serif;
-
 		span {
 			border-top: 1px solid #000;
 			padding: 1rem;
@@ -22,22 +19,19 @@
 			text-align: center;
 		}
 	}
-
 	&__infos {
 		margin-top: 1rem;
-		font-size: clamp(1rem, 3vw, 2rem);
+		font-size: 3vw;
 		font-family: sans-serif;
 		display: flex;
 		align-items: center;
 	}
-
 	&__img {
 		position: relative;
 		width: 100vw;
 		height: 43.75rem;
-
 		img {
-			width: clamp(300px, 60vw, 960px);
+			width: 60vw;
 			height: 37.5rem;
 			object-fit: contain;
 			position: absolute;
@@ -45,21 +39,17 @@
 			top: 3rem;
 		}
 	}
-
 	&__links {
 		padding-top: 3rem;
-		display: flex;
-
 		button {
-			&::before {
+			&:before {
 				background: #000;
 			}
-			&::after {
+			&:after {
 				border-color: #000;
 			}
 		}
 	}
-
 	&__tags {
 		display: flex;
 		position: absolute;
@@ -72,32 +62,48 @@
 .coolCircleEyeButton {
 	position: relative;
 	display: inline-block;
-
 	.textcircle {
 		display: block;
 		width: 15.625rem;
 		animation: rotate 7s linear infinite;
-
 		text {
 			font-size: 2rem;
 			text-transform: uppercase;
-			fill: #000;
+			font: #000;
 		}
 	}
-
+	@keyframes rotate {
+		to {
+			transform: rotate(-360deg);
+		}
+	}
 	&:hover {
 		text {
 			font-weight: 600;
 		}
-
 		.eye__inner,
 		.eye__iris,
 		.eye__lashes-up {
 			animation: hide 2s step-end infinite;
+			@keyframes hide {
+				0% {
+					opacity: 0;
+				}
+				10% {
+					opacity: 1;
+				}
+			}
 		}
-
 		.eye__lashes-down {
 			animation: show 2s step-end infinite;
+			@keyframes show {
+				0% {
+					opacity: 1;
+				}
+				10% {
+					opacity: 0;
+				}
+			}
 		}
 	}
 }
@@ -109,7 +115,6 @@
 	top: 50%;
 	left: 50%;
 	transform: translate(-50%, -50%);
-
 	&__outer,
 	&__inner,
 	&__lashes-up,
@@ -118,32 +123,7 @@
 		fill: none;
 		stroke-width: 1.5px;
 	}
-
 	&__lashes-down {
-		opacity: 0;
-	}
-}
-
-@keyframes rotate {
-	to {
-		transform: rotate(-360deg);
-	}
-}
-
-@keyframes hide {
-	0% {
-		opacity: 0;
-	}
-	10% {
-		opacity: 1;
-	}
-}
-
-@keyframes show {
-	0% {
-		opacity: 1;
-	}
-	10% {
 		opacity: 0;
 	}
 }
@@ -152,44 +132,26 @@
 	.projects {
 		padding: 3rem;
 	}
-
 	.project {
 		&__header {
 			grid-template-columns: 1fr;
 			font-size: 1.5rem;
-
 			span {
 				font-size: 1.25rem;
 			}
 		}
-
-		&__infos-name {
+		&__infos--name {
 			font-size: 2.375rem;
 		}
-
 		&__img {
+			// height: 25rem;
 			img {
 				width: 74vw;
 				right: 5rem;
 			}
 		}
-
 		.coolCircleEyeButton {
 			transform: translate(-14rem, 3rem);
-		}
-	}
-}
-
-@media (max-width: 64rem) {
-	.project {
-		&__links {
-			flex-direction: column;
-			align-items: center;
-			gap: 1.5rem;
-
-			.coolCircleEyeButton {
-				transform: none; // 小さい画面では中央に
-			}
 		}
 	}
 }
@@ -198,22 +160,24 @@
 	.projects {
 		padding: 1rem;
 	}
-
 	.project {
 		&__tags {
 			flex-direction: row;
 			top: 0;
 			left: 0;
 		}
-
-		&__infos-name {
+		// &__header {
+		// 	font-size: 1.25rem;
+		// 	span {
+		// 		font-size: 1rem;
+		// 	}
+		// }
+		&__infos--name {
 			font-size: 2.25rem;
-
 			span {
 				display: none;
 			}
 		}
-
 		&__img {
 			img {
 				width: 85vw;
@@ -227,16 +191,23 @@
 	.project {
 		&__header {
 			grid-template-columns: 1fr;
-
+			// font-size: 1.25rem;
 			span {
 				font-size: 1.5rem;
 			}
 		}
-
+		// &__infos--name {
+		// 	font-size: 2rem;
+		// }
+		// &__img {
+		// 	img {
+		// 		width: 90vw;
+		// 		right: 2rem;
+		// 	}
+		// }
 		.coolCircleEyeButton {
 			transform: translate(0);
 		}
-
 		&__tags {
 			gap: 0.375rem;
 			font-size: 0.875rem;
