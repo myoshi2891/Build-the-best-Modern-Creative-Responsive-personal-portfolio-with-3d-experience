@@ -50,6 +50,13 @@
 			}
 		}
 	}
+	&__tags {
+		display: flex;
+		position: absolute;
+		gap: 1rem;
+		bottom: 1rem;
+		flex-direction: column;
+	}
 }
 
 .coolCircleEyeButton {
