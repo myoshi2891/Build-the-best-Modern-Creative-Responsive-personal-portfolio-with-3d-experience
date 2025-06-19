@@ -1,8 +1,8 @@
 {
 	"compilerOptions": {
 		// Environment setup & latest features
-		"lib": ["ESNext", "dom", "es6"],
-		"target": "ESNext",
+		"lib": ["ESNext", "dom", "DOM.Iterable", "es6"],
+		"target": "ES6",
 		"module": "Preserve",
 		"moduleDetection": "force",
 		"jsx": "react-jsx",

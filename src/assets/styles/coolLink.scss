@@ -128,31 +128,61 @@
 }
 
 .coolFunnyLink {
-	position: relative;
 	display: inline-block;
 	font-family: sans-serif;
+
+	span {
+		position: relative;
+		display: inline-block;
+	}
+
+	svg {
+		display: block;
+		width: 70%;
+		height: 12px;
+		margin-top: -4px; // テキストとの間隔を微調整
+	}
+
+	svg path {
+		stroke: black;
+		stroke-width: 1px;
+		transform: scale3d(0, 1, 1);
+		transform-origin: left;
+		transition: transform 0.6s cubic-bezier(0.7, 0, 0.3, 1);
+	}
+
+	&:hover svg path {
+		transform: scale3d(1, 1, 1);
+		transition-timing-function: cubic-bezier(0.8, 1, 0.7, 1);
+	}
 }
 
-.coolFunnyLink svg {
-	position: absolute;
-	bottom: -0.375rem;
-	left: 0;
-	width: 6rem;
-	height: 12px;
-	overflow: visible;
+@media (max-width: 46.25rem) {
+	.coolFunnyLink {
+		font-size: 0.875rem;
+
+		svg {
+			height: 10px;
+			margin-top: -3px;
+		}
+
+		svg path {
+			stroke-width: 0.8px;
+		}
+	}
 }
 
-.coolFunnyLink svg path {
-	stroke: black;
-	stroke-width: 1px;
-	// stroke-dasharray: 1;
-	// stroke-dashoffset: 1;
-	transform: scale3d(0, 1, 1);
-	transform-origin: left;
-	transition: transform 0.6s cubic-bezier(0.7, 0, 0.3, 1);
-}
+@media (max-width: 27.5rem) {
+	.coolFunnyLink {
+		font-size: 0.75rem;
 
-.coolFunnyLink:hover svg path {
-	transform: scale3d(1, 1, 1);
-	transition-timing-function: cubic-bezier(0.8, 1, 0.7, 1);
+		svg {
+			height: 8px;
+			margin-top: -2px;
+		}
+
+		svg path {
+			stroke-width: 0.6px;
+		}
+	}
 }

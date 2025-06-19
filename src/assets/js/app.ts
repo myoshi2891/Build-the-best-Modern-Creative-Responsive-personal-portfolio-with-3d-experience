@@ -129,3 +129,19 @@ reviews.map(review => {
 	if (!swiper_container) return;
 	swiper_container.innerHTML += template;
 });
+
+const questions = Array.from(
+	document.querySelectorAll<HTMLElement>('.question')
+);
+questions.map(question => {
+	let q_text = question.querySelector<HTMLElement>('h3');
+	q_text?.addEventListener('click', () => {
+		questions
+			.filter(q => q !== question)
+			.map(q => {
+				q.classList.remove('open');
+			});
+		question.classList.toggle('open');
+		// question.nextElementSibling?.classList.toggle('open');
+	});
+});
