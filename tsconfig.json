@@ -3,7 +3,7 @@
 		// Environment setup & latest features
 		"lib": ["ESNext", "dom", "DOM.Iterable", "es6"],
 		"target": "ES6",
-		"module": "Preserve",
+		"module": "ESNext",
 		"moduleDetection": "force",
 		"jsx": "react-jsx",
 		"allowJs": true,
