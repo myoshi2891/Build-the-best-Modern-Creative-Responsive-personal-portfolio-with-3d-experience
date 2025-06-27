@@ -465,17 +465,24 @@
 					</div>
 				</div>
 				<div class="contact__form">
-					<form action="#" class="form">
+					<form data-netlify="true" class="form" method="POST">
 						<div class="form__flex">
 							<div class="form__info">
 								<label>Hey, My name is </label>
-								<input type="text" placeholder="Type Here" />
+								<input
+									type="text"
+									placeholder="Type Here"
+									name="full name"
+									required
+								/>
 							</div>
 							<div class="form__info">
 								<label>I'm looking for </label>
 								<input
 									type="text"
 									placeholder="Type of service"
+									name="service"
+									required
 								/>
 							</div>
 						</div>
@@ -483,13 +490,19 @@
 							<div class="form__info">
 								<label>Get in touch with me at </label>
 								<input
-									type="text"
+									type="email"
 									placeholder="Your email address here"
+									name="email"
+									required
 								/>
 							</div>
 						</div>
 						<div class="form__flex">
-							<textarea placeholder="Your Message"></textarea>
+							<textarea
+								placeholder="Your Message"
+								name="message"
+								required
+							></textarea>
 						</div>
 						<div class="form__flex">
 							<button class="coolButton">
