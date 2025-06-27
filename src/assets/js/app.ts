@@ -151,3 +151,32 @@ document.addEventListener('DOMContentLoaded', () => {
 		yearElement.textContent = new Date().getFullYear().toString();
 	}
 });
+
+const images = {
+	sergioImg: '/public/people/sergio.jpg',
+	craigImg: '/public/people/craig.jpg',
+};
+
+const img = document.createElement('img');
+img.src = images.sergioImg;
+img.alt = 'sergio';
+img.className = 'instructor__img';
+
+const instructorContainer = document.querySelector('.instructor__infos');
+if (instructorContainer) {
+	instructorContainer.appendChild(img);
+} else {
+	console.error("Element with class 'instructor__infos' not found.");
+}
+
+const img2 = document.createElement('img');
+img2.src = images.craigImg;
+img2.alt = 'sergio';
+img2.className = 'instructor__img';
+
+const instructorContainer2 = document.querySelector('.contact__profile-item');
+if (instructorContainer2) {
+	instructorContainer2.appendChild(img2);
+} else {
+	console.error("Element with class 'instructor__infos' not found.");
+}
