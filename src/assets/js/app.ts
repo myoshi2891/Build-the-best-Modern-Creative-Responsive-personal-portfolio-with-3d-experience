@@ -145,3 +145,9 @@ questions.map(question => {
 		// question.nextElementSibling?.classList.toggle('open');
 	});
 });
+document.addEventListener('DOMContentLoaded', () => {
+	const yearElement = document.getElementById('year');
+	if (yearElement) {
+		yearElement.textContent = new Date().getFullYear().toString();
+	}
+});

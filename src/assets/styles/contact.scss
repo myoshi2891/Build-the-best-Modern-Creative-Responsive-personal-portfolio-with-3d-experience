@@ -8,6 +8,66 @@
 	@media (max-width: 68.75rem) {
 		padding: 2rem;
 	}
+	&__profile {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		flex-wrap: wrap;
+		gap: 3rem;
+		&-item {
+			display: flex;
+			position: relative;
+			align-items: center;
+			gap: 1rem;
+			img {
+				width: 4.375rem;
+				height: 5.625rem;
+				// object-fit: cover;
+				border-radius: 50%;
+			}
+		}
+		&-col {
+			display: flex;
+			flex-direction: column;
+			gap: 0.25rem;
+			font-size: 1rem;
+			z-index: 1;
+		}
+		&-bg {
+			position: absolute;
+			width: 15.625rem;
+			height: 6.25rem;
+			background: #f6d5a4;
+			border-radius: 5px;
+			left: 20%;
+		}
+	}
+	&__socials {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 3rem;
+		padding-bottom: 3rem;
+		& {
+			font-size: 1.5rem;
+		}
+	}
+	&__footer {
+		position: absolute;
+		bottom: 1rem;
+		left: 0;
+		display: flex;
+		align-items: center;
+		justify-content: space-around;
+		width: 100%;
+		&-link {
+			width: 100%;
+			text-align: center;
+			font-size: 1.25rem;
+			@media (max-width: 56.25rem) {
+				font-size: 0.875rem;
+			}
+		}
+	}
 }
 
 .form {
