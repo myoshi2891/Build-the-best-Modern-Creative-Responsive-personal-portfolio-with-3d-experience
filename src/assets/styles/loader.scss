@@ -1,118 +1,118 @@
-@use './base';
+@use "./base";
 
 .loading {
-	position: fixed;
-	top: 0;
-	left: 0;
-	right: 0;
-	bottom: 0;
-	height: 100vh;
-	width: 100%;
-	z-index: 99;
-	background: #501ec6;
-	display: grid;
-	place-items: center;
-	font-family: 'Orbitron', sans-serif;
-	display: none;
-	&__box {
-		position: relative;
-		width: 500px;
-		height: 200px;
-		border: 3px solid base.$green-color;
-		border-top: 3px solid base.$green-color-dark;
-		border-bottom: 3px solid base.$green-color-dark;
-		@media (max-width: 600px) {
-			width: 90vw;
-		}
-	}
-	&__bar {
-		width: 90%;
-		height: 10px;
-		position: absolute;
-		top: 50%;
-		left: 50%;
-		transform: translateX(-50%);
-		background: #ccc;
-		border-radius: 2px;
-		&--inner {
-			height: 100%;
-			width: 0;
-			border-radius: 2px;
-			background: base.$green-color;
-		}
-	}
-	&__text {
-		position: relative;
-		color: white;
-		padding: 1rem;
-		font-size: 20px;
-		display: flex;
-		align-items: center;
-		justify-content: center;
-		@media (max-width: 355px) {
-			font-size: 17px;
-		}
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 100vh;
+  width: 100%;
+  z-index: 99;
+  background: #501ec6;
+  display: grid;
+  place-items: center;
+  font-family: "Orbitron", sans-serif;
+  display: none;
+  &__box {
+    position: relative;
+    width: 500px;
+    height: 200px;
+    border: 3px solid base.$green-color;
+    border-top: 3px solid base.$green-color-dark;
+    border-bottom: 3px solid base.$green-color-dark;
+    @media (max-width: 600px) {
+      width: 90vw;
+    }
+  }
+  &__bar {
+    width: 90%;
+    height: 10px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #ccc;
+    border-radius: 2px;
+    &--inner {
+      height: 100%;
+      width: 0;
+      border-radius: 2px;
+      background: base.$green-color;
+    }
+  }
+  &__text {
+    position: relative;
+    color: white;
+    padding: 1rem;
+    font-size: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    @media (max-width: 355px) {
+      font-size: 17px;
+    }
 
-		&--dot {
-			width: 15px;
-			height: 15px;
-			margin: 0 3px;
-			border-radius: 50%;
-			background: #fff;
-			animation: pulse 1s infinite;
-			@keyframes pulse {
-				from {
-					opacity: 0;
-					background: base.$green-color;
-				}
-				to {
-					opacity: 1;
-				}
-			}
-		}
-		&--border {
-			position: absolute;
-			width: 85%;
-			height: 1px;
-			background: base.$green-color-dark;
-			bottom: 0;
-			left: 50%;
-			transform: translateX(-50%);
-		}
-	}
-	&__counter {
-		position: absolute;
-		top: 70%;
-		left: 0;
-		color: #fff;
-		font-size: 20px;
-		font-weight: 700;
-		width: 100%;
-		display: flex;
-		align-items: center;
-		justify-content: space-between;
-		padding: 10px;
-		&--number {
-			color: base.$green-color;
-		}
-	}
-	&__width_animation {
-		animation: width_animation 1s forwards;
-		@keyframes width_animation {
-			0% {
-				width: 85%;
-			}
-			100% {
-				width: 280px;
-			}
-		}
-	}
-	&__svg {
-		position: absolute;
-		top: 50%;
-		left: 50%;
-		transform: translate(-50%, -50%);
-		width: 85%;
-		opacity: 0;
-	}
+    &--dot {
+      width: 15px;
+      height: 15px;
+      margin: 0 3px;
+      border-radius: 50%;
+      background: #fff;
+      animation: pulse 1s infinite;
+      @keyframes pulse {
+        from {
+          opacity: 0;
+          background: base.$green-color;
+        }
+        to {
+          opacity: 1;
+        }
+      }
+    }
+    &--border {
+      position: absolute;
+      width: 85%;
+      height: 1px;
+      background: base.$green-color-dark;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+  }
+  &__counter {
+    position: absolute;
+    top: 70%;
+    left: 0;
+    color: #fff;
+    font-size: 20px;
+    font-weight: 700;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px;
+    &--number {
+      color: base.$green-color;
+    }
+  }
+  &__width_animation {
+    animation: width_animation 1s forwards;
+    @keyframes width_animation {
+      0% {
+        width: 85%;
+      }
+      100% {
+        width: 280px;
+      }
+    }
+  }
+  &__svg {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 85%;
+    opacity: 0;
+  }
 }

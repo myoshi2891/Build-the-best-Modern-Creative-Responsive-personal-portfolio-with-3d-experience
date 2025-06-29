@@ -1,188 +1,198 @@
-@use './base';
+@use "./base";
 
 .coolLink {
-	position: relative;
-	display: grid;
-	place-items: center;
-	overflow: hidden;
-	font-size: 2rem;
+  position: relative;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  font-size: 2rem;
 
-	&:before {
-		content: '';
-		position: absolute;
-		bottom: 0;
-		left: 0;
-		width: 100%;
-		height: 2px;
-		background: currentColor;
-		transform: scale3d(0, 1, 1);
-		transform-origin: right;
-		transition: transform 0.3s cubic-bezier(0.5, 0.5, 0.3, 1);
-	}
-	&:after {
-		content: attr(data-text);
-		position: absolute;
-		top: 0;
-		height: 100%;
-		transform: translate3d(150%, 0, 0);
-		transition: transform 0.3s cubic-bezier(0.5, 0.5, 0.3, 1);
-	}
-	& span {
-		transition: transform 0.3s cubic-bezier(0.5, 0.5, 0.3, 1);
-	}
-	&:hover:before {
-		transform: scale3d(1, 1, 1);
-		transform-origin: left;
-	}
-	&:hover:after {
-		transform: translate3d(0, 0, 0);
-	}
-	&:hover span {
-		transform: translate3d(-150%, 0, 0);
-	}
+  &:before {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: currentColor;
+    transform: scale3d(0, 1, 1);
+    transform-origin: right;
+    transition: transform 0.3s cubic-bezier(0.5, 0.5, 0.3, 1);
+  }
+  &:after {
+    content: attr(data-text);
+    position: absolute;
+    top: 0;
+    height: 100%;
+    transform: translate3d(150%, 0, 0);
+    transition: transform 0.3s cubic-bezier(0.5, 0.5, 0.3, 1);
+  }
+  & span {
+    transition: transform 0.3s cubic-bezier(0.5, 0.5, 0.3, 1);
+  }
+  &:hover:before {
+    transform: scale3d(1, 1, 1);
+    transform-origin: left;
+  }
+  &:hover:after {
+    transform: translate3d(0, 0, 0);
+  }
+  &:hover span {
+    transform: translate3d(-150%, 0, 0);
+  }
 }
 
 .coolButton {
-	position: relative;
-	border: none;
-	cursor: pointer;
-	width: 175px;
-	height: 120px;
-	background: none;
-	color: #fff;
-	&:before,
-	&:after {
-		position: absolute;
-		top: 0;
-		left: 0;
-		width: 100%;
-		height: 100%;
-	}
-	&:before {
-		content: '';
-		background: #fff;
-		clip-path: path(
-			'M154.5,88.5 C131,113.5 62.5,110 30,89.5 C-2.5,69 -3.5,42 4.5,25.5 C12.5,9 33.5,-6 85,3.5 C136.5,13 178,63.5 154.5,88.5 Z'
-		);
-		transition: clip-path 0.5s cubic-bezier(0.585, 2.5, 0.645, 0.55);
-		// border-radius: 58% 42% 55% 45% / 56% 45% 55% 44%;
-		// transform: rotate(20deg);
-		// transition: transform 0.5s;
-	}
-	&:hover:before {
-		clip-path: path(
-			'M143,77 C117,96 74,100.5 45.5,91.5 C17,82.5 -10.5,57 5.5,31.5 C21.5,6 79,-5.5 130.5,4 C182,13.5 169,58 143,77 Z'
-		);
-		// border-radius: 62% 38% 59% 41% / 28% 47% 53% 44%;
-		// transform: rotate(-20deg);
-	}
-	& span {
-		mix-blend-mode: difference;
-		font-weight: 500;
-	}
-	&:after {
-		content: '';
-		height: 85%;
-		width: 95%;
-		top: 6px;
-		border: #fff solid 1px;
-		border-radius: 58% 42% 55% 45% / 56% 45% 55% 44%;
-		transform: rotate(-20deg);
-		transition: transform 0.5s cubic-bezier(0.585, 2.5, 0.645, 0.55);
-	}
-	&:hover:after {
-		transform: translate3d(0, -5px, 0);
-	}
-	@media (max-width: 800px) {
-		& {
-			transform: scale3d(0.7, 0.7, 0.7);
-			font-size: 23px;
-		}
-	}
+  position: relative;
+  border: none;
+  cursor: pointer;
+  width: 175px;
+  height: 120px;
+  background: none;
+  color: #fff;
+  &:before,
+  &:after {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+  &:before {
+    content: "";
+    background: #fff;
+    clip-path: path(
+      "M154.5,88.5 C131,113.5 62.5,110 30,89.5 C-2.5,69 -3.5,42 4.5,25.5 C12.5,9 33.5,-6 85,3.5 C136.5,13 178,63.5 154.5,88.5 Z"
+    );
+    transition: clip-path 0.5s cubic-bezier(0.585, 2.5, 0.645, 0.55);
+    // border-radius: 58% 42% 55% 45% / 56% 45% 55% 44%;
+    // transform: rotate(20deg);
+    // transition: transform 0.5s;
+  }
+  &:hover:before {
+    clip-path: path(
+      "M143,77 C117,96 74,100.5 45.5,91.5 C17,82.5 -10.5,57 5.5,31.5 C21.5,6 79,-5.5 130.5,4 C182,13.5 169,58 143,77 Z"
+    );
+    // border-radius: 62% 38% 59% 41% / 28% 47% 53% 44%;
+    // transform: rotate(-20deg);
+  }
+  & span {
+    mix-blend-mode: difference;
+    font-weight: 500;
+  }
+  &:after {
+    content: "";
+    height: 85%;
+    width: 95%;
+    top: 6px;
+    border: #fff solid 1px;
+    border-radius: 58% 42% 55% 45% / 56% 45% 55% 44%;
+    transform: rotate(-20deg);
+    transition: transform 0.5s cubic-bezier(0.585, 2.5, 0.645, 0.55);
+  }
+  &:hover:after {
+    transform: translate3d(0, -5px, 0);
+  }
+  @media (max-width: 800px) {
+    & {
+      transform: scale3d(0.7, 0.7, 0.7);
+      font-size: 23px;
+    }
+  }
 }
 
 .coloredIcon {
-	color: #fff;
-	font-size: 35px;
-	&:hover {
-		animation: coloredIconAnimation 0.2s infinite;
-	}
-	// text-shadow: -10px -20px red, -15px -15px blue;
-	@keyframes coloredIconAnimation {
-		0% {
-			text-shadow: 5px 4px base.$red-color, -5px -6px base.$blue-color;
-		}
-		25% {
-			text-shadow: -5px -6px base.$red-color, 5px 4px base.$blue-color;
-		}
-		50% {
-			text-shadow: 5px -4px base.$red-color, -8px 4px base.$blue-color;
-		}
-		75% {
-			text-shadow: -8px -4px base.$red-color, -5px -4px base.$blue-color;
-		}
-		100% {
-			text-shadow: -5px 0px base.$red-color, 5px -4px base.$blue-color;
-		}
-	}
+  color: #fff;
+  font-size: 35px;
+  &:hover {
+    animation: coloredIconAnimation 0.2s infinite;
+  }
+  // text-shadow: -10px -20px red, -15px -15px blue;
+  @keyframes coloredIconAnimation {
+    0% {
+      text-shadow:
+        5px 4px base.$red-color,
+        -5px -6px base.$blue-color;
+    }
+    25% {
+      text-shadow:
+        -5px -6px base.$red-color,
+        5px 4px base.$blue-color;
+    }
+    50% {
+      text-shadow:
+        5px -4px base.$red-color,
+        -8px 4px base.$blue-color;
+    }
+    75% {
+      text-shadow:
+        -8px -4px base.$red-color,
+        -5px -4px base.$blue-color;
+    }
+    100% {
+      text-shadow:
+        -5px 0px base.$red-color,
+        5px -4px base.$blue-color;
+    }
+  }
 }
 
 .coolFunnyLink {
-	display: inline-block;
-	font-family: sans-serif;
+  display: inline-block;
+  font-family: sans-serif;
 
-	span {
-		position: relative;
-		display: inline-block;
-	}
+  span {
+    position: relative;
+    display: inline-block;
+  }
 
-	svg {
-		display: block;
-		width: 70%;
-		height: 12px;
-		margin-top: -4px; // テキストとの間隔を微調整
-	}
+  svg {
+    display: block;
+    width: 70%;
+    height: 12px;
+    margin-top: -4px; // テキストとの間隔を微調整
+  }
 
-	svg path {
-		stroke: black;
-		stroke-width: 1px;
-		transform: scale3d(0, 1, 1);
-		transform-origin: left;
-		transition: transform 0.6s cubic-bezier(0.7, 0, 0.3, 1);
-	}
+  svg path {
+    stroke: black;
+    stroke-width: 1px;
+    transform: scale3d(0, 1, 1);
+    transform-origin: left;
+    transition: transform 0.6s cubic-bezier(0.7, 0, 0.3, 1);
+  }
 
-	&:hover svg path {
-		transform: scale3d(1, 1, 1);
-		transition-timing-function: cubic-bezier(0.8, 1, 0.7, 1);
-	}
+  &:hover svg path {
+    transform: scale3d(1, 1, 1);
+    transition-timing-function: cubic-bezier(0.8, 1, 0.7, 1);
+  }
 }
 
 @media (max-width: 46.25rem) {
-	.coolFunnyLink {
-		font-size: 0.875rem;
+  .coolFunnyLink {
+    font-size: 0.875rem;
 
-		svg {
-			height: 10px;
-			margin-top: -3px;
-		}
+    svg {
+      height: 10px;
+      margin-top: -3px;
+    }
 
-		svg path {
-			stroke-width: 0.8px;
-		}
-	}
+    svg path {
+      stroke-width: 0.8px;
+    }
+  }
 }
 
 @media (max-width: 27.5rem) {
-	.coolFunnyLink {
-		font-size: 0.75rem;
+  .coolFunnyLink {
+    font-size: 0.75rem;
 
-		svg {
-			height: 8px;
-			margin-top: -2px;
-		}
+    svg {
+      height: 8px;
+      margin-top: -2px;
+    }
 
-		svg path {
-			stroke-width: 0.6px;
-		}
-	}
+    svg path {
+      stroke-width: 0.6px;
+    }
+  }
 }
