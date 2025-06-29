@@ -1,98 +1,98 @@
-import gsap from 'gsap';
-import Swiper, { Pagination, Navigation } from 'swiper';
-import { reviews } from './data';
+import gsap from "gsap";
+import Swiper, { Pagination, Navigation } from "swiper";
+import { reviews } from "./data";
 
-const bar = document.querySelector<HTMLElement>('.loading__bar--inner');
+const bar = document.querySelector<HTMLElement>(".loading__bar--inner");
 const counter_num = document.querySelector<HTMLElement>(
-	'.loading__counter--number'
+  ".loading__counter--number",
 );
 let c: number = 0;
 
 let barInterval = setInterval(() => {
-	if (!bar) return;
-	if (!counter_num) return;
-	bar.style.width = c + '%';
-	counter_num.innerText = c + '%';
-	c++;
+  if (!bar) return;
+  if (!counter_num) return;
+  bar.style.width = c + "%";
+  counter_num.innerText = c + "%";
+  c++;
 
-	if (c > 100) {
-		clearInterval(barInterval);
-		gsap.to('.loading__bar', {
-			duration: 5,
-			rotate: '90deg',
-			left: '1000%',
-		});
-		gsap.to('.loading__text, .loading__counter', {
-			duration: 0.5,
-			opacity: 0,
-		});
-		gsap.to('.loading__box', {
-			duration: 1,
-			height: '500px',
-			borderRadius: '50%',
-		});
-		gsap.to('.loading__box', {
-			delay: 2,
-			border: 'none',
-		});
-		gsap.to('.loading', {
-			delay: 2,
-			duration: 2,
-			zIndex: 1,
-			background: 'transparent',
-			opacity: 0.5,
-		});
-		gsap.to('.loading__svg', {
-			duration: 10,
-			opacity: 1,
-			rotate: '360deg',
-		});
-		gsap.to('.loading__svg', {
-			delay: 2,
-			duration: 100,
-			rotate: '360deg',
-		});
-	}
+  if (c > 100) {
+    clearInterval(barInterval);
+    gsap.to(".loading__bar", {
+      duration: 5,
+      rotate: "90deg",
+      left: "1000%",
+    });
+    gsap.to(".loading__text, .loading__counter", {
+      duration: 0.5,
+      opacity: 0,
+    });
+    gsap.to(".loading__box", {
+      duration: 1,
+      height: "500px",
+      borderRadius: "50%",
+    });
+    gsap.to(".loading__box", {
+      delay: 2,
+      border: "none",
+    });
+    gsap.to(".loading", {
+      delay: 2,
+      duration: 2,
+      zIndex: 1,
+      background: "transparent",
+      opacity: 0.5,
+    });
+    gsap.to(".loading__svg", {
+      duration: 10,
+      opacity: 1,
+      rotate: "360deg",
+    });
+    gsap.to(".loading__svg", {
+      delay: 2,
+      duration: 100,
+      rotate: "360deg",
+    });
+  }
 }, 20);
 
 Swiper.use([Pagination, Navigation]);
 
-const swiper = new Swiper('.swiper', {
-	slidesPerView: 1,
-	spaceBetween: 30,
-	pagination: {
-		el: '.swiper-pagination',
-		type: 'bullets',
-		clickable: true,
-	},
-	navigation: {
-		nextEl: '.swiper-button-next',
-		prevEl: '.swiper-button-prev',
-	},
-	breakpoints: {
-		640: {
-			slidesPerView: 1,
-			spaceBetween: 20,
-		},
-		768: {
-			slidesPerView: 2,
-			spaceBetween: 30,
-		},
-		1024: {
-			slidesPerView: 3,
-			spaceBetween: 40,
-		},
-		1480: {
-			slidesPerView: 4,
-			spaceBetween: 50,
-		},
-	},
+const swiper = new Swiper(".swiper", {
+  slidesPerView: 1,
+  spaceBetween: 30,
+  pagination: {
+    el: ".swiper-pagination",
+    type: "bullets",
+    clickable: true,
+  },
+  navigation: {
+    nextEl: ".swiper-button-next",
+    prevEl: ".swiper-button-prev",
+  },
+  breakpoints: {
+    640: {
+      slidesPerView: 1,
+      spaceBetween: 20,
+    },
+    768: {
+      slidesPerView: 2,
+      spaceBetween: 30,
+    },
+    1024: {
+      slidesPerView: 3,
+      spaceBetween: 40,
+    },
+    1480: {
+      slidesPerView: 4,
+      spaceBetween: 50,
+    },
+  },
 });
 
-const swiper_container = document.querySelector('.swiper-wrapper');
+const swiper_container = document.querySelector(".swiper-wrapper");
 
-reviews.map(review => {
-	let template = /*html*/ `
+reviews.map((review) => {
+  let template = /*html*/ `
         <div class="swiper-slide">
             <div class="review">
                 <svg
@@ -126,57 +126,57 @@ reviews.map(review => {
             </div>
 `;
 
-	if (!swiper_container) return;
-	swiper_container.innerHTML += template;
+  if (!swiper_container) return;
+  swiper_container.innerHTML += template;
 });
 
 const questions = Array.from(
-	document.querySelectorAll<HTMLElement>('.question')
+  document.querySelectorAll<HTMLElement>(".question"),
 );
-questions.map(question => {
-	let q_text = question.querySelector<HTMLElement>('h3');
-	q_text?.addEventListener('click', () => {
-		questions
-			.filter(q => q !== question)
-			.map(q => {
-				q.classList.remove('open');
-			});
-		question.classList.toggle('open');
-		// question.nextElementSibling?.classList.toggle('open');
-	});
+questions.map((question) => {
+  let q_text = question.querySelector<HTMLElement>("h3");
+  q_text?.addEventListener("click", () => {
+    questions
+      .filter((q) => q !== question)
+      .map((q) => {
+        q.classList.remove("open");
+      });
+    question.classList.toggle("open");
+    // question.nextElementSibling?.classList.toggle('open');
+  });
 });
-document.addEventListener('DOMContentLoaded', () => {
-	const yearElement = document.getElementById('year');
-	if (yearElement) {
-		yearElement.textContent = new Date().getFullYear().toString();
-	}
+document.addEventListener("DOMContentLoaded", () => {
+  const yearElement = document.getElementById("year");
+  if (yearElement) {
+    yearElement.textContent = new Date().getFullYear().toString();
+  }
 });
 
 const images = {
-	sergioImg: '/public/people/sergio.jpg',
-	craigImg: '/public/people/craig.jpg',
+  sergioImg: "/public/people/sergio.jpg",
+  craigImg: "/public/people/craig.jpg",
 };
 
-const img = document.createElement('img');
+const img = document.createElement("img");
 img.src = images.sergioImg;
-img.alt = 'sergio';
-img.className = 'instructor__img';
+img.alt = "sergio";
+img.className = "instructor__img";
 
-const instructorContainer = document.querySelector('.instructor__infos');
+const instructorContainer = document.querySelector(".instructor__infos");
 if (instructorContainer) {
-	instructorContainer.appendChild(img);
+  instructorContainer.appendChild(img);
 } else {
-	console.error("Element with class 'instructor__infos' not found.");
+  console.error("Element with class 'instructor__infos' not found.");
 }
 
-const img2 = document.createElement('img');
+const img2 = document.createElement("img");
 img2.src = images.craigImg;
-img2.alt = 'sergio';
-img2.className = 'instructor__img';
+img2.alt = "sergio";
+img2.className = "instructor__img";
 
-const instructorContainer2 = document.querySelector('.contact__profile-item');
+const instructorContainer2 = document.querySelector(".contact__profile-item");
 if (instructorContainer2) {
-	instructorContainer2.appendChild(img2);
+  instructorContainer2.appendChild(img2);
 } else {
-	console.error("Element with class 'instructor__infos' not found.");
+  console.error("Element with class 'instructor__infos' not found.");
 }

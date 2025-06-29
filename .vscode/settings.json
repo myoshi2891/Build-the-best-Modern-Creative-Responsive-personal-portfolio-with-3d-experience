@@ -1,0 +1,38 @@
+{
+    // =============================
+    // 📐 Prettier 設定
+    // =============================
+    "editor.formatOnSave": true,                         // ファイル保存時に自動フォーマット
+    "editor.defaultFormatter": "esbenp.prettier-vscode", // Prettier をデフォルトフォーマッタに
+    "prettier.configPath": ".prettierrc.json",           // Prettier 設定ファイルのパス（必要に応じて）
+
+    // =============================
+    // 🧠 TypeScript 補完など
+    // =============================
+    "typescript.tsdk": "node_modules/typescript/lib",    // プロジェクトローカルの TypeScript を使う
+    "typescript.enablePromptUseWorkspaceTsdk": true,     // ワークスペースTSの使用を促す
+    "javascript.validate.enable": false,                 // JSの標準バリデーションをオフにしてESLintなどに任せる（任意）
+
+    // =============================
+    // 📚 スペルチェック（あなたの既存設定）
+    // =============================
+    "cSpell.mergeCSpellSettings": true,
+
+    // =============================
+    // 🚨 推奨追加（ESLint 使用時）
+    // =============================
+    "eslint.enable": true,
+    "eslint.validate": ["javascript", "typescript"],     // ESLint を TS/JS に有効化
+    "editor.codeActionsOnSave": {
+        "source.fixAll": "always",
+        "source.fixAll.eslint": "always"                   // 保存時に ESLint 修正（使っていれば）
+    },
+
+    // =============================
+    // 📁 ファイルエクスプローラーの除外（任意）
+    // =============================
+    "files.exclude": {
+        "**/node_modules": true,
+        "**/dist": true
+    }
+}
