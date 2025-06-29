@@ -95,10 +95,6 @@
 			rel="stylesheet"
 			href="https://unicons.iconscout.com/release/v4.0.8/css/line.css"
 		/>
-		<script type="module" src="assets/js/config.ts"></script>
-		<script type="module" src="assets/js/app.ts"></script>
-
-		<script type="module" src="./index.ts"></script>
 	</head>
 	<body>
 		<!-- Loading -->
@@ -128,6 +124,8 @@
 		</div>
 		<!-- Landing -->
 		<div class="landing">
+			<!-- three js background -->
+			<div class="three_bg"></div>
 			<!-- Header -->
 			<header class="header">
 				<div class="header__wrap">
@@ -238,11 +236,11 @@
 				<div class="instructor">
 					<div class="instructor__curve"></div>
 					<div class="instructor__infos">
-						<img
-							src="assets/images/people/sergio.jpg"
+						<!-- <img
+							src="./assets/images/people/sergio.jpg"
 							alt="sergio"
 							class="instructor__img"
-						/>
+						/> -->
 						<div class="instructor__col">
 							<div class="instructor__info">
 								<img src="assets/icons/star.svg" alt="star" />
@@ -515,7 +513,7 @@
 				</div>
 				<div class="contact__profile">
 					<div class="contact__profile-item">
-						<img src="assets/images/people/craig.jpg" alt="craig" />
+						<!-- <img src="assets/images/people/craig.jpg" alt="craig" /> -->
 						<div class="contact__profile-col">
 							<b>M. YOSHI</b>
 							<span>Software Engineer</span>
@@ -659,5 +657,9 @@
 				</div>
 			</div>
 		</section>
+		<script type="module" src="assets/js/threeBg.ts"></script>
+		<script type="module" src="assets/js/config.ts"></script>
+		<script type="module" src="assets/js/app.ts"></script>
+		<script type="module" src="./index.ts"></script>
 	</body>
 </html>
