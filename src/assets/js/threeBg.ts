@@ -39,7 +39,7 @@ const loader = new THREE.TextureLoader()
 loader.load(
 	images.bg1Url,
 	texture => {
-		geometry = new THREE.PlaneGeometry(5, 5, 15, 9)
+		geometry = new THREE.PlaneGeometry(28, 7, 5, 5)
 		const material = new THREE.MeshBasicMaterial({
 			map: texture,
 			// wireframe: true,
@@ -69,7 +69,12 @@ function animate() {
 			const x = pos.getX(i)
 			const y = pos.getY(i)
 
-			pos.setZ(i, -y * time * 2)
+			const anim1 = 0.75 * Math.sin(x * 2 + time * 0.7)
+			const anim2 = 0.25 * Math.sin(x + time * 0.7)
+			const anim3 = 0.1 * Math.sin(y * 15 + time * 0.7)
+
+			pos.setZ(i, anim1 + anim2 + anim3)
+			// pos.setZ(i, -y * time * 2)
 		}
 
 		pos.needsUpdate = true

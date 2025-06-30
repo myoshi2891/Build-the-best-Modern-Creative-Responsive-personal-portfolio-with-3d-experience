@@ -1,27 +1,27 @@
 {
-  "name": "build_the_best_modern_creative_responsive_personal_portfolio_with_3d",
-  "type": "module",
-  "private": true,
-  "scripts": {
-    "dev": "parcel src/index.html",
-    "build": "parcel build src/index.html && cp -r public dist"
-  },
-  "devDependencies": {
-    "@parcel/packager-raw-url": "^2.15.4",
-    "@parcel/transformer-sass": "^2.15.4",
-    "@parcel/transformer-webmanifest": "^2.15.4",
-    "@types/bun": "latest",
-    "parcel": "^2.15.4",
-    "typescript": "^5.8.3"
-  },
-  "peerDependencies": {
-    "typescript": "^5"
-  },
-  "dependencies": {
-    "@parcel/resolver-default": "^2.15.4",
-    "@types/three": "^0.177.0",
-    "gsap": "^3.13.0",
-    "swiper": "^8.4.7",
-    "three": "^0.177.0"
-  }
+	"name": "build_the_best_modern_creative_responsive_personal_portfolio_with_3d",
+	"type": "module",
+	"private": true,
+	"scripts": {
+		"dev": "parcel src/index.html",
+		"build": "parcel build src/index.html && cp -r public dist && bun run dev"
+	},
+	"devDependencies": {
+		"@parcel/packager-raw-url": "^2.15.4",
+		"@parcel/transformer-sass": "^2.15.4",
+		"@parcel/transformer-webmanifest": "^2.15.4",
+		"@types/bun": "latest",
+		"parcel": "^2.15.4",
+		"typescript": "^5.8.3"
+	},
+	"peerDependencies": {
+		"typescript": "^5"
+	},
+	"dependencies": {
+		"@parcel/resolver-default": "^2.15.4",
+		"@types/three": "^0.177.0",
+		"gsap": "^3.13.0",
+		"swiper": "^8.4.7",
+		"three": "^0.177.0"
+	}
 }
