@@ -1,4 +1,7 @@
-import * as THREE from "three";
+import * as THREE from "three"
+import fragment from "../shaders/fragment.glsl"
+import vertex from "../shaders/vertex.glsl"
+
 const images = {
 	bg1Url: "./public/avatars/11.png",
 	bg2Url: "./public/avatars/10.png",
@@ -17,46 +20,135 @@ interface ShadedConfig {
 		uTexture: { value: THREE.Texture }
 		uAlpha: { value: number }
 		uOffset: { value: THREE.Vector2 }
-		transparent: boolean
 	}
+	camera: THREE.PerspectiveCamera
+	renderer: THREE.WebGLRenderer
+	geometry: THREE.PlaneGeometry
+	material: THREE.ShaderMaterial
 }
 
-const loader = new THREE.TextureLoader();
+const loader = new THREE.TextureLoader()
 const texture1 = loader.load(images.bg1Url)
 const texture2 = loader.load(images.bg2Url)
 const texture3 = loader.load(images.bg3Url)
 const texture4 = loader.load(images.bg4Url)
 
 class Shaded implements ShadedConfig {
-    container: HTMLElement | null;
-    links: HTMLElement[];
-    scene: THREE.Scene;
-    perspective: number;
-    sizes: THREE.Vector2;
-    offset: THREE.Vector2;
+	container: HTMLElement | null
+	links: HTMLElement[]
+	scene: THREE.Scene
+	perspective: number
+	sizes: THREE.Vector2
+	offset: THREE.Vector2
 	uniforms: {
-		uTexture: { value: THREE.Texture },
-		uAlpha: { value: number },
-		uOffset: { value: THREE.Vector2 },
-		transparent: boolean
-	};
+		uTexture: { value: THREE.Texture }
+		uAlpha: { value: number }
+		uOffset: { value: THREE.Vector2 }
+	}
+	camera: THREE.PerspectiveCamera = new THREE.PerspectiveCamera()
+	renderer: THREE.WebGLRenderer = new THREE.WebGLRenderer()
+	geometry: THREE.PlaneGeometry = new THREE.PlaneGeometry()
+	material: THREE.ShaderMaterial = new THREE.ShaderMaterial()
 
-    constructor() {
-        this.container = document.querySelector(".landing");
-        this.links = Array.from(
-            document.querySelectorAll<HTMLElement>(".shadedimg")
-        )
-        this.scene = new THREE.Scene();
-        this.perspective = 1000;
-        this.sizes = new THREE.Vector2(0, 0);
-        this.offset = new THREE.Vector2(0, 0);
-        this.uniforms = {
+	constructor() {
+		this.container = document.querySelector(".landing")
+		this.links = Array.from(
+			document.querySelectorAll<HTMLElement>(".shadedimg")
+		)
+		this.scene = new THREE.Scene()
+		this.perspective = 1000
+		this.sizes = new THREE.Vector2(0, 0)
+		this.offset = new THREE.Vector2(0, 0)
+		this.uniforms = {
 			uTexture: { value: texture1 },
 			uAlpha: { value: 0 },
 			uOffset: { value: new THREE.Vector2(0, 0) },
-			transparent: true
-        }
-    }
-}
+		}
+		this.links.map((link, i) => {
+			link.addEventListener("mouseover", () => {
+				switch (i) {
+					case 0:
+						this.uniforms.uTexture.value = texture1
+						break
+					case 1:
+						this.uniforms.uTexture.value = texture2
+						break
+					case 2:
+						this.uniforms.uTexture.value = texture3
+						break
+					case 3:
+						this.uniforms.uTexture.value = texture4
+						break
+					default:
+						this.uniforms.uTexture.value = texture1
+						break
+				}
+			})
+			link.addEventListener("mouseleave", () => {
+				this.uniforms.uAlpha.value = 0.0
+			})
+		})
+		this.setupCamera = this.setupCamera.bind(this)
+		this.setupCamera()
+		this.createMesh()
+	}
 
-new Shaded()
+	get viewport() {
+		let width = window.innerWidth
+		let height = window.innerHeight
+		let aspectRatio = width / height
+		let pixelRatio = window.devicePixelRatio
+		return { width, height, aspectRatio, pixelRatio }
+	}
+	setupCamera() {
+		window.addEventListener("resize", this.onResize.bind(this))
+		const viewport = {
+			width: window.innerWidth,
+			height: window.innerHeight,
+		}
+		let fov =
+			(180 * (2 * Math.atan(viewport.height / 2 / this.perspective))) /
+			Math.PI
+
+		this.camera = new THREE.PerspectiveCamera(
+			fov,
+			this.viewport.aspectRatio,
+			0.1,
+			1000
+		)
+		this.camera.position.set(0, 0, this.perspective)
+
+		// renderer
+		this.renderer = new THREE.WebGLRenderer({
+			antialias: true,
+			alpha: true,
+		})
+
+		this.renderer.setSize(this.viewport.width, this.viewport.height)
+		this.renderer.setPixelRatio(this.viewport.pixelRatio)
+		this.container?.appendChild(this.renderer.domElement)
+	}
+
+	createMesh() {
+		this.geometry = new THREE.PlaneGeometry(1, 1, 20, 20)
+		this.material = new THREE.ShaderMaterial({
+			uniforms: this.uniforms,
+			vertexShader: vertex,
+			fragmentShader: fragment,
+			transparent: true,
+		})
+		// this.scene.add(mesh)
+	}
+	onResize() {
+		this.camera.aspect = this.viewport.aspectRatio
+		const viewport = {
+			width: window.innerWidth,
+			height: window.innerHeight,
+		}
+		this.camera.fov =
+			(180 * (2 * Math.atan(viewport.height / 2 / this.perspective))) /
+			Math.PI
+		this.renderer.setSize(this.viewport.width, this.viewport.height)
+		this.camera.updateProjectionMatrix()
+	}
+}
