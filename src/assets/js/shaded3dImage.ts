@@ -11,7 +11,10 @@ const images = {
 
 interface ShadedConfig {
 	container: HTMLElement | null
+	inner: HTMLElement | null
 	links: HTMLElement[]
+	targetX: number
+	targetY: number
 	scene: THREE.Scene
 	perspective: number
 	sizes: THREE.Vector2
@@ -25,6 +28,8 @@ interface ShadedConfig {
 	renderer: THREE.WebGLRenderer
 	geometry: THREE.PlaneGeometry
 	material: THREE.ShaderMaterial
+	mesh: THREE.Mesh | undefined
+	hovered: boolean
 }
 
 const loader = new THREE.TextureLoader()
@@ -33,9 +38,16 @@ const texture2 = loader.load(images.bg2Url)
 const texture3 = loader.load(images.bg3Url)
 const texture4 = loader.load(images.bg4Url)
 
+function lerp(start: number, end: number, t: number): number {
+	return start * (1 - t) + end * t
+}
+
 class Shaded implements ShadedConfig {
 	container: HTMLElement | null
+	inner: HTMLElement | null
 	links: HTMLElement[]
+	targetX: number
+	targetY: number
 	scene: THREE.Scene
 	perspective: number
 	sizes: THREE.Vector2
@@ -49,23 +61,28 @@ class Shaded implements ShadedConfig {
 	renderer: THREE.WebGLRenderer = new THREE.WebGLRenderer()
 	geometry: THREE.PlaneGeometry = new THREE.PlaneGeometry()
 	material: THREE.ShaderMaterial = new THREE.ShaderMaterial()
+	mesh: THREE.Mesh | undefined
+	hovered: boolean = false
 
 	constructor() {
 		this.container = document.querySelector(".landing")
+		this.inner = document.querySelector(".intro")
 		this.links = Array.from(
 			document.querySelectorAll<HTMLElement>(".shadedimg")
 		)
+		this.targetX = 0
+		this.targetY = 0
 		this.scene = new THREE.Scene()
 		this.perspective = 1000
 		this.sizes = new THREE.Vector2(0, 0)
 		this.offset = new THREE.Vector2(0, 0)
 		this.uniforms = {
 			uTexture: { value: texture1 },
-			uAlpha: { value: 0 },
-			uOffset: { value: new THREE.Vector2(0, 0) },
+			uAlpha: { value: 0.0 },
+			uOffset: { value: new THREE.Vector2(0.0, 0.0) },
 		}
 		this.links.map((link, i) => {
-			link.addEventListener("mouseover", () => {
+			link.addEventListener("mouseenter", () => {
 				switch (i) {
 					case 0:
 						this.uniforms.uTexture.value = texture1
@@ -85,11 +102,17 @@ class Shaded implements ShadedConfig {
 				}
 			})
 			link.addEventListener("mouseleave", () => {
-				this.uniforms.uAlpha.value = 0.0
+				this.uniforms.uAlpha.value = lerp(
+					this.uniforms.uAlpha.value,
+					0.0,
+					0.1
+				)
 			})
 		})
 		this.setupCamera = this.setupCamera.bind(this)
+		this.checkHovered()
 		this.setupCamera()
+		this.followMouseMove()
 		this.createMesh()
 	}
 
@@ -99,6 +122,16 @@ class Shaded implements ShadedConfig {
 		let aspectRatio = width / height
 		let pixelRatio = window.devicePixelRatio
 		return { width, height, aspectRatio, pixelRatio }
+	}
+
+	checkHovered() {
+		this.inner?.addEventListener("mouseenter", () => {
+			this.hovered = true
+		})
+		this.inner?.addEventListener("mouseleave", () => {
+			this.hovered = false
+			this.uniforms.uTexture = { value: texture1 }
+		})
 	}
 	setupCamera() {
 		window.addEventListener("resize", this.onResize.bind(this))
@@ -137,8 +170,20 @@ class Shaded implements ShadedConfig {
 			fragmentShader: fragment,
 			transparent: true,
 		})
-		// this.scene.add(mesh)
+		this.mesh = new THREE.Mesh(this.geometry, this.material)
+		this.sizes.set(370, 470)
+		this.mesh.scale.set(this.sizes.x, this.sizes.y, 1)
+		this.mesh.position.set(this.offset.x, this.offset.y, 0)
+		this.scene.add(this.mesh)
 	}
+
+	followMouseMove() {
+		window.addEventListener("mousemove", (event: MouseEvent) => {
+			this.targetX = event.clientX
+			this.targetY = event.clientY
+		})
+	}
+
 	onResize() {
 		this.camera.aspect = this.viewport.aspectRatio
 		const viewport = {
