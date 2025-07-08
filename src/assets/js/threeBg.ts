@@ -1,7 +1,7 @@
 import * as THREE from "three"
 
 const images = {
-	bg1Url: "./public/wallpapers/193.jpg", // public/ はルートから参照されるため不要
+	bg1Url: "/public/wallpapers/193.jpg", // public/ はルートから参照されるため不要
 }
 
 const scene = new THREE.Scene()

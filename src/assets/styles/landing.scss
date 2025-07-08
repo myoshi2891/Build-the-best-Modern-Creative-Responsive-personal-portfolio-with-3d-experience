@@ -84,6 +84,7 @@
     bottom: 2rem;
     left: 50%;
     transform: translateX(-50%);
+    z-index: 1;
     &__wheel {
       height: 42px;
       width: 24px;
@@ -157,6 +158,8 @@
   }
   .intro {
     position: absolute;
+    z-index: 2;
+    color: white; /* 背景に応じて見やすく */
     top: 20%;
     left: 1rem;
     width: 100%;
@@ -187,4 +190,9 @@
       font-size: 3.5rem;
     }
   }
+}
+
+.landing canvas {
+  position: absolute;
+  z-index: 1;
 }
