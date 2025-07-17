@@ -1,7 +1,7 @@
 import gsap from "gsap"
+import imagesLoaded from "imagesloaded"
 import Swiper, { Navigation, Pagination } from "swiper"
 import { reviews } from "./data"
-
 const bar = document.querySelector<HTMLElement>(".loading__bar--inner")
 const counter_num = document.querySelector<HTMLElement>(
 	".loading__counter--number"
@@ -35,37 +35,42 @@ let barInterval = setInterval(() => {
 			delay: 2,
 			border: "none",
 		})
-		gsap.to(".loading", {
-			delay: 2,
-			duration: 2,
-			zIndex: 1,
-			background: "transparent",
-			opacity: 0.5,
-		})
-		gsap.to(".loading__svg", {
-			duration: 10,
-			opacity: 1,
-			rotate: "360deg",
-		})
-		gsap.to(".loading__svg", {
-			delay: 2,
-			duration: 100,
-			rotate: "360deg",
-		})
-		gsap.to("header", {
-			duration: 1,
-			delay: 2,
-			top: "0",
-		})
-		gsap.to(".socials", {
-			duration: 1,
-			delay: 2.5,
-			bottom: "10rem",
-		})
-		gsap.to(".scrollDown", {
-			duration: 1,
-			delay: 3,
-			bottom: "2rem",
+
+		const imgLoad = imagesLoaded(document.querySelectorAll("img"))
+
+		imgLoad.on("done", () => {
+			gsap.to(".loading", {
+				delay: 2,
+				duration: 2,
+				zIndex: 1,
+				background: "transparent",
+				opacity: 0.5,
+			})
+			gsap.to(".loading__svg", {
+				duration: 10,
+				opacity: 1,
+				rotate: "360deg",
+			})
+			gsap.to(".loading__svg", {
+				delay: 2,
+				duration: 100,
+				rotate: "360deg",
+			})
+			gsap.to("header", {
+				duration: 1,
+				delay: 2,
+				top: "0",
+			})
+			gsap.to(".socials", {
+				duration: 1,
+				delay: 2.5,
+				bottom: "10rem",
+			})
+			gsap.to(".scrollDown", {
+				duration: 1,
+				delay: 3,
+				bottom: "2rem",
+			})
 		})
 	}
 }, 20)
