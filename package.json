@@ -23,6 +23,7 @@
 		"@types/three": "^0.177.0",
 		"gsap": "^3.13.0",
 		"imagesloaded": "^5.0.0",
+		"smooth-scrollbar": "^8.8.4",
 		"swiper": "^8.4.7",
 		"three": "^0.177.0"
 	}

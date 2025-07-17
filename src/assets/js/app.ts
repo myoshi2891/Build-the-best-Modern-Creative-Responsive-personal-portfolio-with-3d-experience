@@ -1,7 +1,81 @@
 import gsap from "gsap"
 import imagesLoaded from "imagesloaded"
+import Scrollbar, { ScrollbarPlugin } from "smooth-scrollbar"
 import Swiper, { Navigation, Pagination } from "swiper"
 import { reviews } from "./data"
+
+export class DisableScrollPlugin extends ScrollbarPlugin {
+	static override pluginName = "disableScroll"
+
+	static override defaultOptions = {
+		direction: "", // 'x' または 'y' を指定可能
+	}
+
+	override transformDelta(delta: { x: number; y: number }) {
+		if (this.options.direction) {
+			delta[this.options.direction as "x" | "y"] = 0
+		}
+
+		return { ...delta }
+	}
+}
+// load the plugin
+Scrollbar.use(DisableScrollPlugin)
+
+export class AnchorPlugin extends ScrollbarPlugin {
+	static override pluginName = "anchor"
+
+	// ハッシュ変更時の処理
+	onHashChange = () => {
+		this.jumpToHash(window.location.hash)
+	}
+
+	// クリックイベント
+	onClick = (event: MouseEvent) => {
+		const target = event.target as HTMLElement
+
+		if (target.tagName !== "A") {
+			return
+		}
+
+		const hash = target.getAttribute("href")
+
+		if (!hash || hash.charAt(0) !== "#") {
+			return
+		}
+
+		this.jumpToHash(hash)
+	}
+
+	// ハッシュに基づくスクロール
+	jumpToHash(hash: string) {
+		const { scrollbar } = this
+
+		if (!hash) return
+
+		// ブラウザのデフォルトスクロールをリセット
+		scrollbar.containerEl.scrollTop = 0
+
+		const targetEl = document.querySelector(hash)
+		if (targetEl) {
+			scrollbar.scrollIntoView(targetEl as HTMLElement)
+		}
+	}
+
+	override onInit() {
+		this.jumpToHash(window.location.hash)
+
+		window.addEventListener("hashchange", this.onHashChange)
+		this.scrollbar.contentEl.addEventListener("click", this.onClick)
+	}
+
+	override onDestroy() {
+		window.removeEventListener("hashchange", this.onHashChange)
+		this.scrollbar.contentEl.removeEventListener("click", this.onClick)
+	}
+}
+// usage
+Scrollbar.use(AnchorPlugin)
 const bar = document.querySelector<HTMLElement>(".loading__bar--inner")
 const counter_num = document.querySelector<HTMLElement>(
 	".loading__counter--number"
@@ -71,6 +145,19 @@ let barInterval = setInterval(() => {
 				delay: 3,
 				bottom: "2rem",
 			})
+			setTimeout(() => {
+				let options = {
+					damping: 0.1,
+					alwaysShowTracks: true,
+					plugins: {
+						disableScroll: {
+							direction: "x",
+						},
+					},
+				}
+				let pageSmoothScroll = Scrollbar.init(document.body, options)
+				pageSmoothScroll.track.xAxis.element.remove()
+			}, 2000)
 		})
 	}
 }, 20)
