@@ -1,0 +1,57 @@
+
+@import 'projects';
+// Import Swiper styles
+@import 'swiper.scss';
+
+// Add basic review styles if they don't exist
+.reviews {
+    padding: 2rem;
+    background: #fff;
+    
+    .swiper {
+        width: 100%;
+        height: 400px;
+    }
+    
+    .swiper-slide {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    
+    .review {
+        background: #f8f9fa;
+        border-radius: 8px;
+        padding: 1rem;
+        max-width: 300px;
+        
+        &__card {
+            text-align: center;
+        }
+        
+        &__text {
+            margin: 1rem 0;
+            font-size: 14px;
+            line-height: 1.5;
+        }
+        
+        &__img {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin: 1rem 0;
+        }
+        
+        &__profile {
+            span:first-child {
+                font-weight: bold;
+                display: block;
+            }
+            span:last-child {
+                font-size: 12px;
+                color: #666;
+            }
+        }
+    }
+}

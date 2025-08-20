@@ -5,67 +5,66 @@
     font-size: 3.75rem;
     font-style: italic;
     padding-bottom: 0.625rem;
+    margin-bottom: 2rem;
   }
 }
 
 .project {
-  &__header {
-    display: grid;
-    grid-template-columns: 1fr 3fr;
-    gap: 1rem;
-    font-family: sans-serif;
+  margin-bottom: 4rem;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 2rem;
 
-    span {
-      border-top: 1px solid #000;
-      padding: 1rem;
-      font-size: 1.875rem;
-      text-align: center;
-    }
+  &__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+    font-size: 0.9rem;
+    color: #666;
   }
 
   &__infos {
-    margin-top: 1rem;
-    font-size: clamp(1rem, 3vw, 2rem);
-    font-family: sans-serif;
-    display: flex;
-    align-items: center;
+    margin-bottom: 2rem;
+
+    &--name {
+      font-size: 2.5rem;
+      font-weight: bold;
+      margin: 0;
+
+      span {
+        font-weight: normal;
+        color: #666;
+        font-size: 1.5rem;
+      }
+    }
   }
 
   &__img {
     position: relative;
-    width: 100vw;
-    height: 43.75rem;
 
     img {
-      width: clamp(300px, 60vw, 960px);
-      height: 37.5rem;
-      object-fit: contain;
-      position: absolute;
-      right: 10vw;
-      top: 3rem;
+      width: 100%;
+      height: auto;
+      border-radius: 8px;
+      margin-bottom: 1rem;
     }
   }
 
   &__links {
-    padding-top: 3rem;
     display: flex;
+    gap: 2rem;
+    align-items: center;
+    margin-bottom: 1.5rem;
 
-    button {
-      &::before {
-        background: #000;
-      }
-      &::after {
-        border-color: #000;
-      }
+    .coolCircleEyeButton {
+      transform: translateX(2rem);
     }
   }
 
   &__tags {
     display: flex;
-    position: absolute;
+    flex-wrap: wrap;
     gap: 1rem;
-    bottom: 1rem;
-    flex-direction: column;
   }
 }
 
