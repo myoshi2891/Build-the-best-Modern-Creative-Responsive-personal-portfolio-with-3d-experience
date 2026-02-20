@@ -12,7 +12,7 @@
 		"@parcel/transformer-sass": "^2.15.4",
 		"@parcel/transformer-webmanifest": "^2.15.4",
 		"@types/bun": "latest",
-		"parcel": "^2.15.4",
+		"parcel": "^2.16.4",
 		"typescript": "^5.8.3"
 	},
 	"peerDependencies": {
@@ -24,7 +24,7 @@
 		"gsap": "^3.13.0",
 		"imagesloaded": "^5.0.0",
 		"smooth-scrollbar": "^8.8.4",
-		"swiper": "^8.4.7",
+		"swiper": "^12.1.2",
 		"three": "^0.177.0"
 	}
 }
