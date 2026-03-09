@@ -8,8 +8,8 @@ interface ImageConfig {
 
 export class ImageManager {
     private static readonly IMAGES = {
-        sergioImg: "/public/people/sergio.jpg",
-        craigImg: "/public/people/craig.jpg",
+        sergioImg: "/people/sergio.jpg",
+        craigImg: "/people/craig.jpg",
     }
 
     static createAndAppendImage(config: ImageConfig): void {
@@ -22,7 +22,7 @@ export class ImageManager {
         if (container) {
             container.appendChild(img)
         } else {
-            console.error(`Element with class '${config.container}' not found.`)
+            console.error(`Element matching selector '${config.container}' not found.`)
         }
     }
 
@@ -30,13 +30,13 @@ export class ImageManager {
         const imageConfigs: ImageConfig[] = [
             {
                 src: this.IMAGES.sergioImg,
-                alt: "sergio",
+                alt: "Instructor Sergio",
                 className: "instructor__img",
                 container: ".instructor__infos"
             },
             {
                 src: this.IMAGES.craigImg,
-                alt: "craig",
+                alt: "Contact person Craig",
                 className: "instructor__img",
                 container: ".contact__profile-item"
             }

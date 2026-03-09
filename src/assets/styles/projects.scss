@@ -72,6 +72,7 @@
     perspective: 1000px;
 
     img {
+      position: relative;
       width: 100%;
       height: auto;
       border-radius: 2px;
@@ -187,11 +188,11 @@
 
   .project {
     &__header {
-      grid-template-columns: 1fr;
+      flex-direction: column;
       font-size: 1.5rem;
       span { font-size: 1.25rem; }
     }
-    &__infos-name { font-size: 2.375rem; }
+    &__infos--name { font-size: 2.375rem; }
     &__img img { width: 74vw; right: 5rem; }
     .coolCircleEyeButton { transform: translate(-14rem, 3rem); }
   }
@@ -214,14 +215,14 @@
 
   .project {
     &__tags { flex-direction: row; top: 0; left: 0; }
-    &__infos-name { font-size: 2.25rem; span { display: none; } }
+    &__infos--name { font-size: 2.25rem; span { display: none; } }
     &__img img { width: 85vw; right: 3rem; }
   }
 }
 
 @media (max-width: 27.5rem) {
   .project {
-    &__header { grid-template-columns: 1fr; span { font-size: 1.5rem; } }
+    &__header { flex-direction: column; span { font-size: 1.5rem; } }
     .coolCircleEyeButton { transform: translate(0); }
     &__tags { gap: 0.375rem; font-size: 0.875rem; }
   }

@@ -25,9 +25,9 @@ export class AnchorPlugin extends ScrollbarPlugin {
     }
 
     onClick = (event: MouseEvent) => {
-        const target = event.target as HTMLElement
+        const target = (event.target as HTMLElement).closest("a")
 
-        if (target.tagName !== "A") {
+        if (!target) {
             return
         }
 
@@ -47,7 +47,8 @@ export class AnchorPlugin extends ScrollbarPlugin {
 
         scrollbar.containerEl.scrollTop = 0
 
-        const targetEl = document.querySelector(hash)
+        // Use getElementById for safer ID lookup, slice(1) to remove '#'
+        const targetEl = document.getElementById(hash.slice(1))
         if (targetEl) {
             scrollbar.scrollIntoView(targetEl as HTMLElement)
         }

@@ -119,6 +119,12 @@
     animation: coloredIconAnimation 0.18s infinite;
   }
 
+  @media (prefers-reduced-motion: reduce) {
+    &:hover {
+      animation: none;
+    }
+  }
+
   @keyframes coloredIconAnimation {
     0%   { text-shadow:  5px  4px base.$red-color, -5px -6px base.$blue-color; }
     25%  { text-shadow: -5px -6px base.$red-color,  5px  4px base.$blue-color; }
