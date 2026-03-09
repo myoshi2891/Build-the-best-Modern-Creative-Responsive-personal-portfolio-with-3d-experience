@@ -1,86 +1,168 @@
 import * as THREE from "three"
 
-const images = {
-	bg1Url: "/public/wallpapers/193.jpg", // public/ はルートから参照されるため不要
-}
+// ─── Scene ───────────────────────────────────────────────────────────────────
+const scene  = new THREE.Scene()
+const camera = new THREE.PerspectiveCamera(70, window.innerWidth / window.innerHeight, 0.1, 3000)
+camera.position.z = 500
 
-const scene = new THREE.Scene()
-
-const camera = new THREE.PerspectiveCamera(
-	70,
-	window.innerWidth / window.innerHeight,
-	0.1,
-	1000
-)
-camera.position.z = 5
-
-const renderer = new THREE.WebGLRenderer({ antialias: true })
+const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true })
 renderer.setSize(window.innerWidth, window.innerHeight)
+renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2))
 
 const container = document.querySelector(".three_bg")
 if (container) {
-	container.appendChild(renderer.domElement)
+    container.appendChild(renderer.domElement)
 } else {
-	console.error("Element with class 'three_bg' not found.")
+    console.error("Element with class 'three_bg' not found.")
 }
 
-window.addEventListener("resize", () => {
-	const width = window.innerWidth
-	const height = window.innerHeight
-	camera.aspect = width / height
-	camera.updateProjectionMatrix()
-	renderer.setSize(width, height)
+// ─── Particle Galaxy ─────────────────────────────────────────────────────────
+const PARTICLE_COUNT = 12000
+const geo   = new THREE.BufferGeometry()
+const pos   = new Float32Array(PARTICLE_COUNT * 3)
+const col   = new Float32Array(PARTICLE_COUNT * 3)
+const sizes = new Float32Array(PARTICLE_COUNT)
+
+// Color palette: electric cyan, deep violet, ghost white, crimson (rare)
+const palette = [
+    new THREE.Color(0x00f5ff), // cyan
+    new THREE.Color(0x7b2fff), // violet
+    new THREE.Color(0xe8eaff), // ghost white
+    new THREE.Color(0xff1744), // crimson
+]
+
+for (let i = 0; i < PARTICLE_COUNT; i++) {
+    // Three-arm spiral distribution
+    const arm         = i % 3
+    const radius      = Math.random() * 900 + 50
+    const spinAngle   = radius * 0.0025
+    const branchAngle = (arm / 3) * Math.PI * 2
+
+    const scatter = Math.pow(Math.random(), 3)
+    const rx = scatter * (Math.random() < 0.5 ? 1 : -1) * 80
+    const ry = scatter * (Math.random() < 0.5 ? 1 : -1) * 40
+    const rz = (Math.random() - 0.5) * 350
+
+    pos[i * 3]     = Math.cos(branchAngle + spinAngle) * radius + rx
+    pos[i * 3 + 1] = ry
+    pos[i * 3 + 2] = Math.sin(branchAngle + spinAngle) * radius * 0.3 + rz
+
+    // 60% cyan, 20% violet, 15% ghost, 5% crimson
+    const r = Math.random()
+    const c = r < 0.60 ? palette[0]
+            : r < 0.80 ? palette[1]
+            : r < 0.95 ? palette[2]
+            :             palette[3]
+
+    col[i * 3]     = c.r
+    col[i * 3 + 1] = c.g
+    col[i * 3 + 2] = c.b
+
+    sizes[i] = Math.random() * 2.5 + 0.3
+}
+
+geo.setAttribute("position", new THREE.BufferAttribute(pos,   3))
+geo.setAttribute("color",    new THREE.BufferAttribute(col,   3))
+geo.setAttribute("size",     new THREE.BufferAttribute(sizes, 1))
+
+const particleMat = new THREE.ShaderMaterial({
+    uniforms: {
+        uTime:  { value: 0 },
+        uMouse: { value: new THREE.Vector2(0, 0) },
+    },
+    vertexShader: `
+        attribute float size;
+        varying vec3 vColor;
+        uniform float uTime;
+        uniform vec2  uMouse;
+
+        void main() {
+            vColor = color;
+
+            vec3 p = position;
+            // Ambient drift — gentle organic movement
+            p.y += sin(p.x * 0.005 + uTime * 0.28) * 14.0;
+            p.x += cos(p.z * 0.008 + uTime * 0.18) * 10.0;
+
+            vec4 mv = modelViewMatrix * vec4(p, 1.0);
+
+            // Mouse parallax — deeper particles move more
+            float depth = clamp(-mv.z / 600.0, 0.0, 1.0);
+            mv.x += uMouse.x * depth * 55.0;
+            mv.y += uMouse.y * depth * 38.0;
+
+            gl_Position  = projectionMatrix * mv;
+            gl_PointSize = size * (360.0 / -mv.z);
+        }
+    `,
+    fragmentShader: `
+        varying vec3 vColor;
+
+        void main() {
+            vec2  uv   = gl_PointCoord - 0.5;
+            float dist = length(uv);
+            if (dist > 0.5) discard;
+
+            // Soft glowing core
+            float core = 1.0 - smoothstep(0.0, 0.18, dist);
+            float halo = 1.0 - smoothstep(0.0, 0.50, dist);
+
+            vec3  col   = vColor * (core * 1.6 + halo * 0.4);
+            float alpha = halo * 0.88;
+
+            gl_FragColor = vec4(col, alpha);
+        }
+    `,
+    transparent:  true,
+    vertexColors: true,
+    depthWrite:   false,
+    blending:     THREE.AdditiveBlending,
 })
 
-let geometry: THREE.PlaneGeometry | null = null
-let mesh: THREE.Mesh | null = null
+const particles = new THREE.Points(geo, particleMat)
+scene.add(particles)
 
-const loader = new THREE.TextureLoader()
-loader.load(
-	images.bg1Url,
-	texture => {
-		geometry = new THREE.PlaneGeometry(28, 7, 5, 5)
-		const material = new THREE.MeshBasicMaterial({
-			map: texture,
-			// wireframe: true,
-		})
+// ─── Mouse Tracking ───────────────────────────────────────────────────────────
+let targetX = 0, targetY = 0
+let smoothX = 0, smoothY = 0
 
-		mesh = new THREE.Mesh(geometry, material)
-		scene.add(mesh)
-	},
-	undefined,
-	error => {
-		console.error("画像の読み込みに失敗しました:", error)
-	}
-)
+window.addEventListener("mousemove", e => {
+    targetX = (e.clientX / window.innerWidth  - 0.5) * 2
+    targetY = -(e.clientY / window.innerHeight - 0.5) * 2
+})
 
+// ─── Animation ────────────────────────────────────────────────────────────────
 const clock = new THREE.Clock()
 
 function animate() {
-	requestAnimationFrame(animate)
+    requestAnimationFrame(animate)
 
-	const time = clock.getElapsedTime()
+    const t = clock.getElapsedTime()
 
-	if (geometry && geometry.attributes.position) {
-		const pos = geometry.attributes.position
-		const count = pos.count
+    // Smooth mouse lerp
+    smoothX += (targetX - smoothX) * 0.04
+    smoothY += (targetY - smoothY) * 0.04
 
-		for (let i = 0; i < count; i++) {
-			const x = pos.getX(i)
-			const y = pos.getY(i)
+    // Slow galaxy rotation
+    particles.rotation.y = t * 0.04
+    particles.rotation.x = smoothY * 0.08
 
-			const anim1 = 0.75 * Math.sin(x * 2 + time * 0.7)
-			const anim2 = 0.25 * Math.sin(x + time * 0.7)
-			const anim3 = 0.1 * Math.sin(y * 15 + time * 0.7)
+    // Subtle camera drift following mouse
+    camera.position.x += (smoothX * 45 - camera.position.x) * 0.05
+    camera.position.y += (smoothY * 28 - camera.position.y) * 0.05
+    camera.lookAt(0, 0, 0)
 
-			pos.setZ(i, anim1 + anim2 + anim3)
-			// pos.setZ(i, -y * time * 2)
-		}
+    particleMat.uniforms.uTime.value = t
+    particleMat.uniforms.uMouse.value.set(smoothX, smoothY)
 
-		pos.needsUpdate = true
-	}
-
-	renderer.render(scene, camera)
+    renderer.render(scene, camera)
 }
 
 animate()
+
+// ─── Resize ───────────────────────────────────────────────────────────────────
+window.addEventListener("resize", () => {
+    camera.aspect = window.innerWidth / window.innerHeight
+    camera.updateProjectionMatrix()
+    renderer.setSize(window.innerWidth, window.innerHeight)
+})
