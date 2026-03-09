@@ -44,6 +44,7 @@ class Shaded {
 		uTexture: { value: THREE.Texture }
 		uAlpha: { value: number }
 		uOffset: { value: THREE.Vector2 }
+		uTime: { value: number }
 	}
 
 	// 複数テクスチャを引数で受け取る
@@ -63,6 +64,7 @@ class Shaded {
 			uTexture: { value: this.texture1 },
 			uAlpha: { value: 1.0 },
 			uOffset: { value: new THREE.Vector2(0.0, 0.0) },
+			uTime: { value: 0.0 },
 		}
 
 		this.setupCamera()
@@ -203,6 +205,8 @@ class Shaded {
 	render() {
 		this.offset.x = lerp(this.offset.x, this.targetX, 0.1)
 		this.offset.y = lerp(this.offset.y, this.targetY, 0.1)
+
+		this.uniforms.uTime.value += 0.016
 
 		this.uniforms.uOffset.value.set(
 			(this.targetX - this.offset.x) * 0.0003,

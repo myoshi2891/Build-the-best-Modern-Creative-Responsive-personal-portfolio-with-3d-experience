@@ -1,144 +1,197 @@
 @use "./base";
 
+// ─── Reviews Section ──────────────────────────────────────────────────────────
 .reviews {
   position: relative;
-  background: base.$darkish-blue;
-  color: #fff;
+  background: var(--void-2);
+  color: var(--ghost);
+
   &__header {
     display: flex;
     align-items: center;
     gap: 1rem;
+
     .instructor {
       position: relative;
-      background: #28316013;
-      box-shadow: 0 8px 32px 0 base.$box-shadow-blue1;
+      background: var(--glass);
+      border: 1px solid rgba(0, 245, 255, 0.1);
+      box-shadow:
+        0 8px 40px rgba(0, 0, 0, 0.5),
+        0 0 80px rgba(0, 245, 255, 0.04),
+        inset 0 1px 0 rgba(0, 245, 255, 0.06);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+
       &__curve {
         position: absolute;
         top: -10px;
         left: 20px;
         width: 30%;
         height: 120%;
-        border-left: 2px solid base.$red-color;
+        border-left: 1px solid var(--cyan);
         border-radius: 50%;
         transform: rotate(-20deg);
-        box-shadow: 0 8px 32px 0 base.$box-shadow-blue2;
+        box-shadow: -4px 0 22px rgba(0, 245, 255, 0.22);
       }
+
       &__infos {
         display: flex;
         align-items: center;
         gap: 2rem;
-        font-size: 1rem;
-        font-family: sans-serif;
+        font-size: 0.88rem;
+        font-family: var(--font-mono);
+        color: var(--steel);
       }
+
       &__img {
         width: 6.875rem;
         height: 6.875rem;
         border-radius: 50%;
-        border-right: 4px solid base.$red-color;
+        border: 1px solid base.$red-color;
+        box-shadow: 0 0 24px rgba(255, 23, 68, 0.25);
+
         @media (min-width: 400px) {
           width: 9.375rem;
           height: 9.375rem;
         }
       }
+
       &__col {
         display: flex;
         flex-direction: column;
         gap: 1rem;
       }
+
       &__info {
         display: flex;
         align-items: center;
         gap: 1rem;
-        & img {
+        color: var(--steel);
+
+        img {
           width: 2rem;
           height: 2rem;
-          background: white;
+          background: rgba(0, 245, 255, 0.08);
           border-radius: 50%;
+          border: 1px solid rgba(0, 245, 255, 0.15);
+          padding: 4px;
+          filter: invert(1) hue-rotate(160deg) saturate(2);
         }
       }
     }
   }
 }
 
-.swiper__wrapper {
-  padding: 2rem 0;
-}
+// ─── Swiper ───────────────────────────────────────────────────────────────────
+.swiper__wrapper { padding: 2rem 0; }
 
-.swiper {
-  // min-height: 500px;
-  user-select: none;
-}
+.swiper { user-select: none; }
 
+// ─── Review Card ─────────────────────────────────────────────────────────────
 .review {
   position: relative;
   display: flex;
   font-size: 16px;
   padding: 5px;
+
   &__card {
     position: relative;
     width: 100%;
-    padding: 2rem 0;
+    padding: 2rem;
     display: flex;
+    background: rgba(7, 12, 20, 0.7);
+    border: 1px solid rgba(0, 245, 255, 0.07);
+    border-radius: 2px;
+    transform-style: preserve-3d;
+    transition:
+      transform 0.5s cubic-bezier(0.23, 1, 0.32, 1),
+      background 0.4s ease,
+      border-color 0.3s ease,
+      box-shadow 0.4s ease;
+
+    &:hover {
+      background: rgba(0, 245, 255, 0.025);
+      border-color: rgba(0, 245, 255, 0.18);
+      transform: perspective(900px) rotateX(3deg) translateZ(12px);
+      box-shadow:
+        0 24px 64px rgba(0, 0, 0, 0.6),
+        0 0 40px rgba(0, 245, 255, 0.08);
+    }
+
     @media (min-width: 650px) {
-      & {
-        font-size: 18px;
-        font-family: sans-serif;
-      }
+      font-size: 18px;
+      font-family: var(--font-mono);
     }
   }
+
   & svg {
     width: 1.875rem;
-    fill: base.$red-color;
-    @media (min-width: 500px) {
-      width: 2.5rem;
-    }
+    fill: var(--crimson);
+    filter: drop-shadow(0 0 8px rgba(255, 23, 68, 0.45));
+
+    @media (min-width: 500px) { width: 2.5rem; }
   }
+
   &__topborder {
     width: 100%;
     height: 1px;
     position: absolute;
     top: 0;
     left: 0;
-    background: #fff;
+    background: linear-gradient(90deg, transparent 0%, var(--cyan) 50%, transparent 100%);
+    box-shadow: 0 0 8px var(--cyan);
   }
 
   &__text {
     user-select: none;
+    color: var(--ghost);
+
     span {
       font-family: "Haghisty_DEMO", sans-serif;
       font-size: 30px;
       font-weight: 600;
-      color: base.$red-color;
+      color: var(--crimson);
+      text-shadow: 0 0 24px rgba(255, 23, 68, 0.5);
     }
   }
+
   &__img {
     width: 70px;
     height: 100px;
     object-fit: cover;
     border-radius: 35px;
+    border: 1px solid rgba(0, 245, 255, 0.18);
+    box-shadow: 0 0 22px rgba(0, 245, 255, 0.1);
   }
+
   &__profile {
     position: absolute;
     left: 5rem;
     bottom: -2rem;
     display: flex;
     flex-direction: column;
-    font-family: "Josefin Sans", sans-serif;
-    font-size: 17px;
+    font-family: var(--font-mono);
+    font-size: 13px;
+    color: var(--steel);
+    letter-spacing: 0.04em;
   }
 }
 
+// ─── Slide States ─────────────────────────────────────────────────────────────
 .swiper-slide {
   filter: blur(2px) !important;
   transform: scale(0.8) !important;
-  transition: all 0.3s;
+  transition: all 0.35s;
+  opacity: 0.4;
 }
 
 .swiper-slide-active {
   filter: blur(0) !important;
   transform: scale(1) !important;
+  opacity: 1;
 }
 
+// ─── Controls ─────────────────────────────────────────────────────────────────
 .swiper__tools {
   position: relative;
   display: flex;
@@ -148,34 +201,34 @@
   justify-content: space-between;
   margin-top: 6rem;
   padding: 0 4rem 0 2rem;
-  @media (min-width: 1056px) {
-    & {
-      flex-direction: row;
-    }
-  }
+
+  @media (min-width: 1056px) { flex-direction: row; }
 }
 
 .swiper__buttons {
   display: flex;
+
   button {
     position: relative;
     background: transparent;
     padding: 1rem 3rem;
-    border-radius: 50px;
-    border: 1px solid #fff;
+    border-radius: 1px;
+    border: 1px solid rgba(0, 245, 255, 0.18);
     margin-right: 2rem;
     user-select: none;
-    &:after {
-      display: none;
-    }
-    img {
-      filter: invert(100%);
-    }
-    &:first-of-type {
-      transform: rotate(180deg);
-    }
+    transition: all 0.3s ease;
+    cursor: pointer;
+
+    &:after { display: none; }
+
+    img { filter: invert(1) sepia(1) saturate(3) hue-rotate(160deg); }
+
+    &:first-of-type { transform: rotate(180deg); }
+
     &:hover {
-      background: #ffffff21;
+      background: rgba(0, 245, 255, 0.08);
+      border-color: var(--cyan);
+      box-shadow: 0 0 22px rgba(0, 245, 255, 0.18);
     }
   }
 }
@@ -183,29 +236,30 @@
 .swiper-pagination {
   position: relative;
   display: none;
+
   @media (min-width: 807px) {
-    & {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      padding-bottom: 4rem;
-    }
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-bottom: 4rem;
   }
+
   @media (min-width: 1064px) {
-    & {
-      display: flex;
-      justify-content: center;
-      padding-bottom: 7.5rem;
-    }
+    display: flex;
+    justify-content: center;
+    padding-bottom: 7.5rem;
   }
 }
 
 .swiper-pagination-bullets .swiper-pagination-bullet {
-  width: 35px;
-  height: 4px;
-  background: #fff;
-  border-radius: 50px;
+  width: 30px;
+  height: 2px;
+  background: rgba(0, 245, 255, 0.22);
+  border-radius: 0;
+
   &.swiper-pagination-bullet-active {
-    width: 70px;
+    width: 60px;
+    background: var(--cyan);
+    box-shadow: 0 0 8px var(--cyan);
   }
 }
