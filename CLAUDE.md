@@ -14,6 +14,7 @@ No test suite is configured.
 ## Code Style
 
 Prettier is enforced (`.prettierrc.json`):
+
 - Tabs for indentation (tabWidth: 4)
 - No semicolons
 - Double quotes
@@ -25,6 +26,7 @@ Prettier is enforced (`.prettierrc.json`):
 **Stack**: Vanilla TypeScript (OOP, no React/Vue) + Three.js + GSAP + Parcel 2 + SCSS
 
 **Initialization flow**:
+
 ```
 DOMContentLoaded
   → App (app.ts) constructor
@@ -40,6 +42,7 @@ DOMContentLoaded
 ```
 
 **Key files**:
+
 - `src/index.html` — Parcel entry; contains all static HTML sections
 - `src/index.ts` — Bootstraps `ProjectsRenderer` and `ReviewSwiper`
 - `src/assets/js/app.ts` — Central `App` class wiring all components
@@ -52,6 +55,7 @@ DOMContentLoaded
 - `src/assets/styles/main.scss` — SCSS entry that imports all partials
 
 **3D effects**:
+
 - `threeBg.ts`: sine-wave deformed plane for background
 - `shaded3dImage.ts`: shader-based texture morphing with mouse tracking on intro text
 
@@ -62,7 +66,33 @@ DOMContentLoaded
 - Parcel config (`.parcelrc`) treats `.jpg` files as raw URLs (not inlined)
 - GLSL shaders are bundled via `@parcel/transformer-glsl`
 - `public/` directory (avatars, project images, wallpapers) must be manually copied to `dist/` — the build script does this via `cp -r public dist`
-- `src/assets/js/projectsData.ts` is gitignored — you may need to create it locally based on the `Project` interface definition (check type definitions or example structure in the codebase)
+- `src/assets/js/projectsData.ts` is gitignored. Create it with:
+
+```typescript
+export interface Project {
+  id: number
+  title: string
+  subtitle: string
+  image: string
+  githubUrl: string
+  liveUrl: string
+  date: string
+  tags: string[]
+}
+
+export const projects: Project[] = [
+  {
+    id: 1,
+    title: "Project Name",
+    subtitle: "Web Application",
+    image: "/projects/wild-oasis.png",
+    githubUrl: "https://github.com/",
+    liveUrl: "https://example.com/",
+    date: "2024",
+    tags: ["React", "TypeScript", "Node.js"]
+  }
+]
+```
 
 ## PWA & Deployment
 
