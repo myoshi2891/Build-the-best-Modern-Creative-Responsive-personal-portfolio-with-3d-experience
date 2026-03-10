@@ -1,4 +1,5 @@
-import Swiper, { Navigation, Pagination } from "swiper"
+import Swiper from "swiper"
+import { Navigation, Pagination } from "swiper/modules"
 import { reviews } from "../data"
 
 function escapeHTML(str: string): string {
@@ -25,13 +26,13 @@ export class ReviewSwiper {
     private container: Element | null
 
     constructor() {
-        Swiper.use([Pagination, Navigation])
         this.container = document.querySelector(".swiper-wrapper")
         this.swiper = this.initializeSwiper()
     }
 
     private initializeSwiper(): Swiper {
         return new Swiper(".swiper", {
+            modules: [Navigation, Pagination],
             slidesPerView: 1,
             spaceBetween: 30,
             pagination: {

@@ -14,6 +14,7 @@ No test suite is configured.
 ## Code Style
 
 Prettier is enforced (`.prettierrc.json`):
+
 - Tabs for indentation (tabWidth: 4)
 - No semicolons
 - Double quotes
@@ -25,6 +26,7 @@ Prettier is enforced (`.prettierrc.json`):
 **Stack**: Vanilla TypeScript (OOP, no React/Vue) + Three.js + GSAP + Parcel 2 + SCSS
 
 **Initialization flow**:
+
 ```
 DOMContentLoaded
   → App (app.ts) constructor
@@ -40,6 +42,7 @@ DOMContentLoaded
 ```
 
 **Key files**:
+
 - `src/index.html` — Parcel entry; contains all static HTML sections
 - `src/index.ts` — Bootstraps `ProjectsRenderer` and `ReviewSwiper`
 - `src/assets/js/app.ts` — Central `App` class wiring all components
@@ -52,6 +55,7 @@ DOMContentLoaded
 - `src/assets/styles/main.scss` — SCSS entry that imports all partials
 
 **3D effects**:
+
 - `threeBg.ts`: sine-wave deformed plane for background
 - `shaded3dImage.ts`: shader-based texture morphing with mouse tracking on intro text
 
