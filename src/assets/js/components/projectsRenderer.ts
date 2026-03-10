@@ -10,11 +10,17 @@ function escapeHTML(str: string): string {
     .replace(/'/g, '&#039;');
 }
 
+/**
+ * Sanitize a URL string, resolving relative paths against the current origin and allowing only `http` or `https`.
+ *
+ * @param url - The URL to validate; may be absolute or relative to the current origin
+ * @returns The resolved absolute URL when the protocol is `http` or `https`, `"#"` otherwise
+ */
 function sanitizeUrl(url: string): string {
   const allowedProtocols = ['http:', 'https:'];
   try {
-    const parsed = new URL(url);
-    return allowedProtocols.includes(parsed.protocol) ? url : '#';
+    const parsed = new URL(url, window.location.origin);
+    return allowedProtocols.includes(parsed.protocol) ? parsed.href : '#';
   } catch {
     return '#';
   }
@@ -26,7 +32,7 @@ export class ProjectsRenderer {
 
   constructor(containerSelector: string) {
     this.container = document.querySelector(containerSelector);
-    this.projectsList = [...projects]; // Create a copy of the initial data
+    this.projectsList = projects.map(p => ({ ...p, tags: [...p.tags] }));
   }
 
   private createProjectHTML(project: Project, totalProjects: number): string {
@@ -59,10 +65,8 @@ export class ProjectsRenderer {
         <div class="project__img">
           <img src="${sanitizedImage}" alt="${escapedTitle}" />
           <div class="project__links">
-            <a href="${sanitizedGithub}" title="${escapedTitle}" target="_blank" rel="noopener noreferrer">
-              <button class="coolButton">
-                <span>Github</span>
-              </button>
+            <a href="${sanitizedGithub}" title="${escapedTitle}" target="_blank" rel="noopener noreferrer" class="coolButton">
+              <span>Github</span>
             </a>
             <a href="${sanitizedLive}" title="${escapedTitle}" target="_blank" rel="noopener noreferrer" class="coolCircleEyeButton">
               <svg class="textcircle" viewBox="0 0 500 500">
@@ -109,11 +113,11 @@ export class ProjectsRenderer {
   }
 
   public addProject(project: Project): void {
-    this.projectsList.push(project);
+    this.projectsList.push({ ...project, tags: [...project.tags] });
     this.render();
   }
 
   public getProjects(): Project[] {
-    return [...this.projectsList];
+    return this.projectsList.map(p => ({ ...p, tags: [...p.tags] }));
   }
 }
