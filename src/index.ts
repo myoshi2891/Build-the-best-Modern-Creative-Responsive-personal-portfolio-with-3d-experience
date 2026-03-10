@@ -1,91 +1,56 @@
+import { ProjectsRenderer } from "./assets/js/components/projectsRenderer"
+import { ReviewSwiper } from "./assets/js/components/reviewSwiper"
+import { LoaderManager } from "./assets/js/components/loader"
+import { initThreeBackground, ThreeBackground } from "./assets/js/threeBg"
 
-import gsap from 'gsap';
-import Scrollbar from 'smooth-scrollbar';
-import { ProjectsRenderer } from './assets/js/components/projectsRenderer';
-import { ReviewSwiper } from './assets/js/components/reviewSwiper';
+let threeBackground: ThreeBackground | null = null
+
+/**
+ * Reinitializes the Three.js background for the page.
+ *
+ * If a previous background exists, it is disposed before a new background is created and stored in the module `threeBackground` state.
+ */
+function initializeBackground() {
+    if (threeBackground) {
+        threeBackground.dispose()
+    }
+    threeBackground = initThreeBackground()
+}
 
 // Initialize when DOM is loaded
-document.addEventListener('DOMContentLoaded', () => {
-    // Initialize components immediately (they'll be ready when loader finishes)
-    const projectsRenderer = new ProjectsRenderer('#projects-container');
-    const reviewSwiper = new ReviewSwiper();
+document.addEventListener("DOMContentLoaded", () => {
+    initializeBackground()
+
+    // Handle lifecycle for Three.js cleanup
+    document.addEventListener("visibilitychange", () => {
+        if (document.visibilityState === "hidden") {
+            if (threeBackground) {
+                threeBackground.dispose()
+                threeBackground = null
+            }
+        } else if (document.visibilityState === "visible") {
+            if (!threeBackground) {
+                initializeBackground()
+            }
+        }
+    })
+
+    window.addEventListener("unload", () => {
+        if (threeBackground) {
+            threeBackground.dispose()
+            threeBackground = null
+        }
+    })
+
+    // Initialize components immediately
+    const projectsRenderer = new ProjectsRenderer("#projects-container")
+    const reviewSwiper = new ReviewSwiper()
     
-    // Start the loading sequence
-    const bar = document.querySelector<HTMLElement>('.loading__bar--inner');
-    const counter_num = document.querySelector<HTMLElement>('.loading__counter--number');
-    let c: number = 0;
-
-    let barInterval = setInterval(() => {
-        if (!bar || !counter_num) {
-            clearInterval(barInterval);
-            return;
-        }
-        
-        bar.style.width = c + '%';
-        counter_num.innerText = c + '%';
-        c++;
-
-        if (c > 100) {
-            clearInterval(barInterval);
-            
-            // Animate loader out
-            gsap.to('.loading__bar', {
-                duration: 5,
-                rotate: '90deg',
-                left: '1000%',
-            });
-            gsap.to('.loading__text, .loading__counter', {
-                duration: 0.5,
-                opacity: 0,
-            });
-            gsap.to('.loading__box', {
-                duration: 1,
-                height: '500px',
-                borderRadius: '50%',
-            });
-            gsap.to('.loading__box', {
-                delay: 2,
-                border: 'none',
-            });
-            gsap.to('.loading', {
-                delay: 2,
-                duration: 2,
-                zIndex: 1,
-                background: 'transparent',
-                opacity: 0,
-                onComplete: () => {
-                    // Initialize smooth scrollbar
-                    const scrollbarOptions = {
-                        damping: 0.1,
-                        alwaysShowTracks: true,
-                        plugins: {
-                            disableScroll: {
-                                direction: "x",
-                            },
-                        },
-                    };
-                    const pageSmoothScroll = Scrollbar.init(document.body, scrollbarOptions);
-                    if (pageSmoothScroll.track.xAxis.element) {
-                        pageSmoothScroll.track.xAxis.element.remove();
-                    }
-                    
-                    // Render projects
-                    projectsRenderer.render();
-                    
-                    // Populate reviews
-                    reviewSwiper.populateReviews();
-                }
-            });
-            gsap.to('.loading__svg', {
-                duration: 10,
-                opacity: 1,
-                rotate: '360deg',
-            });
-            gsap.to('.loading__svg', {
-                delay: 2,
-                duration: 100,
-                rotate: '720deg',
-            });
-        }
-    }, 20);
-});
+    const loader = new LoaderManager()
+    loader.start(() => {
+        // Render projects
+        projectsRenderer.render()
+        // Populate reviews
+        reviewSwiper.populateReviews()
+    })
+})
