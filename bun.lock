@@ -3,7 +3,7 @@
   "configVersion": 0,
   "workspaces": {
     "": {
-      "name": "build_the_best_modern_creative_responsive_personal_portfolio_with_3d",
+      "name": "personal_portfolio",
       "dependencies": {
         "gsap": "^3.13.0",
         "imagesloaded": "^5.0.0",

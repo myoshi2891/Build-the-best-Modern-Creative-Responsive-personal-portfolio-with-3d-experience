@@ -12,7 +12,7 @@ Key technologies
 
 ## Building and Running
 
-This project uses `bun` as the package manager and test runner.
+This project uses `bun` as the package manager and script runner.
 
 **Install dependencies:**
 
