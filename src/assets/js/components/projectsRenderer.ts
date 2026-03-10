@@ -10,6 +10,12 @@ function escapeHTML(str: string): string {
     .replace(/'/g, '&#039;');
 }
 
+/**
+ * Sanitize a URL string, resolving relative paths against the current origin and allowing only `http` or `https`.
+ *
+ * @param url - The URL to validate; may be absolute or relative to the current origin
+ * @returns The resolved absolute URL when the protocol is `http` or `https`, `"#"` otherwise
+ */
 function sanitizeUrl(url: string): string {
   const allowedProtocols = ['http:', 'https:'];
   try {

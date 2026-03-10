@@ -1,4 +1,3 @@
-
 import { ProjectsRenderer } from "./assets/js/components/projectsRenderer"
 import { ReviewSwiper } from "./assets/js/components/reviewSwiper"
 import { LoaderManager } from "./assets/js/components/loader"
@@ -6,6 +5,11 @@ import { initThreeBackground, ThreeBackground } from "./assets/js/threeBg"
 
 let threeBackground: ThreeBackground | null = null
 
+/**
+ * Reinitializes the Three.js background for the page.
+ *
+ * If a previous background exists, it is disposed before a new background is created and stored in the module `threeBackground` state.
+ */
 function initializeBackground() {
     if (threeBackground) {
         threeBackground.dispose()

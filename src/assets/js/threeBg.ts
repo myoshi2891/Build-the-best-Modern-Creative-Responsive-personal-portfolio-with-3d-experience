@@ -223,6 +223,11 @@ export class ThreeBackground {
     }
 }
 
+/**
+ * Create a ThreeBackground instance, initialize it, and start its animation and event handling.
+ *
+ * @returns The initialized ThreeBackground instance ready for use
+ */
 export function initThreeBackground(): ThreeBackground {
     const bg = new ThreeBackground()
     bg.init()
