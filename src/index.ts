@@ -65,7 +65,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         },
                     };
                     const pageSmoothScroll = Scrollbar.init(document.body, scrollbarOptions);
-                    if (pageSmoothScroll.track.xAxis.element) {
+                    if (pageSmoothScroll.track?.xAxis?.element) {
                         pageSmoothScroll.track.xAxis.element.remove();
                     }
                     
@@ -80,11 +80,13 @@ document.addEventListener('DOMContentLoaded', () => {
                 duration: 10,
                 opacity: 1,
                 rotate: '360deg',
+                overwrite: 'auto',
             });
             gsap.to('.loading__svg', {
                 delay: 2,
                 duration: 100,
                 rotate: '720deg',
+                overwrite: 'auto',
             });
         }
     }, 20);

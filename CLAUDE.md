@@ -66,7 +66,32 @@ DOMContentLoaded
 - Parcel config (`.parcelrc`) treats `.jpg` files as raw URLs (not inlined)
 - GLSL shaders are bundled via `@parcel/transformer-glsl`
 - `public/` directory (avatars, project images, wallpapers) must be manually copied to `dist/` — the build script does this via `cp -r public dist`
-- `src/assets/js/projectsData.ts` is gitignored — you may need to create it locally based on the `Project` interface definition (check type definitions or example structure in the codebase)
+- `src/assets/js/projectsData.ts` is gitignored. Create it with:
+```typescript
+export interface Project {
+  id: number
+  title: string
+  subtitle: string
+  image: string
+  githubUrl: string
+  liveUrl: string
+  date: string
+  tags: string[]
+}
+
+export const projects: Project[] = [
+  {
+    id: 1,
+    title: "Project Name",
+    subtitle: "Web Application",
+    image: "/projects/wild-oasis.png",
+    githubUrl: "https://github.com/",
+    liveUrl: "https://example.com/",
+    date: "2024",
+    tags: ["React", "TypeScript", "Node.js"]
+  }
+]
+```
 
 ## PWA & Deployment
 
