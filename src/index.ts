@@ -6,8 +6,6 @@ import { ReviewSwiper } from './assets/js/components/reviewSwiper';
 
 // Initialize when DOM is loaded
 document.addEventListener('DOMContentLoaded', () => {
-    console.log('DOM loaded, initializing components...');
-    
     // Initialize components immediately (they'll be ready when loader finishes)
     const projectsRenderer = new ProjectsRenderer('#projects-container');
     const reviewSwiper = new ReviewSwiper();
@@ -18,7 +16,10 @@ document.addEventListener('DOMContentLoaded', () => {
     let c: number = 0;
 
     let barInterval = setInterval(() => {
-        if (!bar || !counter_num) return;
+        if (!bar || !counter_num) {
+            clearInterval(barInterval);
+            return;
+        }
         
         bar.style.width = c + '%';
         counter_num.innerText = c + '%';
@@ -53,9 +54,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 background: 'transparent',
                 opacity: 0,
                 onComplete: () => {
-                    // Initialize content after loader is done
-                    console.log('Loader animation complete, initializing content...');
-                    
                     // Initialize smooth scrollbar
                     const scrollbarOptions = {
                         damping: 0.1,
@@ -76,17 +74,6 @@ document.addEventListener('DOMContentLoaded', () => {
                     
                     // Populate reviews
                     reviewSwiper.populateReviews();
-                    
-                    // Debug check
-                    setTimeout(() => {
-                        const swiperSlides = document.querySelectorAll('.swiper-slide');
-                        console.log('Number of swiper slides found:', swiperSlides.length);
-                        
-                        const reviewsSection = document.querySelector('.reviews');
-                        if (reviewsSection) {
-                            console.log('Reviews section found and visible');
-                        }
-                    }, 500);
                 }
             });
             gsap.to('.loading__svg', {
@@ -97,7 +84,7 @@ document.addEventListener('DOMContentLoaded', () => {
             gsap.to('.loading__svg', {
                 delay: 2,
                 duration: 100,
-                rotate: '360deg',
+                rotate: '720deg',
             });
         }
     }, 20);

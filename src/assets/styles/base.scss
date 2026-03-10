@@ -38,14 +38,15 @@ body {
   color: var(--ghost);
   line-height: 1.5;
   -webkit-font-smoothing: antialiased;
-  height: 100vh;
+  min-height: 100dvh;
 }
 
 button, input, textarea, select { font: inherit; }
 
 p, h1, h2, h3, h4, h5, h6 { overflow-wrap: break-word; }
 
-img, video, canvas, svg {}
+// 必要に応じてメディア要素のリセットをここに追加
+// img, video, canvas, svg { display: block; max-width: 100%; }
 
 a { text-decoration: none; color: inherit; }
 
@@ -65,14 +66,14 @@ $box-shadow-blue2: rgba(123, 47, 255, 0.28);
 .section {
   padding: 1rem;
   overflow: hidden;
-  min-height: 100vh;
+  min-height: 100dvh;
   padding-top: 5rem;
 
   @media (min-width: 650px) { padding: 5rem; }
 
   &__header {
     &-title {
-      font-size: 0.72rem;
+      font-size: 0.75rem;
       font-weight: 400;
       color: var(--cyan);
       letter-spacing: 0.38em;

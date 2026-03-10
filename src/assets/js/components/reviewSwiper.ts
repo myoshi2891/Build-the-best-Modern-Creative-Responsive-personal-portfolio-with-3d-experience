@@ -1,6 +1,24 @@
-
 import Swiper, { Navigation, Pagination } from "swiper"
 import { reviews } from "../data"
+
+function escapeHTML(str: string): string {
+    return str
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;")
+}
+
+function sanitizeUrl(url: string): string {
+    const allowedProtocols = ["http:", "https:"]
+    try {
+        const parsed = new URL(url, window.location.origin)
+        return allowedProtocols.includes(parsed.protocol) ? url : "#"
+    } catch {
+        return "#"
+    }
+}
 
 export class ReviewSwiper {
     private swiper: Swiper
@@ -47,26 +65,24 @@ export class ReviewSwiper {
     }
 
     populateReviews(): void {
-        console.log('populateReviews called')
-        console.log('Container:', this.container)
-        console.log('Reviews data:', reviews)
-        
         if (!this.container) {
-            console.error('Swiper container not found')
+            console.error("Swiper container not found")
             return
         }
 
-        const reviewsHTML = reviews.map(review => this.createReviewTemplate(review)).join("")
-        console.log('Generated HTML:', reviewsHTML)
-        
+        const reviewsHTML = reviews.map((review) => this.createReviewTemplate(review)).join("")
         this.container.innerHTML = reviewsHTML
-        
+
         // Update swiper after adding content
         this.swiper.update()
-        console.log('Swiper updated')
     }
 
     private createReviewTemplate(review: any): string {
+        const escapedName = escapeHTML(review.name)
+        const escapedPosition = escapeHTML(review.position)
+        const escapedReview = escapeHTML(review.review)
+        const sanitizedImage = sanitizeUrl(review.image)
+
         return /*html*/ `
             <div class="swiper-slide">
                 <div class="review">
@@ -85,17 +101,17 @@ export class ReviewSwiper {
                     <div class="review__card">
                         <div class="review__topborder"></div>
                         <div class="review__text">
-                            <span>${review.review.substring(0, 1)}</span>
-                            ${review.review.substring(1, review.review.length)}
+                            <span>${escapedReview.substring(0, 1)}</span>
+                            ${escapedReview.substring(1)}
                         </div>
                         <img
-                            src="${review.image}"
-                            alt="${review.name}"
+                            src="${sanitizedImage}"
+                            alt="${escapedName}"
                             class="review__img"
                         />
                         <div class="review__profile">
-                            <span>${review.name}</span>
-                            <span>${review.position}</span>
+                            <span>${escapedName}</span>
+                            <span>${escapedPosition}</span>
                         </div>
                     </div>
                 </div>

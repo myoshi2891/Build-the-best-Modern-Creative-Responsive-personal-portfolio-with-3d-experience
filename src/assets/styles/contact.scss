@@ -41,8 +41,9 @@
       gap: 1rem;
 
       img {
-        width: 4.375rem;
-        height: 5.625rem;
+        width: 5rem;
+        height: 5rem;
+        object-fit: cover;
         border-radius: 50%;
         border: 1px solid rgba(0, 245, 255, 0.2);
       }

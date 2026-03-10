@@ -46,8 +46,10 @@
       color: var(--steel);
       padding-left: 2.5rem;
       line-height: 1.75;
-      transition: all 0.2s ease-in-out;
-      display: none;
+      max-height: 0;
+      opacity: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease-in-out, opacity 0.2s ease-in-out;
     }
 
     &__status {
@@ -63,7 +65,10 @@
       @media (max-width: 43.75rem) { width: 1.5rem; height: 1.5rem; }
     }
 
-    &.open .question__answer { display: block; }
+    &.open .question__answer {
+      max-height: 500px;
+      opacity: 1;
+    }
 
     &.open h3 { color: var(--cyan); }
 

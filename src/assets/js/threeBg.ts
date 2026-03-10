@@ -126,16 +126,29 @@ scene.add(particles)
 let targetX = 0, targetY = 0
 let smoothX = 0, smoothY = 0
 
-window.addEventListener("mousemove", e => {
-    targetX = (e.clientX / window.innerWidth  - 0.5) * 2
-    targetY = -(e.clientY / window.innerHeight - 0.5) * 2
-})
+function handlePointerMove(e: MouseEvent | TouchEvent) {
+    let clientX: number, clientY: number
+    if ('touches' in e) {
+        if (!e.touches[0]) return
+        clientX = e.touches[0].clientX
+        clientY = e.touches[0].clientY
+    } else {
+        clientX = e.clientX
+        clientY = e.clientY
+    }
+    targetX = (clientX / window.innerWidth  - 0.5) * 2
+    targetY = -(clientY / window.innerHeight - 0.5) * 2
+}
+
+window.addEventListener("mousemove", handlePointerMove)
+window.addEventListener("touchmove", handlePointerMove, { passive: true })
 
 // ─── Animation ────────────────────────────────────────────────────────────────
 const clock = new THREE.Clock()
+let animationFrameId: number | null = null
 
 function animate() {
-    requestAnimationFrame(animate)
+    animationFrameId = requestAnimationFrame(animate)
 
     const t = clock.getElapsedTime()
 
@@ -161,8 +174,28 @@ function animate() {
 animate()
 
 // ─── Resize ───────────────────────────────────────────────────────────────────
-window.addEventListener("resize", () => {
+function handleResize() {
     camera.aspect = window.innerWidth / window.innerHeight
     camera.updateProjectionMatrix()
     renderer.setSize(window.innerWidth, window.innerHeight)
-})
+}
+
+window.addEventListener("resize", handleResize)
+
+// ─── Cleanup ─────────────────────────────────────────────────────────────────
+export function dispose() {
+    if (animationFrameId !== null) {
+        cancelAnimationFrame(animationFrameId)
+    }
+    window.removeEventListener("mousemove", handlePointerMove)
+    window.removeEventListener("touchmove", handlePointerMove)
+    window.removeEventListener("resize", handleResize)
+
+    geo.dispose()
+    particleMat.dispose()
+    renderer.dispose()
+
+    if (container && renderer.domElement.parentElement) {
+        renderer.domElement.parentElement.removeChild(renderer.domElement)
+    }
+}

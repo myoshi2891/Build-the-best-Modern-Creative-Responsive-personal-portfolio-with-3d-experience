@@ -10,7 +10,17 @@ export class AccordionManager {
     private initializeEventListeners(): void {
         this.questions.forEach(question => {
             const questionText = question.querySelector<HTMLElement>("h3")
-            questionText?.addEventListener("click", () => this.toggleQuestion(question))
+            if (questionText) {
+                questionText.setAttribute("tabindex", "0")
+                questionText.setAttribute("role", "button")
+                questionText.addEventListener("click", () => this.toggleQuestion(question))
+                questionText.addEventListener("keydown", e => {
+                    if (e.key === "Enter" || e.key === " ") {
+                        e.preventDefault()
+                        this.toggleQuestion(question)
+                    }
+                })
+            }
         })
     }
 

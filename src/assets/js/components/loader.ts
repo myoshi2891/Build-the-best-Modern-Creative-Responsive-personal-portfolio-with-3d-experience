@@ -7,7 +7,7 @@ export class LoaderManager {
     private bar: HTMLElement | null
     private counterNum: HTMLElement | null
     private counter: number = 0
-    private barInterval: NodeJS.Timeout | null = null
+    private barInterval: ReturnType<typeof setInterval> | null = null
 
     constructor() {
         this.bar = document.querySelector<HTMLElement>(".loading__bar--inner")
@@ -15,14 +15,23 @@ export class LoaderManager {
     }
 
     start(): void {
+        if (this.barInterval) {
+            clearInterval(this.barInterval)
+        }
         this.barInterval = setInterval(() => {
             this.updateProgress()
         }, 20)
     }
 
     private updateProgress(): void {
-        if (!this.bar || !this.counterNum) return
-
+        if (!this.bar || !this.counterNum) {
+            if (this.barInterval) {
+                clearInterval(this.barInterval)
+            }
+            console.warn("Loading elements not found")
+            this.completeLoading()
+            return
+        }
         this.bar.style.width = this.counter + "%"
         this.counterNum.innerText = this.counter + "%"
         this.counter++
@@ -69,6 +78,12 @@ export class LoaderManager {
             this.animatePageElements()
             this.initializeScrollbar()
         })
+
+        imgLoad.on("fail", () => {
+            console.warn("Some images failed to load")
+            this.animatePageElements()
+            this.initializeScrollbar()
+        })
     }
 
     private animatePageElements(): void {
@@ -83,11 +98,8 @@ export class LoaderManager {
             duration: 10,
             opacity: 1,
             rotate: "360deg",
-        })
-        gsap.to(".loading__svg", {
-            delay: 2,
-            duration: 100,
-            rotate: "360deg",
+            repeat: -1,
+            ease: "linear",
         })
         gsap.to("header", {
             duration: 1,
