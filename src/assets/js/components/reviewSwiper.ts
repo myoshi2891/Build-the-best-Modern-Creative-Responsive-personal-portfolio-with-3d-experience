@@ -1,5 +1,7 @@
-import Swiper, { Navigation, Pagination } from "swiper"
+import Swiper from "swiper"
+import { Navigation, Pagination } from "swiper/modules"
 import { reviews } from "../data"
+import type { Review } from "../data"
 
 function escapeHTML(str: string): string {
     return str
@@ -14,7 +16,7 @@ function sanitizeUrl(url: string): string {
     const allowedProtocols = ["http:", "https:"]
     try {
         const parsed = new URL(url, window.location.origin)
-        return allowedProtocols.includes(parsed.protocol) ? url : "#"
+        return allowedProtocols.includes(parsed.protocol) ? parsed.href : "#"
     } catch {
         return "#"
     }
@@ -25,13 +27,13 @@ export class ReviewSwiper {
     private container: Element | null
 
     constructor() {
-        Swiper.use([Pagination, Navigation])
         this.container = document.querySelector(".swiper-wrapper")
         this.swiper = this.initializeSwiper()
     }
 
     private initializeSwiper(): Swiper {
         return new Swiper(".swiper", {
+            modules: [Navigation, Pagination],
             slidesPerView: 1,
             spaceBetween: 30,
             pagination: {
@@ -77,7 +79,7 @@ export class ReviewSwiper {
         this.swiper.update()
     }
 
-    private createReviewTemplate(review: any): string {
+    private createReviewTemplate(review: Review): string {
         const escapedName = escapeHTML(review.name)
         const escapedPosition = escapeHTML(review.position)
         const escapedReview = escapeHTML(review.review)

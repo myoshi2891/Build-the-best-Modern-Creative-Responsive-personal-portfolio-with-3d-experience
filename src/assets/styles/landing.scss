@@ -74,7 +74,7 @@
     }
     @media (max-width: 370px) {
       // NOTE: Using non-standard offset to balance the header on ultra-narrow screens
-      & { left: 36%; }
+      left: 36%;
       &__wrap { gap: 20%; }
       .coolLink--home { display: none; }
     }

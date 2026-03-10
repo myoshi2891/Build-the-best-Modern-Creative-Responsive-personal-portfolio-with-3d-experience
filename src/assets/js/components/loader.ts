@@ -100,6 +100,7 @@ export class LoaderManager {
             rotate: "360deg",
             repeat: -1,
             ease: "linear",
+            overwrite: "auto",
         })
         gsap.to("header", {
             duration: 1,
@@ -130,7 +131,9 @@ export class LoaderManager {
                 },
             }
             const pageSmoothScroll = Scrollbar.init(document.body, options)
-            pageSmoothScroll.track.xAxis.element.remove()
+            if (pageSmoothScroll.track?.xAxis?.element) {
+                pageSmoothScroll.track.xAxis.element.remove()
+            }
         }, 2000)
     }
 }

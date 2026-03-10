@@ -41,7 +41,6 @@
     &__answer {
       font-family: var(--font-mono);
       font-size: 0.95rem;
-      margin: 1.25rem 0;
       max-width: 40em;
       color: var(--steel);
       padding-left: 2.5rem;
@@ -66,6 +65,7 @@
     }
 
     &.open .question__answer {
+      margin: 1.25rem 0;
       max-height: 500px;
       opacity: 1;
     }
