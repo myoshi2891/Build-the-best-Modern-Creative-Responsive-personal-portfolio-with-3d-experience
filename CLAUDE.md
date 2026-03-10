@@ -67,6 +67,7 @@ DOMContentLoaded
 - GLSL shaders are bundled via `@parcel/transformer-glsl`
 - `public/` directory (avatars, project images, wallpapers) must be manually copied to `dist/` — the build script does this via `cp -r public dist`
 - `src/assets/js/projectsData.ts` is gitignored. Create it with:
+
 ```typescript
 export interface Project {
   id: number

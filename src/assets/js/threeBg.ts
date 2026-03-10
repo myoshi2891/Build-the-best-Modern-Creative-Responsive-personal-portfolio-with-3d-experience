@@ -1,14 +1,14 @@
 import * as THREE from "three"
 
 export class ThreeBackground {
-    private scene: THREE.Scene
-    private camera: THREE.PerspectiveCamera
-    private renderer: THREE.WebGLRenderer
+    private scene: THREE.Scene | null
+    private camera: THREE.PerspectiveCamera | null
+    private renderer: THREE.WebGLRenderer | null
     private container: Element | null
-    private geo: THREE.BufferGeometry
-    private particleMat: THREE.ShaderMaterial
-    private particles: THREE.Points
-    private clock: THREE.Clock
+    private geo: THREE.BufferGeometry | null
+    private particleMat: THREE.ShaderMaterial | null
+    private particles: THREE.Points | null
+    private clock: THREE.Clock | null
     private animationFrameId: number | null = null
     
     private targetX = 0
@@ -160,6 +160,7 @@ export class ThreeBackground {
     }
 
     private handleResize() {
+        if (!this.camera || !this.renderer) return
         this.camera.aspect = window.innerWidth / window.innerHeight
         this.camera.updateProjectionMatrix()
         this.renderer.setSize(window.innerWidth, window.innerHeight)
@@ -168,6 +169,8 @@ export class ThreeBackground {
 
     private animate() {
         this.animationFrameId = requestAnimationFrame(this.animate)
+
+        if (!this.clock || !this.particles || !this.camera || !this.particleMat || !this.renderer || !this.scene) return
 
         const t = this.clock.getElapsedTime()
 
@@ -195,28 +198,33 @@ export class ThreeBackground {
         window.removeEventListener("touchmove", this.handlePointerMove)
         window.removeEventListener("resize", this.handleResize)
 
-        this.scene.remove(this.particles)
-        this.geo.dispose()
-        this.particleMat.dispose()
-        this.renderer.dispose()
-
-        if (this.container && this.renderer.domElement.parentElement) {
-            this.renderer.domElement.parentElement.removeChild(this.renderer.domElement)
+        if (this.scene && this.particles) {
+            this.scene.remove(this.particles)
+        }
+        if (this.geo) this.geo.dispose()
+        if (this.particleMat) this.particleMat.dispose()
+        
+        if (this.renderer) {
+            if (this.container && this.renderer.domElement.parentElement) {
+                this.renderer.domElement.parentElement.removeChild(this.renderer.domElement)
+            }
+            this.renderer.dispose()
         }
 
         // Clear instance properties
-        (this.scene as any) = null;
-        (this.camera as any) = null;
-        (this.renderer as any) = null;
-        (this.particles as any) = null;
-        (this.geo as any) = null;
-        (this.particleMat as any) = null;
+        this.scene = null
+        this.camera = null
+        this.renderer = null
+        this.particles = null
+        this.geo = null
+        this.particleMat = null
+        this.clock = null
         this.animationFrameId = null
     }
 }
 
-// Auto-initialize if not in a testing environment or similar
-const bg = new ThreeBackground()
-bg.init()
-
-export const dispose = () => bg.dispose()
+export function initThreeBackground(): ThreeBackground {
+    const bg = new ThreeBackground()
+    bg.init()
+    return bg
+}

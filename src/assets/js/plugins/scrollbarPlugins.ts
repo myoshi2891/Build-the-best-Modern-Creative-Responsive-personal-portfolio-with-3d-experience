@@ -25,10 +25,12 @@ export class AnchorPlugin extends ScrollbarPlugin {
     }
 
     onClick = (event: MouseEvent) => {
-        if (!(event.target instanceof Element)) {
-            return
-        }
-        const target = event.target.closest("a")
+		const node = event.target as Node
+		const element = node instanceof Element ? node : node.parentElement
+		if (!element) {
+			return
+		}
+		const target = element.closest("a")
 
         if (!target) {
             return
@@ -51,12 +53,12 @@ export class AnchorPlugin extends ScrollbarPlugin {
         scrollbar.containerEl.scrollTop = 0
 
         // Use getElementById for safer ID lookup, slice(1) to remove '#'
-        let decodedHash = hash.slice(1)
-        try {
-            decodedHash = decodeURIComponent(decodedHash)
-        } catch {
-            // fallback to original hash.slice(1)
-        }
+		let decodedHash = hash.slice(1)
+		try {
+			decodedHash = decodeURIComponent(decodedHash)
+		} catch {
+			// fallback to original hash.slice(1)
+		}
         
         const targetEl = document.getElementById(decodedHash)
         if (targetEl) {
