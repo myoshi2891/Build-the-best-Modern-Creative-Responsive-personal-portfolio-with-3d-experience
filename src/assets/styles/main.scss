@@ -1,7 +1,7 @@
 
-@import 'projects';
+@use 'projects' as *;
 // Import Swiper styles
-@import 'swiper.scss';
+@use 'swiper' as *;
 
 // Add basic review styles if they don't exist
 .reviews {
