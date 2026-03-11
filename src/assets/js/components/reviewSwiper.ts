@@ -2,6 +2,7 @@ import Swiper from "swiper"
 import { Navigation, Pagination } from "swiper/modules"
 import { reviews } from "../data"
 import type { Review } from "../data"
+import { sanitizeUrl } from "../utils/url"
 
 /**
  * Escape special HTML characters in a string to their corresponding HTML entities.

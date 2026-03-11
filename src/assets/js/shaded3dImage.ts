@@ -4,10 +4,10 @@ import vertex from "../shaders/vertex.glsl"
 
 // ✅ 正しい画像パス（publicフォルダ以下にある場合）
 const images = {
-	bg1Url: "/public/avatars/11.png",
-	bg2Url: "/public/avatars/10.png",
-	bg3Url: "/public/avatars/9.png",
-	bg4Url: "/public/avatars/8.png",
+	bg1Url: new URL("../../../public/avatars/11.png", import.meta.url).toString(),
+	bg2Url: new URL("../../../public/avatars/10.png", import.meta.url).toString(),
+	bg3Url: new URL("../../../public/avatars/9.png", import.meta.url).toString(),
+	bg4Url: new URL("../../../public/avatars/8.png", import.meta.url).toString(),
 }
 
 // ✅ PromiseでTextureを読み込む関数
