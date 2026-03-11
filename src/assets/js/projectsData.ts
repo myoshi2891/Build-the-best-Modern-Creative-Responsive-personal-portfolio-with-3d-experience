@@ -15,7 +15,7 @@ export const projects: Project[] = [
     title: "Multi-Vendor-E-Commerce",
     subtitle: "Eコマースアプリケーション",
     date: "August 2025",
-    image: "/public/projects/GoShop.png",
+    image: new URL("../../../public/projects/GoShop.png", import.meta.url).toString(),
     githubUrl: process.env.PROJECT_1_GITHUB_URL as string,
     liveUrl: process.env.PROJECT_1_LIVE_URL as string,
     tags: ["Next.js", "React", "TypeScript", "TailwindCSS", "MySQL + Prisma", "Zod", "PayPal", "Stripe"]
@@ -25,7 +25,7 @@ export const projects: Project[] = [
     title: "Next Store",
     subtitle: "Eコマースアプリケーション",
     date: "April 2025",
-    image: "/public/projects/NextStore.png",
+    image: new URL("../../../public/projects/NextStore.png", import.meta.url).toString(),
     githubUrl: process.env.PROJECT_2_GITHUB_URL as string,
     liveUrl: process.env.PROJECT_2_LIVE_URL as string,
     tags: ["Next.js", "React", "TypeScript", "TailwindCSS", "PostgreSQL + Prisma", "Zod", "Supabase", "Stripe"]
@@ -35,7 +35,7 @@ export const projects: Project[] = [
     title: "The Wild Oasis",
     subtitle: "キャビン予約アプリケーション",
     date: "August 2024",
-    image: "public/projects/wild-oasis.png",
+    image: new URL("../../../public/projects/wild-oasis.png", import.meta.url).toString(),
     githubUrl: process.env.PROJECT_3_GITHUB_URL as string,
     liveUrl: process.env.PROJECT_3_LIVE_URL as string,
     tags: ["Next.js 14", "React 18", "TypeScript", "TailwindCSS", "Prisma", "Supabase"]
@@ -45,7 +45,7 @@ export const projects: Project[] = [
     title: "The Wild Oasis 管理画面",
     subtitle: "キャビン予約管理アプリケーション",
     date: "August 2024",
-    image: "public/projects/wildoasis-admin.png",
+    image: new URL("../../../public/projects/wildoasis-admin.png", import.meta.url).toString(),
     githubUrl: process.env.PROJECT_4_GITHUB_URL as string,
     liveUrl: process.env.PROJECT_4_LIVE_URL as string,
     tags: ["React Query", "React 18", "JavaScript", "styled-components", "recharts", "Supabase", "PostgreSQL"]
@@ -55,7 +55,7 @@ export const projects: Project[] = [
     title: "Airbnb Clone",
     subtitle: "物件レンタルプラットフォーム「Airbnb Clone アプリケーション」",
     date: "August 2024",
-    image: "public/projects/Airbnb.png",
+    image: new URL("../../../public/projects/Airbnb.png", import.meta.url).toString(),
     githubUrl: process.env.PROJECT_5_GITHUB_URL as string,
     liveUrl: process.env.PROJECT_5_LIVE_URL as string,
     tags: ["Next.js 14", "React 18", "TypeScript", "TailwindCSS", "Prisma", "Supabase", "PostgreSQL", "Stripe", "Zod"]
