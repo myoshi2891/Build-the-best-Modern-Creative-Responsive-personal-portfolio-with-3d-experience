@@ -27,26 +27,31 @@ Prettier is enforced (`.prettierrc.json`):
 
 **Initialization flow**:
 
-```
+```text
 DOMContentLoaded
+  → index.ts
+    → initializeBackground() — Inits Three.js background and handles visibility/unload lifecycle
+    → Instantiates ProjectsRenderer, ReviewSwiper, LoaderManager
+    → LoaderManager.start() triggers rendering projects and populating reviews on completion
   → App (app.ts) constructor
-    → initializePlugins()   — registers smooth-scrollbar plugins
-    → initializeComponents() — LoaderManager, ReviewSwiper, AccordionManager
+    → initializePlugins()    — registers smooth-scrollbar plugins
+    → initializeComponents() — Instantiates LoaderManager, ReviewSwiper, AccordionManager
     → initializeUtilities()  — updates copyright year, ImageManager
-    → startApp()            — starts loader animation, populates reviews
+    → startApp()             — Starts loader animation, populates reviews
   → LoaderManager.start()
     → Animates progress bar with GSAP
     → Waits for all images via imagesloaded
     → Inits Smooth Scrollbar
-    → Triggers ProjectsRenderer to inject projects into DOM
+    → Executes completion callbacks
 ```
 
 **Key files**:
 
 - `src/index.html` — Parcel entry; contains all static HTML sections
-- `src/index.ts` — Bootstraps `ProjectsRenderer` and `ReviewSwiper`
-- `src/assets/js/app.ts` — Central `App` class wiring all components
+- `src/index.ts` — Bootstraps ThreeJS lifecycle, `ProjectsRenderer`, `ReviewSwiper`, and `LoaderManager`
+- `src/assets/js/app.ts` — Central `App` class wiring layout plugins and DOM utilities
 - `src/assets/js/components/` — `loader.ts`, `reviewSwiper.ts`, `projectsRenderer.ts`, `accordion.ts`, `imageManager.ts`
+- `src/assets/js/utils/` — Utility functions (e.g., `url.ts` for fail-closed URL sanitization, `domUtils.ts`)
 - `src/assets/js/threeBg.ts` — Animated wavy plane background (Three.js)
 - `src/assets/js/shaded3dImage.ts` — Mouse-tracked GLSL shader distortion on hero text
 - `src/assets/shaders/vertex.glsl` / `fragment.glsl` — Custom WebGL shaders

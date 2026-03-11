@@ -1,5 +1,7 @@
 # personal_portfolio
 
+This project is a modern, creative, responsive personal portfolio utilizing 3D graphics. It is a frontend application built with Vanilla TypeScript (using Object-Oriented patterns), Three.js for 3D elements and GLSL shaders, GSAP for sophisticated animations, and SCSS for styling. The application is bundled using Parcel and managed with Bun.
+
 To install dependencies:
 
 ```bash
