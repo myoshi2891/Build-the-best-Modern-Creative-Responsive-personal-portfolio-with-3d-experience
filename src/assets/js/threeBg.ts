@@ -1,12 +1,17 @@
 import * as THREE from "three"
 
+interface ParticleUniforms {
+    uTime: { value: number }
+    uMouse: { value: THREE.Vector2 }
+}
+
 export class ThreeBackground {
     private scene: THREE.Scene | null
     private camera: THREE.PerspectiveCamera | null
     private renderer: THREE.WebGLRenderer | null
     private container: Element | null
     private geo: THREE.BufferGeometry | null
-    private particleMat: THREE.ShaderMaterial | null
+    private particleMat: (THREE.ShaderMaterial & { uniforms: ParticleUniforms }) | null
     private particles: THREE.Points | null
     private clock: THREE.Clock | null
     private animationFrameId: number | null = null
@@ -126,7 +131,7 @@ export class ThreeBackground {
             vertexColors: true,
             depthWrite: false,
             blending: THREE.AdditiveBlending,
-        })
+        }) as THREE.ShaderMaterial & { uniforms: ParticleUniforms }
 
         this.particles = new THREE.Points(this.geo, this.particleMat)
         this.scene.add(this.particles)
@@ -184,9 +189,8 @@ export class ThreeBackground {
         this.camera.position.y += (this.smoothY * 28 - this.camera.position.y) * 0.05
         this.camera.lookAt(0, 0, 0)
 
-        const mat = this.particleMat as any
-        mat.uniforms.uTime.value = t
-        mat.uniforms.uMouse.value.set(this.smoothX, this.smoothY)
+        this.particleMat.uniforms.uTime.value = t
+        this.particleMat.uniforms.uMouse.value.set(this.smoothX, this.smoothY)
 
         this.renderer.render(this.scene, this.camera)
     }
