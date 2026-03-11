@@ -68,6 +68,7 @@
 			top: 5.5rem;
 			color: var(--ghost);
 			text-shadow: 0 0 30px rgba(0, 245, 255, 0.22);
+
 			// 3D perspective tilt — pitched back
 			transform: perspective(700px) rotateX(18deg) translate3d(0, 0, 0);
 			animation: moveleft 28s linear infinite;
@@ -89,6 +90,7 @@
 			top: 11rem;
 			color: var(--steel);
 			text-shadow: 0 0 30px rgba(123, 47, 255, 0.25);
+
 			// 3D tilt in opposite direction
 			transform: perspective(700px) rotateX(-14deg) translate3d(0, 0, 0);
 			animation: moveright 34s linear infinite;

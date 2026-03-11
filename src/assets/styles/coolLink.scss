@@ -123,7 +123,7 @@
 
 	&:hover {
 		color: var(--cyan);
-		animation: coloredIconAnimation 0.18s infinite;
+		animation: colored-icon-animation 0.18s infinite;
 	}
 
 	@media (prefers-reduced-motion: reduce) {
@@ -132,7 +132,7 @@
 		}
 	}
 
-	@keyframes coloredIconAnimation {
+	@keyframes colored-icon-animation {
 		0% {
 			text-shadow:
 				5px 4px base.$red-color,

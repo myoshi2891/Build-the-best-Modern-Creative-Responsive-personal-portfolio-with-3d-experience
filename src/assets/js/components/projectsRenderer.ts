@@ -1,6 +1,6 @@
 import { projects } from '../projectsData';
 import type { Project } from '../projectsData';
-import { escapeHTML, sanitizeUrl } from '../utils/url';
+import { escapeHTML, sanitizeUrl } from "../utils/url"
 
 export class ProjectsRenderer {
   private container: HTMLElement | null;

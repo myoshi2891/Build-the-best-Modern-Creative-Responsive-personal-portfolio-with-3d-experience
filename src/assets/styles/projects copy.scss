@@ -69,7 +69,7 @@
 		text {
 			font-size: 2rem;
 			text-transform: uppercase;
-			font: #000;
+			fill: #000;
 		}
 	}
 	@keyframes rotate {
@@ -166,6 +166,7 @@
 			top: 0;
 			left: 0;
 		}
+
 		// &__header {
 		// 	font-size: 1.25rem;
 		// 	span {

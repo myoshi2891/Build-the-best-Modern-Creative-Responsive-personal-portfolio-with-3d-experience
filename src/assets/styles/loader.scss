@@ -137,10 +137,10 @@
 		}
 	}
 
-	&__width_animation {
-		animation: width_animation 1s forwards;
+	&__width-animation {
+		animation: width-animation 1s forwards;
 
-		@keyframes width_animation {
+		@keyframes width-animation {
 			0% {
 				width: 85%;
 			}

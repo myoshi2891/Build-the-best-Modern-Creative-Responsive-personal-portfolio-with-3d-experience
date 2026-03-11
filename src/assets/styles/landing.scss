@@ -189,7 +189,7 @@
 				border-right: 1px solid var(--cyan);
 				border-bottom: 1px solid var(--cyan);
 				transform: rotate(45deg);
-				animation: scrollAnim 1.2s ease infinite alternate;
+				animation: scroll-anim 1.2s ease infinite alternate;
 
 				&:nth-child(1) {
 					animation-delay: 0s;
@@ -204,7 +204,7 @@
 					opacity: 1;
 				}
 
-				@keyframes scrollAnim {
+				@keyframes scroll-anim {
 					0% {
 						transform: rotate(45deg) translateY(0);
 						opacity: 0.1;
@@ -270,7 +270,6 @@
 			3px 3px 0px rgba(123, 47, 255, 0.28),
 			4px 4px 0px rgba(123, 47, 255, 0.18),
 			0 0 45px rgba(0, 245, 255, 0.1);
-
 		transition:
 			text-shadow 0.4s ease,
 			color 0.3s ease;

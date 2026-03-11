@@ -61,10 +61,10 @@ export class ThreeBackground {
             pos[i * 3 + 2] = Math.sin(branchAngle + spinAngle) * radius * 0.3 + rz
 
             const r = Math.random()
-            const c = r < 0.60 ? palette[0]
+            const c = (r < 0.60 ? palette[0]
                     : r < 0.80 ? palette[1]
                     : r < 0.95 ? palette[2]
-                    :             palette[3]
+                    :             palette[3])!
 
             col[i * 3] = c.r
             col[i * 3 + 1] = c.g
@@ -184,8 +184,9 @@ export class ThreeBackground {
         this.camera.position.y += (this.smoothY * 28 - this.camera.position.y) * 0.05
         this.camera.lookAt(0, 0, 0)
 
-        this.particleMat.uniforms.uTime.value = t
-        this.particleMat.uniforms.uMouse.value.set(this.smoothX, this.smoothY)
+        const mat = this.particleMat as any
+        mat.uniforms.uTime.value = t
+        mat.uniforms.uMouse.value.set(this.smoothX, this.smoothY)
 
         this.renderer.render(this.scene, this.camera)
     }
