@@ -2,144 +2,160 @@
 
 // ─── Loading Screen ───────────────────────────────────────────────────────────
 .loading {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  height: 100vh;
-  width: 100%;
-  z-index: 99;
-  background: var(--void);
-  display: grid;
-  place-items: center;
-  font-family: var(--font-display);
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	height: 100vh;
+	width: 100%;
+	z-index: 99;
+	background: var(--void);
+	display: grid;
+	place-items: center;
+	font-family: var(--font-display);
 
-  // Scanline overlay on loader too
-  &::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: repeating-linear-gradient(
-      0deg,
-      transparent,
-      transparent 3px,
-      rgba(0, 0, 0, 0.05) 3px,
-      rgba(0, 0, 0, 0.05) 4px
-    );
-    pointer-events: none;
-    z-index: 1;
-  }
+	// Scanline overlay on loader too
+	&::after {
+		content: "";
+		position: absolute;
+		inset: 0;
+		background: repeating-linear-gradient(
+			0deg,
+			transparent,
+			transparent 3px,
+			rgba(0, 0, 0, 0.05) 3px,
+			rgba(0, 0, 0, 0.05) 4px
+		);
+		pointer-events: none;
+		z-index: 1;
+	}
 
-  &__box {
-    position: relative;
-    z-index: 2;
-    width: 500px;
-    height: 200px;
-    border: 1px solid rgba(0, 245, 255, 0.25);
-    border-top: 1px solid rgba(0, 245, 255, 0.5);
-    border-bottom: 1px solid rgba(0, 245, 255, 0.5);
-    box-shadow:
-      0 0 40px rgba(0, 245, 255, 0.08),
-      inset 0 0 40px rgba(0, 245, 255, 0.04);
+	&__box {
+		position: relative;
+		z-index: 2;
+		width: 500px;
+		height: 200px;
+		border: 1px solid rgba(0, 245, 255, 0.25);
+		border-top: 1px solid rgba(0, 245, 255, 0.5);
+		border-bottom: 1px solid rgba(0, 245, 255, 0.5);
+		box-shadow:
+			0 0 40px rgba(0, 245, 255, 0.08),
+			inset 0 0 40px rgba(0, 245, 255, 0.04);
 
-    @media (max-width: 600px) { width: 90vw; }
-  }
+		@media (max-width: 600px) {
+			width: 90vw;
+		}
+	}
 
-  &__bar {
-    width: 90%;
-    height: 2px;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translateX(-50%);
-    background: rgba(0, 245, 255, 0.1);
-    border-radius: 0;
+	&__bar {
+		width: 90%;
+		height: 2px;
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		transform: translateX(-50%);
+		background: rgba(0, 245, 255, 0.1);
+		border-radius: 0;
 
-    &--inner {
-      height: 100%;
-      width: 0;
-      border-radius: 0;
-      background: var(--cyan);
-      box-shadow: 0 0 12px var(--cyan), 0 0 24px rgba(0, 245, 255, 0.45);
-    }
-  }
+		&--inner {
+			height: 100%;
+			width: 0;
+			border-radius: 0;
+			background: var(--cyan);
+			box-shadow:
+				0 0 12px var(--cyan),
+				0 0 24px rgba(0, 245, 255, 0.45);
+		}
+	}
 
-  &__text {
-    position: relative;
-    color: var(--ghost);
-    padding: 1rem;
-    font-size: 13px;
-    letter-spacing: 0.35em;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-transform: uppercase;
+	&__text {
+		position: relative;
+		color: var(--ghost);
+		padding: 1rem;
+		font-size: 13px;
+		letter-spacing: 0.35em;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		text-transform: uppercase;
 
-    @media (max-width: 355px) { font-size: 10px; }
+		@media (max-width: 355px) {
+			font-size: 10px;
+		}
 
-    &--dot {
-      width: 7px;
-      height: 7px;
-      margin: 0 6px;
-      border-radius: 50%;
-      background: var(--cyan);
-      box-shadow: 0 0 8px var(--cyan);
-      animation: pulse 1s infinite;
+		&--dot {
+			width: 7px;
+			height: 7px;
+			margin: 0 6px;
+			border-radius: 50%;
+			background: var(--cyan);
+			box-shadow: 0 0 8px var(--cyan);
+			animation: pulse 1s infinite;
 
-      @keyframes pulse {
-        from { opacity: 0.2; transform: scale(0.5); }
-        to   { opacity: 1;   transform: scale(1);   }
-      }
-    }
+			@keyframes pulse {
+				from {
+					opacity: 0.2;
+					transform: scale(0.5);
+				}
+				to {
+					opacity: 1;
+					transform: scale(1);
+				}
+			}
+		}
 
-    &--border {
-      position: absolute;
-      width: 85%;
-      height: 1px;
-      background: rgba(0, 245, 255, 0.12);
-      bottom: 0;
-      left: 50%;
-      transform: translateX(-50%);
-    }
-  }
+		&--border {
+			position: absolute;
+			width: 85%;
+			height: 1px;
+			background: rgba(0, 245, 255, 0.12);
+			bottom: 0;
+			left: 50%;
+			transform: translateX(-50%);
+		}
+	}
 
-  &__counter {
-    position: absolute;
-    top: 70%;
-    left: 0;
-    color: var(--steel);
-    font-size: 11px;
-    font-weight: 400;
-    font-family: var(--font-mono);
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 10px 14px;
-    letter-spacing: 0.12em;
+	&__counter {
+		position: absolute;
+		top: 70%;
+		left: 0;
+		color: var(--steel);
+		font-size: 11px;
+		font-weight: 400;
+		font-family: var(--font-mono);
+		width: 100%;
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		padding: 10px 14px;
+		letter-spacing: 0.12em;
 
-    &--number {
-      color: var(--cyan);
-      text-shadow: 0 0 8px var(--cyan-glow);
-    }
-  }
+		&--number {
+			color: var(--cyan);
+			text-shadow: 0 0 8px var(--cyan-glow);
+		}
+	}
 
-  &__width_animation {
-    animation: width_animation 1s forwards;
+	&__width-animation {
+		animation: width-animation 1s forwards;
 
-    @keyframes width_animation {
-      0%   { width: 85%; }
-      100% { width: 60%; }
-    }
-  }
+		@keyframes width-animation {
+			0% {
+				width: 85%;
+			}
+			100% {
+				width: 60%;
+			}
+		}
+	}
 
-  &__svg {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 85%;
-    opacity: 0;
-  }
+	&__svg {
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+		width: 85%;
+		opacity: 0;
+	}
 }

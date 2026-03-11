@@ -1,12 +1,18 @@
 import * as THREE from "three"
 
+interface ParticleUniforms {
+	[uniform: string]: THREE.IUniform
+	uTime: { value: number }
+	uMouse: { value: THREE.Vector2 }
+}
+
 export class ThreeBackground {
     private scene: THREE.Scene | null
     private camera: THREE.PerspectiveCamera | null
     private renderer: THREE.WebGLRenderer | null
     private container: Element | null
     private geo: THREE.BufferGeometry | null
-    private particleMat: THREE.ShaderMaterial | null
+	private particleMat: (THREE.ShaderMaterial & { uniforms: ParticleUniforms }) | null
     private particles: THREE.Points | null
     private clock: THREE.Clock | null
     private animationFrameId: number | null = null
@@ -61,10 +67,10 @@ export class ThreeBackground {
             pos[i * 3 + 2] = Math.sin(branchAngle + spinAngle) * radius * 0.3 + rz
 
             const r = Math.random()
-            const c = r < 0.60 ? palette[0]
-                    : r < 0.80 ? palette[1]
-                    : r < 0.95 ? palette[2]
-                    :             palette[3]
+			const c = (r < 0.60 ? palette[0]
+					: r < 0.80 ? palette[1]
+					: r < 0.95 ? palette[2]
+					:             palette[3])!
 
             col[i * 3] = c.r
             col[i * 3 + 1] = c.g
@@ -77,11 +83,13 @@ export class ThreeBackground {
         this.geo.setAttribute("color", new THREE.BufferAttribute(col, 3))
         this.geo.setAttribute("size", new THREE.BufferAttribute(sizes, 1))
 
+		const uniforms: ParticleUniforms = {
+			uTime: { value: 0 },
+			uMouse: { value: new THREE.Vector2(0, 0) },
+		}
+
         this.particleMat = new THREE.ShaderMaterial({
-            uniforms: {
-                uTime: { value: 0 },
-                uMouse: { value: new THREE.Vector2(0, 0) },
-            },
+            uniforms,
             vertexShader: `
                 attribute float size;
                 varying vec3 vColor;
@@ -125,8 +133,8 @@ export class ThreeBackground {
             transparent: true,
             vertexColors: true,
             depthWrite: false,
-            blending: THREE.AdditiveBlending,
-        })
+			blending: THREE.AdditiveBlending,
+		}) as THREE.ShaderMaterial & { uniforms: ParticleUniforms }
 
         this.particles = new THREE.Points(this.geo, this.particleMat)
         this.scene.add(this.particles)

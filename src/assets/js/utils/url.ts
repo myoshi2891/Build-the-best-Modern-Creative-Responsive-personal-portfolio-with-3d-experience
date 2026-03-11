@@ -1,4 +1,19 @@
 /**
+ * Escapes characters that have special meaning in HTML to their corresponding entities.
+ *
+ * @param str - The input string that may contain HTML-sensitive characters
+ * @returns The input string with `&`, `<`, `>`, `"` and `'` replaced by their HTML entities
+ */
+export function escapeHTML(str: string): string {
+	return str
+		.replace(/&/g, "&amp;")
+		.replace(/</g, "&lt;")
+		.replace(/>/g, "&gt;")
+		.replace(/"/g, "&quot;")
+		.replace(/'/g, "&#039;")
+}
+
+/**
  * Normalize and sanitize a URL string for safe use in the frontend.
  *
  * Allows local and bundler-specific paths (absolute and relative paths, `public/` prefixes, `blob:` and `data:image/`), permits external `http:` and `https:` URLs, and otherwise returns a safe fallback.

@@ -19,12 +19,12 @@
 		color: var(--ghost);
 		// Layered 3D extrusion text shadow
 		text-shadow:
-			0  1px 0 rgba(0, 245, 255, 0.55),
-			0  2px 0 rgba(0, 245, 255, 0.45),
-			0  3px 0 rgba(0, 245, 255, 0.35),
-			0  4px 0 rgba(0, 245, 255, 0.22),
-			0  5px 0 rgba(0, 245, 255, 0.14),
-			0  8px 20px rgba(0, 0, 0, 0.6);
+			0 1px 0 rgba(0, 245, 255, 0.55),
+			0 2px 0 rgba(0, 245, 255, 0.45),
+			0 3px 0 rgba(0, 245, 255, 0.35),
+			0 4px 0 rgba(0, 245, 255, 0.22),
+			0 5px 0 rgba(0, 245, 255, 0.14),
+			0 8px 20px rgba(0, 0, 0, 0.6);
 	}
 }
 
@@ -175,7 +175,11 @@
 	&__lashes-down { opacity: 0; }
 }
 
-@keyframes rotate { to { transform: rotate(-360deg); } }
+@keyframes rotate {
+	to {
+		transform: rotate(-360deg);
+	}
+}
 
 @keyframes hide {
 	0%  { opacity: 0; }

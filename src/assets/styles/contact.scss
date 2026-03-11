@@ -1,212 +1,246 @@
 // ─── Contact Section ──────────────────────────────────────────────────────────
 .contact {
-  position: relative;
-  background: #070c14;
-  color: var(--ghost);
-  font-family: var(--font-mono);
+	position: relative;
+	background: #070c14;
+	color: var(--ghost);
+	font-family: var(--font-mono);
 
-  // Top cyan separator line
-  &::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 1px;
-    background: linear-gradient(90deg, transparent 0%, var(--cyan) 50%, transparent 100%);
-    box-shadow: 0 0 12px var(--cyan-glow);
-  }
+	// Top cyan separator line
+	&::before {
+		content: "";
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 1px;
+		background: linear-gradient(
+			90deg,
+			transparent 0%,
+			var(--cyan) 50%,
+			transparent 100%
+		);
+		box-shadow: 0 0 12px var(--cyan-glow);
+	}
 
-  &__header {
-    margin-bottom: 3rem;
-  }
+	&__header {
+		margin-bottom: 3rem;
+	}
 
-  @media (max-width: 68.75rem) { padding: 2rem; }
+	@media (max-width: 68.75rem) {
+		padding: 2rem;
+	}
 
-  &__profile {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    gap: 3rem;
-    padding: 2rem 0;
-    border-top: 1px solid rgba(0, 245, 255, 0.08);
-    border-bottom: 1px solid rgba(0, 245, 255, 0.08);
-    margin: 2rem 0;
+	&__profile {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		flex-wrap: wrap;
+		gap: 3rem;
+		padding: 2rem 0;
+		border-top: 1px solid rgba(0, 245, 255, 0.08);
+		border-bottom: 1px solid rgba(0, 245, 255, 0.08);
+		margin: 2rem 0;
 
-    &-item {
-      display: flex;
-      position: relative;
-      align-items: center;
-      gap: 1rem;
+		&-item {
+			display: flex;
+			position: relative;
+			align-items: center;
+			gap: 1rem;
 
-      img {
-        width: 5rem;
-        height: 5rem;
-        object-fit: cover;
-        border-radius: 50%;
-        border: 1px solid rgba(0, 245, 255, 0.2);
-      }
-    }
+			img {
+				width: 5rem;
+				height: 5rem;
+				object-fit: cover;
+				border-radius: 50%;
+				border: 1px solid rgba(0, 245, 255, 0.2);
+			}
+		}
 
-    &-col {
-      display: flex;
-      flex-direction: column;
-      gap: 0.25rem;
-      font-size: 0.88rem;
-      z-index: 1;
-      color: var(--steel);
+		&-col {
+			display: flex;
+			flex-direction: column;
+			gap: 0.25rem;
+			font-size: 0.88rem;
+			z-index: 1;
+			color: var(--steel);
 
-      b {
-        color: var(--ghost);
-        font-family: var(--font-display);
-        font-size: 0.82rem;
-        letter-spacing: 0.1em;
-        text-transform: uppercase;
-      }
-    }
+			b {
+				color: var(--ghost);
+				font-family: var(--font-display);
+				font-size: 0.82rem;
+				letter-spacing: 0.1em;
+				text-transform: uppercase;
+			}
+		}
 
-    &-bg {
-      position: absolute;
-      width: 15.625rem;
-      height: 6.25rem;
-      background: rgba(0, 245, 255, 0.04);
-      border: 1px solid rgba(0, 245, 255, 0.1);
-      border-radius: 2px;
-      left: 20%;
-    }
-  }
+		&-bg {
+			position: absolute;
+			width: 15.625rem;
+			height: 6.25rem;
+			background: rgba(0, 245, 255, 0.04);
+			border: 1px solid rgba(0, 245, 255, 0.1);
+			border-radius: 2px;
+			left: 20%;
+		}
+	}
 
-  &__socials {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 3rem;
-    padding-bottom: 3rem;
-    font-size: 1.5rem;
-  }
+	&__socials {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 3rem;
+		padding-bottom: 3rem;
+		font-size: 1.5rem;
+	}
 
-  &__footer {
-    position: absolute;
-    bottom: 1rem;
-    left: 0;
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
-    width: 100%;
+	&__footer {
+		position: absolute;
+		bottom: 1rem;
+		left: 0;
+		display: flex;
+		align-items: center;
+		justify-content: space-around;
+		width: 100%;
 
-    &-link {
-      width: 100%;
-      text-align: center;
-      font-size: 0.72rem;
-      font-family: var(--font-mono);
-      color: var(--steel);
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
+		&-link {
+			width: 100%;
+			text-align: center;
+			font-size: 0.72rem;
+			font-family: var(--font-mono);
+			color: var(--steel);
+			letter-spacing: 0.12em;
+			text-transform: uppercase;
 
-      @media (max-width: 56.25rem) { font-size: 0.62rem; }
-    }
-  }
+			@media (max-width: 56.25rem) {
+				font-size: 0.62rem;
+			}
+		}
+	}
 }
 
 // ─── Contact Form ─────────────────────────────────────────────────────────────
 .form {
-  &__info {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-    font-size: 2.2vw;
-    font-weight: 400;
-    font-family: var(--font-mono);
-    color: var(--steel);
+	&__info {
+		display: flex;
+		align-items: center;
+		gap: 1rem;
+		font-size: 2.2vw;
+		font-weight: 400;
+		font-family: var(--font-mono);
+		color: var(--steel);
 
-    label { color: var(--steel); }
+		label {
+			color: var(--steel);
+		}
 
-    input {
-      font-size: inherit;
-      font-weight: inherit;
-      border: none;
-      background: transparent;
-      border-bottom: 1px solid rgba(0, 245, 255, 0.2);
-      color: var(--ghost);
-      font-family: var(--font-mono);
-      transition: border-color 0.3s ease, box-shadow 0.3s ease;
+		input {
+			font-size: inherit;
+			font-weight: inherit;
+			border: none;
+			background: transparent;
+			border-bottom: 1px solid rgba(0, 245, 255, 0.2);
+			color: var(--ghost);
+			font-family: var(--font-mono);
+			transition:
+				border-color 0.3s ease,
+				box-shadow 0.3s ease;
 
-      &:focus {
-        outline: none;
-        border-bottom-color: var(--cyan);
-        box-shadow: 0 2px 0 rgba(0, 245, 255, 0.18);
-      }
+			&:focus {
+				outline: none;
+				border-bottom-color: var(--cyan);
+				box-shadow: 0 2px 0 rgba(0, 245, 255, 0.18);
+			}
 
-      &::placeholder { color: rgba(107, 122, 153, 0.38); }
-    }
-  }
+			&::placeholder {
+				color: rgba(107, 122, 153, 0.38);
+			}
+		}
+	}
 
-  &__flex {
-    display: flex;
-    gap: 1rem;
-    margin-bottom: 2rem;
+	&__flex {
+		display: flex;
+		gap: 1rem;
+		margin-bottom: 2rem;
 
-    textarea {
-      width: 70%;
-      border: none;
-      background: transparent;
-      border-bottom: 1px solid rgba(0, 245, 255, 0.2);
-      font-size: 2.2vw;
-      font-family: var(--font-mono);
-      resize: none;
-      color: var(--ghost);
-      transition: border-color 0.3s ease;
+		textarea {
+			width: 70%;
+			border: none;
+			background: transparent;
+			border-bottom: 1px solid rgba(0, 245, 255, 0.2);
+			font-size: 2.2vw;
+			font-family: var(--font-mono);
+			resize: none;
+			color: var(--ghost);
+			transition: border-color 0.3s ease;
 
-      &:focus {
-        outline: none;
-        border-bottom-color: var(--cyan);
-      }
+			&:focus {
+				outline: none;
+				border-bottom-color: var(--cyan);
+			}
 
-      &::placeholder { color: rgba(107, 122, 153, 0.38); }
-    }
+			&::placeholder {
+				color: rgba(107, 122, 153, 0.38);
+			}
+		}
 
-    .coolButton {
-      font-weight: 900;
-      font-size: 1.25rem;
+		.coolButton {
+			font-weight: 900;
+			font-size: 1.25rem;
 
-      &:before { background: var(--cyan); }
-      &:after  { display: none; }
-      &:hover:before { background: var(--void-2); }
-    }
-  }
+			&:before {
+				background: var(--cyan);
+			}
+			&:after {
+				display: none;
+			}
+			&:hover:before {
+				background: var(--void-2);
+			}
+		}
+	}
 }
 
 @media (max-width: 56.25rem) {
-  .form {
-    &__flex {
-      flex-direction: column;
-      textarea { font-size: 4vw; width: 100%; }
-    }
-    &__info {
-      font-size: 4vw;
-      input { font-size: 4vw; }
-    }
-  }
+	.form {
+		&__flex {
+			flex-direction: column;
+			textarea {
+				font-size: 4vw;
+				width: 100%;
+			}
+		}
+		&__info {
+			font-size: 4vw;
+			input {
+				font-size: 4vw;
+			}
+		}
+	}
 }
 
 @media (max-width: 50rem) {
-  .contact .coolButton {
-    transform: scale3d(1, 1, 1);
-    font-size: 1.25rem;
-  }
+	.contact .coolButton {
+		transform: scale3d(1, 1, 1);
+		font-size: 1.25rem;
+	}
 }
 
 @media (max-width: 38.125rem) {
-  .form {
-    &__info {
-      flex-direction: column;
-      align-items: flex-start;
-      font-size: 5vw;
-      width: 100%;
-      input { font-size: inherit; width: 100%; }
-    }
-    &__flex {
-      textarea { width: 100%; font-size: 5vw; }
-    }
-  }
+	.form {
+		&__info {
+			flex-direction: column;
+			align-items: flex-start;
+			font-size: 5vw;
+			width: 100%;
+			input {
+				font-size: inherit;
+				width: 100%;
+			}
+		}
+		&__flex {
+			textarea {
+				width: 100%;
+				font-size: 5vw;
+			}
+		}
+	}
 }

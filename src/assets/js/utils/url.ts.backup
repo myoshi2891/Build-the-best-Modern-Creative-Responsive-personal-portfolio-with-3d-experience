@@ -1,0 +1,31 @@
+/**
+ * Escape special HTML characters in a string to their corresponding HTML entities.
+ *
+ * @param str - The input string to escape
+ * @returns The input string with the characters `&`, `<`, `>`, `"` and `'` replaced by their corresponding HTML entities.
+ */
+export function escapeHTML(str: string): string {
+    return str
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;")
+}
+
+/**
+ * Normalize and validate a URL, returning an absolute safe href or a fallback.
+ * Resolves relative paths against the current origin and allows only `http` or `https`.
+ *
+ * @param url - The URL to validate; may be absolute or relative to the current origin
+ * @returns The resolved absolute URL when the protocol is `http` or `https`, `"#"` otherwise
+ */
+export function sanitizeUrl(url: string): string {
+    const allowedProtocols = ["http:", "https:"]
+    try {
+        const parsed = new URL(url, window.location.origin)
+        return allowedProtocols.includes(parsed.protocol) ? parsed.href : "#"
+    } catch {
+        return "#"
+    }
+}

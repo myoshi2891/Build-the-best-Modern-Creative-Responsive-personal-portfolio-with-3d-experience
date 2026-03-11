@@ -9,84 +9,110 @@
 
 // ─── Reset ────────────────────────────────────────────────────────────────────
 * {
-  margin: 0;
-  box-sizing: border-box;
-  &:after, &:before { box-sizing: border-box; }
+	margin: 0;
+	box-sizing: border-box;
+	&:after,
+	&:before {
+		box-sizing: border-box;
+	}
 }
 
-html, body { overflow-x: hidden; }
+html,
+body {
+	overflow-x: hidden;
+}
 
 // ─── Design Tokens ────────────────────────────────────────────────────────────
 :root {
-  --void:         #030408;
-  --void-2:       #070c14;
-  --cyan:         #00f5ff;
-  --cyan-dim:     rgba(0, 245, 255, 0.12);
-  --cyan-glow:    rgba(0, 245, 255, 0.35);
-  --crimson:      #ff1744;
-  --violet:       #7b2fff;
-  --ghost:        #e8eaff;
-  --steel:        #6b7a99;
-  --glass:        rgba(0, 245, 255, 0.04);
-  --font-display: 'Syncopate', 'Orbitron', monospace;
-  --font-mono:    'DM Mono', monospace;
+	--void: #030408;
+	--void-2: #070c14;
+	--cyan: #00f5ff;
+	--cyan-dim: rgba(0, 245, 255, 0.12);
+	--cyan-glow: rgba(0, 245, 255, 0.35);
+	--crimson: #ff1744;
+	--violet: #7b2fff;
+	--ghost: #e8eaff;
+	--steel: #6b7a99;
+	--glass: rgba(0, 245, 255, 0.04);
+	--font-display: "Syncopate", "Orbitron", monospace;
+	--font-mono: "DM Mono", monospace;
 }
 
 body {
-  font-family: var(--font-mono);
-  background: var(--void);
-  color: var(--ghost);
-  line-height: 1.5;
-  -webkit-font-smoothing: antialiased;
-  min-height: 100dvh;
+	font-family: var(--font-mono);
+	background: var(--void);
+	color: var(--ghost);
+	line-height: 1.5;
+	-webkit-font-smoothing: antialiased;
+	min-height: 100dvh;
 }
 
-button, input, textarea, select { font: inherit; }
+button,
+input,
+textarea,
+select {
+	font: inherit;
+}
 
-p, h1, h2, h3, h4, h5, h6 { overflow-wrap: break-word; }
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	overflow-wrap: break-word;
+}
 
 // 必要に応じてメディア要素のリセットをここに追加
 // img, video, canvas, svg { display: block; max-width: 100%; }
 
-a { text-decoration: none; color: inherit; }
+a {
+	text-decoration: none;
+	color: inherit;
+}
 
-ul { list-style: none; }
+ul {
+	list-style: none;
+}
 
 // ─── SCSS Variables (backward compat for @use "./base" in other files) ────────
-$green-color:      #6cff8d;
+$green-color: #6cff8d;
 $green-color-dark: #6cff8c7a;
-$red-color:        #ff1744;
-$blue-color:       #00f5ff;
-$purple-color:     linear-gradient(135deg, #7b2fff 0%, #00f5ff 100%);
-$darkish-blue:     #070c14;
+$red-color: #ff1744;
+$blue-color: #00f5ff;
+$purple-color: linear-gradient(135deg, #7b2fff 0%, #00f5ff 100%);
+$darkish-blue: #070c14;
 $box-shadow-blue1: rgba(0, 245, 255, 0.18);
 $box-shadow-blue2: rgba(123, 47, 255, 0.28);
 
 // ─── Section Layout ───────────────────────────────────────────────────────────
 .section {
-  padding: 1rem;
-  overflow: hidden;
-  min-height: 100dvh;
-  padding-top: 5rem;
+	padding: 1rem;
+	overflow: hidden;
+	min-height: 100dvh;
+	padding-top: 5rem;
 
-  @media (min-width: 650px) { padding: 5rem; }
+	@media (min-width: 650px) {
+		padding: 5rem;
+	}
 
-  &__header {
-    &-title {
-      font-size: 0.75rem;
-      font-weight: 400;
-      color: var(--cyan);
-      letter-spacing: 0.38em;
-      text-transform: uppercase;
-      font-family: var(--font-mono);
-      margin-bottom: 0.5rem;
-    }
-    &-subtitle {
-      font-size: 1.75rem;
-      font-weight: 700;
-      font-family: var(--font-display);
-      color: var(--ghost);
-      text-transform: uppercase;
-    }
-  }
+	&__header {
+		&-title {
+			font-size: 0.75rem;
+			font-weight: 400;
+			color: var(--cyan);
+			letter-spacing: 0.38em;
+			text-transform: uppercase;
+			font-family: var(--font-mono);
+			margin-bottom: 0.5rem;
+		}
+		&-subtitle {
+			font-size: 1.75rem;
+			font-weight: 700;
+			font-family: var(--font-display);
+			color: var(--ghost);
+			text-transform: uppercase;
+		}
+	}
 }
