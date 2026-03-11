@@ -3,6 +3,10 @@
   padding: 3rem;
   background: var(--void);
   color: var(--ghost);
+  // .section の height: 100dvh / overflow: hidden を上書き（複数カード表示のため）
+  height: auto;
+  min-height: auto;
+  overflow: visible;
 
   &__header {
     font-size: 3.75rem;
