@@ -7,12 +7,16 @@ interface ImageConfig {
 }
 
 export class ImageManager {
+    private static readonly DEBUG = false;
     private static readonly IMAGES = {
-        sergioImg: "/people/sergio.jpg",
-        craigImg: "/people/craig.jpg",
+        sergioImg: new URL("../../../../public/people/sergio.jpg", import.meta.url).toString(),
+        craigImg: new URL("../../../../public/people/craig.jpg", import.meta.url).toString(),
     }
 
     static createAndAppendImage(config: ImageConfig): void {
+        if (this.DEBUG) {
+            console.log("ImageManager creating image with URL:", config.src);
+        }
         const img = document.createElement("img")
         img.src = config.src
         img.alt = config.alt
@@ -27,6 +31,9 @@ export class ImageManager {
     }
 
     static initializeImages(): void {
+        if (this.DEBUG) {
+            console.log("ImageManager initialized. IMAGES:", this.IMAGES);
+        }
         const imageConfigs: ImageConfig[] = [
             {
                 src: this.IMAGES.sergioImg,
