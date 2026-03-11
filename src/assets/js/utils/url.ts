@@ -1,3 +1,11 @@
+/**
+ * Normalize and sanitize a URL string for safe use in the frontend.
+ *
+ * Allows local and bundler-specific paths (absolute and relative paths, `public/` prefixes, `blob:` and `data:image/`), permits external `http:` and `https:` URLs, and otherwise returns a safe fallback.
+ *
+ * @param url - The input URL or path to sanitize
+ * @returns The sanitized URL suitable for use in attributes; `"#"` for empty or disallowed/unsafe URLs, otherwise a normalized URL or the original input when parsing fails but the value is not explicitly unsafe
+ */
 export function sanitizeUrl(url: string): string {
     if (!url) return "#";
 

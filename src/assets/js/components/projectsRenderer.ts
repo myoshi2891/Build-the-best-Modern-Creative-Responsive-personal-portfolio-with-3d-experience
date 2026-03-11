@@ -2,6 +2,12 @@ import { projects } from '../projectsData';
 import type { Project } from '../projectsData';
 import { sanitizeUrl } from '../utils/url';
 
+/**
+ * Escapes characters that have special meaning in HTML to their corresponding entities.
+ *
+ * @param str - The input string that may contain HTML-sensitive characters
+ * @returns The input string with `&`, `<`, `>`, `"` and `'` replaced by their HTML entities
+ */
 function escapeHTML(str: string): string {
   return str
     .replace(/&/g, '&amp;')
