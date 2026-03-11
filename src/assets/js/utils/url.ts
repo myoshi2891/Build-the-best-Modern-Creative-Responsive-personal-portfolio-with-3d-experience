@@ -46,6 +46,6 @@ export function sanitizeUrl(url: string): string {
         if (url.includes("javascript:")) {
             return "#";
         }
-        return url;
+        return "#";
     }
 }
