@@ -1,81 +1,90 @@
 // ─── FAQ Section ──────────────────────────────────────────────────────────────
 .faq {
-  position: relative;
-  background: #070c14;
-  border-top: 1px solid rgba(0, 245, 255, 0.08);
+	position: relative;
+	background: #070c14;
+	border-top: 1px solid rgba(0, 245, 255, 0.08);
 
-  &__wrap {
-    padding: 3rem 4.5%;
-  }
+	&__wrap {
+		padding: 3rem 4.5%;
+	}
 
-  .question {
-    position: relative;
-    border-bottom: 1px solid rgba(0, 245, 255, 0.08);
-    padding: 1.5rem 0;
-    transition: border-bottom-color 0.3s ease;
+	.question {
+		position: relative;
+		border-bottom: 1px solid rgba(0, 245, 255, 0.08);
+		padding: 1.5rem 0;
+		transition: border-bottom-color 0.3s ease;
 
-    &:hover {
-      border-bottom-color: rgba(0, 245, 255, 0.2);
-    }
+		&:hover {
+			border-bottom-color: rgba(0, 245, 255, 0.2);
+		}
 
-    h3 {
-      cursor: pointer;
-      font-size: 1.2rem;
-      font-family: var(--font-display);
-      font-weight: 700;
-      color: var(--ghost);
-      text-transform: uppercase;
-      letter-spacing: 0.03em;
-      transition: color 0.25s ease;
+		h3 {
+			cursor: pointer;
+			font-size: 1.2rem;
+			font-family: var(--font-display);
+			font-weight: 700;
+			color: var(--ghost);
+			text-transform: uppercase;
+			letter-spacing: 0.03em;
+			transition: color 0.25s ease;
 
-      @media (min-width: 43.75rem) { font-size: 1.05rem; }
-    }
+			@media (min-width: 43.75rem) {
+				font-size: 1.05rem;
+			}
+		}
 
-    &__wrap {
-      display: grid;
-      grid-template-columns: 1.625rem auto;
-      align-items: center;
-      gap: 1rem;
-    }
+		&__wrap {
+			display: grid;
+			grid-template-columns: 1.625rem auto;
+			align-items: center;
+			gap: 1rem;
+		}
 
-    &__answer {
-      font-family: var(--font-mono);
-      font-size: 0.95rem;
-      max-width: 40em;
-      color: var(--steel);
-      padding-left: 2.5rem;
-      line-height: 1.75;
-      max-height: 0;
-      opacity: 0;
-      overflow: hidden;
-      transition: max-height 0.3s ease-in-out, opacity 0.2s ease-in-out;
-    }
+		&__answer {
+			font-family: var(--font-mono);
+			font-size: 0.95rem;
+			max-width: 40em;
+			color: var(--steel);
+			padding-left: 2.5rem;
+			line-height: 1.75;
+			max-height: 0;
+			opacity: 0;
+			overflow: hidden;
+			transition:
+				max-height 0.3s ease-in-out,
+				opacity 0.2s ease-in-out;
+		}
 
-    &__status {
-      width: 1.625rem;
-      height: 1.625rem;
-      border-radius: 50%;
-      border: 1px solid rgba(0, 245, 255, 0.3);
-      background: transparent;
-      margin-top: 2px;
-      transition: all 0.25s ease;
-      position: relative;
+		&__status {
+			width: 1.625rem;
+			height: 1.625rem;
+			border-radius: 50%;
+			border: 1px solid rgba(0, 245, 255, 0.3);
+			background: transparent;
+			margin-top: 2px;
+			transition: all 0.25s ease;
+			position: relative;
 
-      @media (max-width: 43.75rem) { width: 1.5rem; height: 1.5rem; }
-    }
+			@media (max-width: 43.75rem) {
+				width: 1.5rem;
+				height: 1.5rem;
+			}
+		}
 
-    &.open .question__answer {
-      margin: 1.25rem 0;
-      max-height: 500px;
-      opacity: 1;
-    }
+		&.open .question__answer {
+			margin: 1.25rem 0;
+			max-height: 500px;
+			opacity: 1;
+		}
 
-    &.open h3 { color: var(--cyan); }
+		&.open h3 {
+			color: var(--cyan);
+		}
 
-    &.open .question__status {
-      background: var(--cyan);
-      border-color: var(--cyan);
-      box-shadow: 0 0 18px rgba(0, 245, 255, 0.45);
-    }
-  }
+		&.open .question__status {
+			background: var(--cyan);
+			border-color: var(--cyan);
+			box-shadow: 0 0 18px rgba(0, 245, 255, 0.45);
+		}
+	}
 }

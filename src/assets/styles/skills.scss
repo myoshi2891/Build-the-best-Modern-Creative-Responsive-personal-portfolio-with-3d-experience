@@ -1,93 +1,122 @@
 @use "./base";
 
 .skills {
-  position: relative;
-  font-size: 40px;
-  height: 320px;
-  background: var(--void-2);
-  overflow: hidden;
-  text-align: center;
-  padding-top: 1.5rem;
+	position: relative;
+	font-size: 40px;
+	height: 320px;
+	background: var(--void-2);
+	overflow: hidden;
+	text-align: center;
+	padding-top: 1.5rem;
 
-  // Neon separator lines top & bottom
-  &::before, &::after {
-    content: '';
-    position: absolute;
-    left: 0;
-    width: 100%;
-    height: 1px;
-    z-index: 3;
-  }
-  &::before {
-    top: 0;
-    background: linear-gradient(90deg, transparent 0%, var(--cyan) 30%, var(--violet) 70%, transparent 100%);
-    box-shadow: 0 0 12px var(--cyan-glow);
-  }
-  &::after {
-    bottom: 0;
-    background: linear-gradient(90deg, transparent 0%, var(--violet) 30%, var(--cyan) 70%, transparent 100%);
-    box-shadow: 0 0 12px rgba(123, 47, 255, 0.4);
-  }
+	// Neon separator lines top & bottom
+	&::before,
+	&::after {
+		content: "";
+		position: absolute;
+		left: 0;
+		width: 100%;
+		height: 1px;
+		z-index: 3;
+	}
+	&::before {
+		top: 0;
+		background: linear-gradient(
+			90deg,
+			transparent 0%,
+			var(--cyan) 30%,
+			var(--violet) 70%,
+			transparent 100%
+		);
+		box-shadow: 0 0 12px var(--cyan-glow);
+	}
+	&::after {
+		bottom: 0;
+		background: linear-gradient(
+			90deg,
+			transparent 0%,
+			var(--violet) 30%,
+			var(--cyan) 70%,
+			transparent 100%
+		);
+		box-shadow: 0 0 12px rgba(123, 47, 255, 0.4);
+	}
 
-  &__header {
-    font-weight: 700;
-    font-family: var(--font-display);
-    font-size: 0.6rem;
-    letter-spacing: 0.55em;
-    text-transform: uppercase;
-    color: var(--cyan);
-    position: relative;
-    z-index: 3;
-    text-shadow: 0 0 16px var(--cyan-glow);
-  }
+	&__header {
+		font-weight: 700;
+		font-family: var(--font-display);
+		font-size: 0.6rem;
+		letter-spacing: 0.55em;
+		text-transform: uppercase;
+		color: var(--cyan);
+		position: relative;
+		z-index: 3;
+		text-shadow: 0 0 16px var(--cyan-glow);
+	}
 
-  &__text {
-    position: absolute;
-    white-space: nowrap;
-    font-family: var(--font-display);
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.06em;
-    transform-style: preserve-3d;
+	&__text {
+		position: absolute;
+		white-space: nowrap;
+		font-family: var(--font-display);
+		font-weight: 700;
+		text-transform: uppercase;
+		letter-spacing: 0.06em;
+		transform-style: preserve-3d;
 
-    &--left {
-      left: 0;
-      top: 5.5rem;
-      color: var(--ghost);
-      text-shadow: 0 0 30px rgba(0, 245, 255, 0.22);
-      // 3D perspective tilt — pitched back
-      transform: perspective(700px) rotateX(18deg) translate3d(0, 0, 0);
-      animation: moveleft 28s linear infinite;
+		&--left {
+			left: 0;
+			top: 5.5rem;
+			color: var(--ghost);
+			text-shadow: 0 0 30px rgba(0, 245, 255, 0.22);
+			// 3D perspective tilt — pitched back
+			transform: perspective(700px) rotateX(18deg) translate3d(0, 0, 0);
+			animation: moveleft 28s linear infinite;
 
-      @keyframes moveleft {
-        0%   { transform: perspective(700px) rotateX(18deg) translate3d(0, 0, 0); }
-        100% { transform: perspective(700px) rotateX(18deg) translate3d(-50%, 0, 0); }
-      }
-    }
+			@keyframes moveleft {
+				0% {
+					transform: perspective(700px) rotateX(18deg)
+						translate3d(0, 0, 0);
+				}
+				100% {
+					transform: perspective(700px) rotateX(18deg)
+						translate3d(-50%, 0, 0);
+				}
+			}
+		}
 
-    &--right {
-      right: 0;
-      top: 11rem;
-      color: var(--steel);
-      text-shadow: 0 0 30px rgba(123, 47, 255, 0.25);
-      // 3D tilt in opposite direction
-      transform: perspective(700px) rotateX(-14deg) translate3d(0, 0, 0);
-      animation: moveright 34s linear infinite;
+		&--right {
+			right: 0;
+			top: 11rem;
+			color: var(--steel);
+			text-shadow: 0 0 30px rgba(123, 47, 255, 0.25);
+			// 3D tilt in opposite direction
+			transform: perspective(700px) rotateX(-14deg) translate3d(0, 0, 0);
+			animation: moveright 34s linear infinite;
 
-      @keyframes moveright {
-        0%   { transform: perspective(700px) rotateX(-14deg) translate3d(0, 0, 0); }
-        100% { transform: perspective(700px) rotateX(-14deg) translate3d(50%, 0, 0); }
-      }
-    }
-  }
+			@keyframes moveright {
+				0% {
+					transform: perspective(700px) rotateX(-14deg)
+						translate3d(0, 0, 0);
+				}
+				100% {
+					transform: perspective(700px) rotateX(-14deg)
+						translate3d(50%, 0, 0);
+				}
+			}
+		}
+	}
 
-  @media (max-width: 700px) {
-    height: 12rem;
-    font-size: 1.8rem;
+	@media (max-width: 700px) {
+		height: 12rem;
+		font-size: 1.8rem;
 
-    &__text {
-      &--left { top: 5rem; }
-      &--right { top: 8.5rem; }
-    }
-  }
+		&__text {
+			&--left {
+				top: 5rem;
+			}
+			&--right {
+				top: 8.5rem;
+			}
+		}
+	}
 }
