@@ -1,3 +1,9 @@
+/**
+ * Project Data Configuration
+ * 
+ * Note: Personal information and live/github URLs are managed via environment variables (.env).
+ * This structure is safe to commit to version control as no sensitive data is hardcoded.
+ */
 export interface Project {
   id: number;
   title: string;
