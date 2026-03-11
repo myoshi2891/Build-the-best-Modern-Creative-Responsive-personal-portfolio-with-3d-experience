@@ -8,13 +8,15 @@ export class LoaderManager {
     private counterNum: HTMLElement | null
     private counter: number = 0
     private barInterval: ReturnType<typeof setInterval> | null = null
+    private completeCallback?: () => void
 
     constructor() {
         this.bar = document.querySelector<HTMLElement>(".loading__bar--inner")
         this.counterNum = document.querySelector<HTMLElement>(".loading__counter--number")
     }
 
-    start(): void {
+    start(onComplete?: () => void): void {
+        this.completeCallback = onComplete
         if (this.barInterval) {
             clearInterval(this.barInterval)
         }
@@ -76,13 +78,17 @@ export class LoaderManager {
 
         imgLoad.on("done", () => {
             this.animatePageElements()
-            this.initializeScrollbar()
+            this.initializeScrollbar().then(() => {
+                if (this.completeCallback) this.completeCallback()
+            })
         })
 
         imgLoad.on("fail", () => {
             console.warn("Some images failed to load")
             this.animatePageElements()
-            this.initializeScrollbar()
+            this.initializeScrollbar().then(() => {
+                if (this.completeCallback) this.completeCallback()
+            })
         })
     }
 
@@ -119,21 +125,24 @@ export class LoaderManager {
         })
     }
 
-    private initializeScrollbar(): void {
-        setTimeout(() => {
-            const options = {
-                damping: 0.1,
-                alwaysShowTracks: true,
-                plugins: {
-                    disableScroll: {
-                        direction: "x",
+    private initializeScrollbar(): Promise<void> {
+        return new Promise((resolve) => {
+            setTimeout(() => {
+                const options = {
+                    damping: 0.1,
+                    alwaysShowTracks: true,
+                    plugins: {
+                        disableScroll: {
+                            direction: "x",
+                        },
                     },
-                },
-            }
-            const pageSmoothScroll = Scrollbar.init(document.body, options)
-            if (pageSmoothScroll.track?.xAxis?.element) {
-                pageSmoothScroll.track.xAxis.element.remove()
-            }
-        }, 2000)
+                }
+                const pageSmoothScroll = Scrollbar.init(document.body, options)
+                if (pageSmoothScroll.track?.xAxis?.element) {
+                    pageSmoothScroll.track.xAxis.element.remove()
+                }
+                resolve()
+            }, 2000)
+        })
     }
 }
