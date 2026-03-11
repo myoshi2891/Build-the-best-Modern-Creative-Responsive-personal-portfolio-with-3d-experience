@@ -2,6 +2,7 @@ import Swiper from "swiper"
 import { Navigation, Pagination } from "swiper/modules"
 import { reviews } from "../data"
 import type { Review } from "../data"
+import { sanitizeUrl } from "../utils/url"
 
 function escapeHTML(str: string): string {
     return str
@@ -12,32 +13,7 @@ function escapeHTML(str: string): string {
         .replace(/'/g, "&#039;")
 }
 
-function sanitizeUrl(url: string): string {
-    if (!url) return "#"
 
-    // Allow local paths and Parcel/Vite bundled URLs (blobs, etc)
-    if (
-        url.startsWith("/") ||
-        url.startsWith("./") ||
-        url.startsWith("../") ||
-        url.startsWith("public/") ||
-        url.startsWith("blob:") ||
-        url.startsWith("data:image/")
-    ) {
-        return url
-    }
-
-    const allowedProtocols = ["http:", "https:"]
-    try {
-        const parsed = new URL(url, window.location.origin)
-        return allowedProtocols.includes(parsed.protocol) ? parsed.href : "#"
-    } catch {
-        if (url.includes("javascript:")) {
-            return "#"
-        }
-        return url
-    }
-}
 
 export class ReviewSwiper {
     private swiper: Swiper

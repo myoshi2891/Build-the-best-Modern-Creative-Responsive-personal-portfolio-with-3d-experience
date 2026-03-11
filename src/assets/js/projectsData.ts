@@ -16,8 +16,8 @@ export const projects: Project[] = [
     subtitle: "Eコマースアプリケーション",
     date: "August 2025",
     image: new URL("../../../public/projects/GoShop.png", import.meta.url).toString(),
-    githubUrl: process.env.PROJECT_1_GITHUB_URL as string,
-    liveUrl: process.env.PROJECT_1_LIVE_URL as string,
+    githubUrl: process.env.PROJECT_1_GITHUB_URL || "",
+    liveUrl: process.env.PROJECT_1_LIVE_URL || "",
     tags: ["Next.js", "React", "TypeScript", "TailwindCSS", "MySQL + Prisma", "Zod", "PayPal", "Stripe"]
   },
   {
@@ -26,8 +26,8 @@ export const projects: Project[] = [
     subtitle: "Eコマースアプリケーション",
     date: "April 2025",
     image: new URL("../../../public/projects/NextStore.png", import.meta.url).toString(),
-    githubUrl: process.env.PROJECT_2_GITHUB_URL as string,
-    liveUrl: process.env.PROJECT_2_LIVE_URL as string,
+    githubUrl: process.env.PROJECT_2_GITHUB_URL || "",
+    liveUrl: process.env.PROJECT_2_LIVE_URL || "",
     tags: ["Next.js", "React", "TypeScript", "TailwindCSS", "PostgreSQL + Prisma", "Zod", "Supabase", "Stripe"]
   },
   {
@@ -36,8 +36,8 @@ export const projects: Project[] = [
     subtitle: "キャビン予約アプリケーション",
     date: "August 2024",
     image: new URL("../../../public/projects/wild-oasis.png", import.meta.url).toString(),
-    githubUrl: process.env.PROJECT_3_GITHUB_URL as string,
-    liveUrl: process.env.PROJECT_3_LIVE_URL as string,
+    githubUrl: process.env.PROJECT_3_GITHUB_URL || "",
+    liveUrl: process.env.PROJECT_3_LIVE_URL || "",
     tags: ["Next.js 14", "React 18", "TypeScript", "TailwindCSS", "Prisma", "Supabase"]
   },
   {
@@ -46,8 +46,8 @@ export const projects: Project[] = [
     subtitle: "キャビン予約管理アプリケーション",
     date: "August 2024",
     image: new URL("../../../public/projects/wildoasis-admin.png", import.meta.url).toString(),
-    githubUrl: process.env.PROJECT_4_GITHUB_URL as string,
-    liveUrl: process.env.PROJECT_4_LIVE_URL as string,
+    githubUrl: process.env.PROJECT_4_GITHUB_URL || "",
+    liveUrl: process.env.PROJECT_4_LIVE_URL || "",
     tags: ["React Query", "React 18", "JavaScript", "styled-components", "recharts", "Supabase", "PostgreSQL"]
   },
   {
@@ -56,8 +56,8 @@ export const projects: Project[] = [
     subtitle: "物件レンタルプラットフォーム「Airbnb Clone アプリケーション」",
     date: "August 2024",
     image: new URL("../../../public/projects/Airbnb.png", import.meta.url).toString(),
-    githubUrl: process.env.PROJECT_5_GITHUB_URL as string,
-    liveUrl: process.env.PROJECT_5_LIVE_URL as string,
+    githubUrl: process.env.PROJECT_5_GITHUB_URL || "",
+    liveUrl: process.env.PROJECT_5_LIVE_URL || "",
     tags: ["Next.js 14", "React 18", "TypeScript", "TailwindCSS", "Prisma", "Supabase", "PostgreSQL", "Stripe", "Zod"]
   },
 ];

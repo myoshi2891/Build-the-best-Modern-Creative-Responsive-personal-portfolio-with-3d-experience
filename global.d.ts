@@ -4,8 +4,10 @@
 // 	export default src;
 // }
 
-declare var process: {
-	env: {
-		[key: string]: string;
-	};
+declare global {
+  namespace NodeJS {
+    interface ProcessEnv {
+      [key: string]: string | undefined;
+    }
+  }
 };
