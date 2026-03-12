@@ -24,8 +24,36 @@ export class ProjectsRenderer {
     const escapedTitle = escapeHTML(project.title);
     const escapedSubtitle = escapeHTML(project.subtitle);
     const sanitizedImage = sanitizeUrl(project.image);
-    const sanitizedGithub = sanitizeUrl(project.githubUrl);
-    const sanitizedLive = sanitizeUrl(project.liveUrl);
+    const sanitizedGithub = project.githubUrl ? sanitizeUrl(project.githubUrl) : null;
+    const sanitizedLive = project.liveUrl ? sanitizeUrl(project.liveUrl) : null;
+
+    const githubLinkHTML = sanitizedGithub 
+      ? `<a href="${sanitizedGithub}" title="${escapedTitle}" target="_blank" rel="noopener noreferrer" class="coolButton">
+           <span>Github</span>
+         </a>` 
+      : '';
+
+    const liveLinkHTML = sanitizedLive
+      ? `<a href="${sanitizedLive}" title="${escapedTitle}" target="_blank" rel="noopener noreferrer" class="coolCircleEyeButton">
+           <svg class="textcircle" viewBox="0 0 500 500">
+             <defs>
+               <path id="textcircle-${project.id}" d="M250,400 a150,150 0 0,1 0,-300a150,150 0 0,1 0,300Z" />
+             </defs>
+             <text>
+               <textPath xlink:href="#textcircle-${project.id}" aria-label=".Click to see the live version." textLength="900">
+                 Click to see the live version.
+               </textPath>
+             </text>
+           </svg>
+           <svg class="eye" aria-hidden="true" viewBox="0 0 70 70" xmlns="http://www.w3.org/2000/svg">
+             <path class="eye__outer" d="M10.5 35.308c5.227-7.98 14.248-13.252 24.5-13.252s19.273 5.271 24.5 13.252c-5.227 7.98-14.248 13.253-24.5 13.253s-19.273-5.272-24.5-13.253z" />
+             <path class="eye__lashes-up" d="M35 8.802v8.836M49.537 11.383l-3.31 8.192M20.522 11.684l3.31 8.192" />
+             <path class="eye__lashes-down" d="M35 61.818v-8.836 8.836zM49.537 59.237l-3.31-8.193 3.31 8.193zM20.522 58.936l3.31-8.193-3.31 8.193z" />
+             <circle class="eye__iris" cx="35" cy="35.31" r="5.221" />
+             <circle class="eye__inner" cx="35" cy="35.31" r="10.041" />
+           </svg>
+         </a>`
+      : '';
 
     return `
       <div class="project">
@@ -41,28 +69,8 @@ export class ProjectsRenderer {
         <div class="project__img">
           <img src="${sanitizedImage}" alt="${escapedTitle}" />
           <div class="project__links">
-            <a href="${sanitizedGithub}" title="${escapedTitle}" target="_blank" rel="noopener noreferrer" class="coolButton">
-              <span>Github</span>
-            </a>
-            <a href="${sanitizedLive}" title="${escapedTitle}" target="_blank" rel="noopener noreferrer" class="coolCircleEyeButton">
-              <svg class="textcircle" viewBox="0 0 500 500">
-                <defs>
-                  <path id="textcircle-${project.id}" d="M250,400 a150,150 0 0,1 0,-300a150,150 0 0,1 0,300Z" />
-                </defs>
-                <text>
-                  <textPath xlink:href="#textcircle-${project.id}" aria-label=".Click to see the live version." textLength="900">
-                    Click to see the live version.
-                  </textPath>
-                </text>
-              </svg>
-              <svg class="eye" aria-hidden="true" viewBox="0 0 70 70" xmlns="http://www.w3.org/2000/svg">
-                <path class="eye__outer" d="M10.5 35.308c5.227-7.98 14.248-13.252 24.5-13.252s19.273 5.271 24.5 13.252c-5.227 7.98-14.248 13.253-24.5 13.253s-19.273-5.272-24.5-13.253z" />
-                <path class="eye__lashes-up" d="M35 8.802v8.836M49.537 11.383l-3.31 8.192M20.522 11.684l3.31 8.192" />
-                <path class="eye__lashes-down" d="M35 61.818v-8.836 8.836zM49.537 59.237l-3.31-8.193 3.31 8.193zM20.522 58.936l3.31-8.193-3.31 8.193z" />
-                <circle class="eye__iris" cx="35" cy="35.31" r="5.221" />
-                <circle class="eye__inner" cx="35" cy="35.31" r="10.041" />
-              </svg>
-            </a>
+            ${githubLinkHTML}
+            ${liveLinkHTML}
           </div>
           <div class="project__tags">
             ${tagsHTML}

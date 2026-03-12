@@ -8,7 +8,7 @@ interface ImageConfig {
 
 export class ImageManager {
     private static readonly DEBUG = false;
-    public static readonly images = {
+    private static readonly images = {
         sergioImg: "/people/sergio.jpg",
         craigImg: "/people/craig.jpg",
     } as const

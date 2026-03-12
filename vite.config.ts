@@ -1,6 +1,5 @@
 import { defineConfig } from 'vite'
 import glsl from 'vite-plugin-glsl'
-import { resolve } from 'path'
 
 export default defineConfig({
     // index.htmlがsrc直下にあるため、rootをsrcに指定
@@ -27,13 +26,6 @@ export default defineConfig({
         }
     },
     
-    resolve: {
-        alias: {
-            // 必要に応じてエイリアスを設定
-            '~': resolve(__dirname, 'src'),
-        }
-    },
-    
     server: {
         port: 3000,
         open: true,
@@ -43,8 +35,5 @@ export default defineConfig({
     plugins: [
         // GLSLシェーダーのインポートを可能にするプラグイン
         glsl()
-    ],
-    
-    // WebGL系で使うかもしれない静的アセットを明示
-    assetsInclude: ['**/*.gltf', '**/*.glb', '**/*.hdr', '**/*.exr']
+    ]
 })

@@ -69,9 +69,9 @@ DOMContentLoaded
 
 ## Build Notes
 
-- `public/` directory (avatars, project images, wallpapers) is bundled seamlessly by Vite to `dist/`
+- `public/` directory (avatars, project images, wallpapers): Files here are not transformed by Vite. They are served from the project root during development and copied unchanged into `dist/` at build time (unlike files in `src/assets`, which are processed and hashed).
+- Asset paths within JS for `public/` files use root-relative paths (e.g., `/avatars/1.png`) mapped via Vite's static file serving.
 - GLSL shaders are bundled via `vite-plugin-glsl`
-- Asset paths within JS use root-relative paths (e.g., `/avatars/1.png`) mapped via Vite's static file serving.
 - `src/assets/js/projectsData.ts` is gitignored. Create it with:
 
 ```typescript
