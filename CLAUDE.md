@@ -5,8 +5,9 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 ## Commands
 
 ```bash
-bun run dev      # Start Parcel dev server with hot reload (entry: src/index.html)
-bun run build    # Production build → dist/, copy public/ assets, then restart dev
+bun run dev      # Start Vite dev server with native ESM fast HMR
+bun run build    # Production build → dist/, using Vite
+bun run preview  # Preview production build locally
 ```
 
 No test suite is configured.
@@ -23,30 +24,35 @@ Prettier is enforced (`.prettierrc.json`):
 
 ## Architecture
 
-**Stack**: Vanilla TypeScript (OOP, no React/Vue) + Three.js + GSAP + Parcel 2 + SCSS
+**Stack**: Vanilla TypeScript (OOP, no React/Vue) + Three.js + GSAP + Vite + SCSS
 
 **Initialization flow**:
 
-```
+```text
 DOMContentLoaded
+  → index.ts
+    → initializeBackground() — Inits Three.js background and handles visibility/unload lifecycle
+    → Instantiates ProjectsRenderer, ReviewSwiper, LoaderManager
+    → LoaderManager.start() triggers rendering projects and populating reviews on completion
   → App (app.ts) constructor
-    → initializePlugins()   — registers smooth-scrollbar plugins
-    → initializeComponents() — LoaderManager, ReviewSwiper, AccordionManager
+    → initializePlugins()    — registers smooth-scrollbar plugins
+    → initializeComponents() — Instantiates LoaderManager, ReviewSwiper, AccordionManager
     → initializeUtilities()  — updates copyright year, ImageManager
-    → startApp()            — starts loader animation, populates reviews
+    → startApp()             — Starts loader animation, populates reviews
   → LoaderManager.start()
     → Animates progress bar with GSAP
     → Waits for all images via imagesloaded
     → Inits Smooth Scrollbar
-    → Triggers ProjectsRenderer to inject projects into DOM
+    → Executes completion callbacks
 ```
 
 **Key files**:
 
-- `src/index.html` — Parcel entry; contains all static HTML sections
-- `src/index.ts` — Bootstraps `ProjectsRenderer` and `ReviewSwiper`
-- `src/assets/js/app.ts` — Central `App` class wiring all components
+- `src/index.html` — Vite entry; contains all static HTML sections
+- `src/index.ts` — Bootstraps ThreeJS lifecycle, `ProjectsRenderer`, `ReviewSwiper`, and `LoaderManager`
+- `src/assets/js/app.ts` — Central `App` class wiring layout plugins and DOM utilities
 - `src/assets/js/components/` — `loader.ts`, `reviewSwiper.ts`, `projectsRenderer.ts`, `accordion.ts`, `imageManager.ts`
+- `src/assets/js/utils/` — Utility functions (e.g., `url.ts` for fail-closed URL sanitization, `domUtils.ts`)
 - `src/assets/js/threeBg.ts` — Animated wavy plane background (Three.js)
 - `src/assets/js/shaded3dImage.ts` — Mouse-tracked GLSL shader distortion on hero text
 - `src/assets/shaders/vertex.glsl` / `fragment.glsl` — Custom WebGL shaders
@@ -63,9 +69,9 @@ DOMContentLoaded
 
 ## Build Notes
 
-- Parcel config (`.parcelrc`) treats `.jpg` files as raw URLs (not inlined)
-- GLSL shaders are bundled via `@parcel/transformer-glsl`
-- `public/` directory (avatars, project images, wallpapers) must be manually copied to `dist/` — the build script does this via `cp -r public dist`
+- `public/` directory (avatars, project images, wallpapers): Files here are not transformed by Vite. They are served from the project root during development and copied unchanged into `dist/` at build time (unlike files in `src/assets`, which are processed and hashed).
+- Asset paths within JS for `public/` files use root-relative paths (e.g., `/avatars/1.png`) mapped via Vite's static file serving.
+- GLSL shaders are bundled via `vite-plugin-glsl`
 - `src/assets/js/projectsData.ts` is gitignored. Create it with:
 
 ```typescript

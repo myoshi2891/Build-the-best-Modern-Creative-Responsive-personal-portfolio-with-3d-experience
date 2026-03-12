@@ -1,13 +1,13 @@
 # Project Overview
 
-This project is a modern, creative, responsive personal portfolio utilizing 3D graphics. It is a frontend application built with Vanilla TypeScript (using Object-Oriented patterns), Three.js for 3D elements and GLSL shaders, GSAP for sophisticated animations, and SCSS for styling. The application is bundled using Parcel and managed with Bun.
+This project is a modern, creative, responsive personal portfolio utilizing 3D graphics. It is a frontend application built with Vanilla TypeScript (using Object-Oriented patterns), Three.js for 3D elements and GLSL shaders, GSAP for sophisticated animations, and SCSS for styling. The application is bundled using Vite and managed with Bun.
 
 Key technologies
 
 - **TypeScript** (Vanilla, OOP)
 - **Three.js** (3D background, shaders, particle systems)
 - **GSAP** (Loader and page animations)
-- **Parcel 2** (Bundler with SCSS and GLSL support)
+- **Vite** (Next-generation bundler with SCSS and GLSL support)
 - **SCSS** (Styling)
 
 ## Building and Running
@@ -26,7 +26,7 @@ bun install
 bun run dev
 ```
 
-*(This runs `parcel src/index.html`)*
+*(This runs `vite` server with native ESM HMR)*
 
 **Build for production:**
 
@@ -34,24 +34,26 @@ bun run dev
 bun run build
 ```
 
-*(This builds the project to the `dist/` directory and copies static assets from `public/` over to `dist/`.)*
+*(This builds the project to the `dist/` directory via Vite. The `public/` folder is automatically handled.)*
 
 ## Architecture
 
-The initialization flow is orchestrated centrally:
+The initialization flow is orchestrated via `index.ts` and `app.ts`:
 
-1. `DOMContentLoaded` triggers the `App` class constructor (`src/assets/js/app.ts`).
-2. Registers plugins (Smooth Scrollbar plugins).
-3. Initializes components (`LoaderManager`, `ReviewSwiper`, `AccordionManager`, etc.).
-4. Initializes utilities (e.g., copyright year, `ImageManager`).
-5. App starts: loader animation kicks off, waiting for images to load via `imagesloaded`, eventually revealing the 3D canvas and content sections.
+1. `DOMContentLoaded` triggers both `index.ts` and the `App` class constructor (`src/assets/js/app.ts`).
+2. `index.ts` initializes the Three.js background, binding to visibility/unload lifecycles.
+3. `index.ts` instantiates core components (`ProjectsRenderer`, `ReviewSwiper`, `LoaderManager`) and triggers their rendering logic on load completion.
+4. `App` registers UI plugins (Smooth Scrollbar).
+5. `App` initializes side-components (`AccordionManager`, `ImageManager`) and DOM utilities.
+6. The `LoaderManager` coordinates the initial site loading phase (progress bar, image loading via `imagesloaded`) before revealing the content and 3D canvas.
 
 **Key Directories and Files:**
 
-- `src/index.html` - The Parcel entry point containing the structural HTML.
-- `src/index.ts` - Bootstraps certain dynamic renderers like `ProjectsRenderer` and `ReviewSwiper`.
-- `src/assets/js/app.ts` - The main central application class wiring together components.
-- `src/assets/js/components/` - Sub-components (`loader.ts`, `projectsRenderer.ts`, `accordion.ts`, `reviewSwiper.ts`).
+- `src/index.html` - The Vite entry point containing the structural HTML.
+- `src/index.ts` - Bootstraps ThreeJS background lifecycle and core UI renderers/loaders.
+- `src/assets/js/app.ts` - The main central application class wiring together plugins and UI components.
+- `src/assets/js/components/` - Sub-components (`loader.ts`, `projectsRenderer.ts`, `accordion.ts`, `reviewSwiper.ts`, `imageManager.ts`).
+- `src/assets/js/utils/` - Shared utilities like `url.ts` (for security sanitization) and `domUtils.ts`.
 - `src/assets/js/threeBg.ts` - The interactive 3D particle background system (Three.js).
 - `src/assets/js/shaded3dImage.ts` - Controls the WebGL shader distortions (mouse-tracked).
 - `src/assets/shaders/` - Custom GLSL shaders (`vertex.glsl`, `fragment.glsl`).

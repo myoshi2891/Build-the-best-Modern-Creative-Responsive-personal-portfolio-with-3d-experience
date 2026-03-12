@@ -6,28 +6,28 @@ export interface Review {
 }
 
 export const reviews: Review[] = [
-    {
-        name: "John Doe",
-        position: "Frontend Developer",
-        review: "Amazing work! The attention to detail and creativity in this portfolio is outstanding. The 3D elements really make it stand out.",
-        image: new URL("../../../public/people/craig.jpg", import.meta.url).toString()
-    },
-    {
-        name: "Sarah Johnson",
-        position: "UI/UX Designer",
-        review: "Incredible design and user experience. The animations are smooth and the overall aesthetic is very professional.",
-        image: new URL("../../../public/people/jake.jpg", import.meta.url).toString()
-    },
-    {
-        name: "Mike Chen",
-        position: "Full Stack Developer",
-        review: "The technical implementation is impressive. Clean code, great performance, and excellent use of modern web technologies.",
-        image: new URL("../../../public/people/matheus.jpg", import.meta.url).toString()
-    },
-    {
-        name: "Emily Rodriguez",
-        position: "Product Manager",
-        review: "This portfolio perfectly showcases technical skills while maintaining great usability. Very impressed with the overall execution.",
-        image: new URL("../../../public/people/sergio.jpg", import.meta.url).toString()
-    },
-];
+	{
+		name: "John Doe",
+		position: "Frontend Developer",
+		review: "Amazing work! The attention to detail and creativity in this portfolio is outstanding. The 3D elements really make it stand out.",
+		image: "/people/craig.jpg"
+	},
+	{
+		name: "Sarah Johnson",
+		position: "UI/UX Designer",
+		review: "Incredible design and user experience. The animations are smooth and the overall aesthetic is very professional.",
+		image: "/people/jake.jpg"
+	},
+	{
+		name: "Mike Chen",
+		position: "Full Stack Developer",
+		review: "The technical implementation is impressive. Clean code, great performance, and excellent use of modern web technologies.",
+		image: "/people/matheus.jpg"
+	},
+	{
+		name: "Emily Rodriguez",
+		position: "Product Manager",
+		review: "This portfolio perfectly showcases technical skills while maintaining great usability. Very impressed with the overall execution.",
+		image: "/people/sergio.jpg"
+	}
+]

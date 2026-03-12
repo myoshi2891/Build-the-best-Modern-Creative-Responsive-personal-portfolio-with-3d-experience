@@ -29,7 +29,6 @@ export function sanitizeUrl(url: string): string {
         url.startsWith("/") ||
         url.startsWith("./") ||
         url.startsWith("../") ||
-        url.startsWith("public/") ||
         url.startsWith("blob:") ||
         url.startsWith("data:image/")
     ) {

@@ -8,10 +8,10 @@ interface ImageConfig {
 
 export class ImageManager {
     private static readonly DEBUG = false;
-    private static readonly IMAGES = {
-        sergioImg: new URL("../../../../public/people/sergio.jpg", import.meta.url).toString(),
-        craigImg: new URL("../../../../public/people/craig.jpg", import.meta.url).toString(),
-    }
+    private static readonly images = {
+        sergioImg: "/people/sergio.jpg",
+        craigImg: "/people/craig.jpg",
+    } as const
 
     static createAndAppendImage(config: ImageConfig): void {
         if (this.DEBUG) {
@@ -32,17 +32,17 @@ export class ImageManager {
 
     static initializeImages(): void {
         if (this.DEBUG) {
-            console.log("ImageManager initialized. IMAGES:", this.IMAGES);
+            console.log("ImageManager initialized. images:", this.images);
         }
         const imageConfigs: ImageConfig[] = [
             {
-                src: this.IMAGES.sergioImg,
+                src: this.images.sergioImg,
                 alt: "Instructor Sergio",
                 className: "instructor__img",
                 container: ".instructor__infos"
             },
             {
-                src: this.IMAGES.craigImg,
+                src: this.images.craigImg,
                 alt: "Contact person Craig",
                 className: "instructor__img",
                 container: ".contact__profile-item"
