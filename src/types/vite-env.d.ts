@@ -12,7 +12,3 @@ interface ImportMetaEnv {
 	readonly PROJECT_5_GITHUB_URL: string | undefined;
 	readonly PROJECT_5_LIVE_URL: string | undefined;
 }
-
-interface ImportMeta {
-	readonly env: ImportMetaEnv;
-}
