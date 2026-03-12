@@ -27,13 +27,13 @@ export class ProjectsRenderer {
     const sanitizedGithub = project.githubUrl ? sanitizeUrl(project.githubUrl) : null;
     const sanitizedLive = project.liveUrl ? sanitizeUrl(project.liveUrl) : null;
 
-    const githubLinkHTML = sanitizedGithub 
+    const githubLinkHTML = sanitizedGithub && sanitizedGithub !== "#" 
       ? `<a href="${sanitizedGithub}" title="${escapedTitle}" target="_blank" rel="noopener noreferrer" class="coolButton">
            <span>Github</span>
          </a>` 
       : '';
 
-    const liveLinkHTML = sanitizedLive
+    const liveLinkHTML = sanitizedLive && sanitizedLive !== "#"
       ? `<a href="${sanitizedLive}" title="${escapedTitle}" target="_blank" rel="noopener noreferrer" class="coolCircleEyeButton">
            <svg class="textcircle" viewBox="0 0 500 500">
              <defs>
