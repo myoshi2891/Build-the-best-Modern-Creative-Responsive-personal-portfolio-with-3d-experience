@@ -1,13 +1,13 @@
 # Project Overview
 
-This project is a modern, creative, responsive personal portfolio utilizing 3D graphics. It is a frontend application built with Vanilla TypeScript (using Object-Oriented patterns), Three.js for 3D elements and GLSL shaders, GSAP for sophisticated animations, and SCSS for styling. The application is bundled using Parcel and managed with Bun.
+This project is a modern, creative, responsive personal portfolio utilizing 3D graphics. It is a frontend application built with Vanilla TypeScript (using Object-Oriented patterns), Three.js for 3D elements and GLSL shaders, GSAP for sophisticated animations, and SCSS for styling. The application is bundled using Vite and managed with Bun.
 
 Key technologies
 
 - **TypeScript** (Vanilla, OOP)
 - **Three.js** (3D background, shaders, particle systems)
 - **GSAP** (Loader and page animations)
-- **Parcel 2** (Bundler with SCSS and GLSL support)
+- **Vite** (Next-generation bundler with SCSS and GLSL support)
 - **SCSS** (Styling)
 
 ## Building and Running
@@ -26,7 +26,7 @@ bun install
 bun run dev
 ```
 
-*(This runs `parcel src/index.html`)*
+*(This runs `vite` server with native ESM HMR)*
 
 **Build for production:**
 
@@ -34,7 +34,7 @@ bun run dev
 bun run build
 ```
 
-*(This builds the project to the `dist/` directory and copies static assets from `public/` over to `dist/`.)*
+*(This builds the project to the `dist/` directory via Vite. The `public/` folder is automatically handled.)*
 
 ## Architecture
 
@@ -49,7 +49,7 @@ The initialization flow is orchestrated via `index.ts` and `app.ts`:
 
 **Key Directories and Files:**
 
-- `src/index.html` - The Parcel entry point containing the structural HTML.
+- `src/index.html` - The Vite entry point containing the structural HTML.
 - `src/index.ts` - Bootstraps ThreeJS background lifecycle and core UI renderers/loaders.
 - `src/assets/js/app.ts` - The main central application class wiring together plugins and UI components.
 - `src/assets/js/components/` - Sub-components (`loader.ts`, `projectsRenderer.ts`, `accordion.ts`, `reviewSwiper.ts`, `imageManager.ts`).

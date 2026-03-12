@@ -5,8 +5,9 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 ## Commands
 
 ```bash
-bun run dev      # Start Parcel dev server with hot reload (entry: src/index.html)
-bun run build    # Production build → dist/, copy public/ assets, then restart dev
+bun run dev      # Start Vite dev server with native ESM fast HMR
+bun run build    # Production build → dist/, using Vite
+bun run preview  # Preview production build locally
 ```
 
 No test suite is configured.
@@ -23,7 +24,7 @@ Prettier is enforced (`.prettierrc.json`):
 
 ## Architecture
 
-**Stack**: Vanilla TypeScript (OOP, no React/Vue) + Three.js + GSAP + Parcel 2 + SCSS
+**Stack**: Vanilla TypeScript (OOP, no React/Vue) + Three.js + GSAP + Vite + SCSS
 
 **Initialization flow**:
 
@@ -47,7 +48,7 @@ DOMContentLoaded
 
 **Key files**:
 
-- `src/index.html` — Parcel entry; contains all static HTML sections
+- `src/index.html` — Vite entry; contains all static HTML sections
 - `src/index.ts` — Bootstraps ThreeJS lifecycle, `ProjectsRenderer`, `ReviewSwiper`, and `LoaderManager`
 - `src/assets/js/app.ts` — Central `App` class wiring layout plugins and DOM utilities
 - `src/assets/js/components/` — `loader.ts`, `reviewSwiper.ts`, `projectsRenderer.ts`, `accordion.ts`, `imageManager.ts`
@@ -68,9 +69,9 @@ DOMContentLoaded
 
 ## Build Notes
 
-- Parcel config (`.parcelrc`) treats `.jpg` files as raw URLs (not inlined)
-- GLSL shaders are bundled via `@parcel/transformer-glsl`
-- `public/` directory (avatars, project images, wallpapers) must be manually copied to `dist/` — the build script does this via `cp -r public dist`
+- `public/` directory (avatars, project images, wallpapers) is bundled seamlessly by Vite to `dist/`
+- GLSL shaders are bundled via `vite-plugin-glsl`
+- Asset paths within JS use root-relative paths (e.g., `/avatars/1.png`) mapped via Vite's static file serving.
 - `src/assets/js/projectsData.ts` is gitignored. Create it with:
 
 ```typescript
