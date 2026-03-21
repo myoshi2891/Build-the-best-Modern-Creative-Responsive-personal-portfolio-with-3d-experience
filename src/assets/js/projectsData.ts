@@ -44,26 +44,26 @@ export const projects: Project[] = [
     image: "/projects/wild-oasis.png",
     githubUrl: import.meta.env.PROJECT_3_GITHUB_URL || null,
     liveUrl: import.meta.env.PROJECT_3_LIVE_URL || null,
-    tags: ["Next.js 14", "React 18", "TypeScript", "TailwindCSS", "Prisma", "Supabase"]
+    tags: ["Next.js 14", "React 18", "TypeScript", "TailwindCSS", "Supabase", "NextAuth.js"]
   },
   {
     id: 4,
-    title: "The Wild Oasis 管理画面",
-    subtitle: "キャビン予約管理アプリケーション",
-    date: "August 2024",
-    image: "/projects/wildoasis-admin.png",
+    title: "Hope",
+    subtitle: "3D インタラクティブ体験",
+    date: "March 2026",
+    image: "/projects/hope.png",
     githubUrl: import.meta.env.PROJECT_4_GITHUB_URL || null,
     liveUrl: import.meta.env.PROJECT_4_LIVE_URL || null,
-    tags: ["React Query", "React 18", "JavaScript", "styled-components", "recharts", "Supabase", "PostgreSQL"]
+    tags: ["Three.js", "React Three Fiber", "GSAP", "TypeScript"]
   },
   {
     id: 5,
-    title: "Airbnb Clone",
-    subtitle: "物件レンタルプラットフォーム「Airbnb Clone アプリケーション」",
-    date: "August 2024",
-    image: "/projects/Airbnb.png",
+    title: "LLM Comparison Tool",
+    subtitle: "AI料金比較ツール",
+    date: "March 2026",
+    image: "/projects/llm-comparison.png",
     githubUrl: import.meta.env.PROJECT_5_GITHUB_URL || null,
     liveUrl: import.meta.env.PROJECT_5_LIVE_URL || null,
-    tags: ["Next.js 14", "React 18", "TypeScript", "TailwindCSS", "Prisma", "Supabase", "PostgreSQL", "Stripe", "Zod"]
+    tags: ["HTML", "CSS", "JavaScript", "LLM", "Netlify"]
   },
 ];
